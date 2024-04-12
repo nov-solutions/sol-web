@@ -1,0 +1,39 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./nextjs/src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./nextjs/src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./nextjs/src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        gray: {
+          DEFAULT: "#4B5563",
+          light: "#F5F5F7"
+        },
+      },
+      fontFamily: {
+        body: ["-apple-system", "BlinkMacSystemFont", "Inter", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "Inter", "Segoe UI", "Roboto", "sans-serif"],
+      },
+    },
+  },
+  daisyui: {
+    themes: [
+      {
+        [process.env.SITE_NAME]: {
+          primary: "TODO",
+          secondary: "TODO",
+          accent: "TODO",
+          neutral: "TODO",
+          "base-100": "TODO",
+          success: "TODO",
+          warning: "TODO",
+          error: "TODO",
+        },
+      },
+    ],
+  },
+  plugins: [require("daisyui")],
+};

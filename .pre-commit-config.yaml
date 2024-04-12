@@ -1,0 +1,60 @@
+repos:
+  # pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: detect-aws-credentials
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+
+  # python linter and formatter
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+
+  # typescript and javascript linter
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.0.0-rc.0
+    hooks:
+      - id: eslint
+        args: [--config eslint.config.json]
+
+  # dockerfile linter and formatter
+  - repo: https://github.com/AleksaC/hadolint-py
+    rev: v2.12.0.3
+    hooks:
+      - id: hadolint
+        args: [--ignore, DL3025, --ignore, DL3018]
+
+  # prettier formatters
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types: [javascript, json, yaml, markdown]
+
+  # python dependency checker
+  - repo: https://github.com/fpgmaas/deptry.git
+    rev: 0.14.2
+    hooks:
+      - id: deptry
+        args: [--requirements-txt, "./django/requirements.txt,./cdk/requirements.txt", --per-rule-ignores, DEP002=daphne|django-cors-headers|psycopg2-binary|python-Levenshtein]
+
+  # python dependency sorter
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: [--profile, black]
+
+  # python import and variable checker
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
+    hooks:
+    -   id: autoflake
+        args: [--remove-all-unused-imports, --remove-unused-variables, --in-place]

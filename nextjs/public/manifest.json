@@ -1,0 +1,23 @@
+{
+  "name": "NEWSOLWEBAPP",
+  "short_name": "NEWSOLWEBAPP",
+  "description": "TODO",
+  "theme_color": "TODO",
+  "background_color": "TODO",
+  "display": "standalone",
+  "scope": "/",
+  "orientation": "portrait",
+  "start_url": "TODO",
+  "icons": [
+    {
+      "src": "/static/assets/img/logos/TODO",
+      "sizes": "TODO"
+    }
+  ],
+  "icons_apple": [
+    {
+      "src": "/static/assets/img/apple_touch_icon.png",
+      "sizes": "180x180"
+    }
+  ]
+}
