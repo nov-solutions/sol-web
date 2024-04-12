@@ -22,7 +22,8 @@ elif ENVIRONMENT == "prod":
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-AUTH_USER_MODEL = SITE_NAME + ".User"
+# TODO: uncomment if project uses auth
+# AUTH_USER_MODEL = SITE_NAME + ".User"
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"

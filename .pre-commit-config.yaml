@@ -42,7 +42,7 @@ repos:
     rev: 0.14.2
     hooks:
       - id: deptry
-        args: [--requirements-txt, "./django/requirements.txt,./cdk/requirements.txt", --per-rule-ignores, DEP002=daphne|django-cors-headers|psycopg2-binary|python-Levenshtein]
+        args: [--requirements-txt, "./django/requirements.txt,./cdk/requirements.txt", --per-rule-ignores, DEP002=daphne|django-cors-headers|psycopg2-binary|python-decouple]
 
   # python dependency sorter
   - repo: https://github.com/pycqa/isort
