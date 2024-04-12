@@ -1,6 +1,10 @@
 # Sol
 
-## .env essential keys
+## Setup
+1. Clone the repository
+2. Create an `.env` file in the root directory and populate it with the following essential keys and their respective values for the project:
+
+```
 ENVIRONMENT=dev
 
 SITE_NAME=
@@ -11,8 +15,11 @@ SECRET_KEY=
 POSTGRES_DB=
 POSTGRES_USER=
 POSTGRES_PASSWORD=
+```
 
-## .prod.env essential keys
+3. Create a `.prod.env` file in the root directory and populate it with the following essential keys and their respective values for the project:
+
+```
 ENVIRONMENT=prod
 GITHUB_REPO=
 
@@ -24,15 +31,12 @@ SECRET_KEY=
 POSTGRES_DB=
 POSTGRES_USER=
 POSTGRES_PASSWORD=
+```
 
-## replace
-NEWSOLWEBAPP: app name
-newsolwebapp.com: domain name
+4. Address all of the repo-wide `TODO`s
 
-## address
-TODO
+5. Replace all instances of `NEWSOLWEBAPP` with the name of the project
 
+6. Replace all instances of `newsolwebapp.com` with the domain of the project
 
-## add
-apple_touch_icon.png to nextjs/public/static/assets/img
-favicon.png to nextjs/public/static/assets/img
+7. Add "apple_touch_icon.png" and "favicon.png" to `nextjs/public/static/assets/img`
