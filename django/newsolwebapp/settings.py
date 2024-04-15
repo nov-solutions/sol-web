@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # TODO: uncomment if project uses auth
 # AUTH_USER_MODEL = SITE_NAME + ".User"
 
-STATIC_URL = "/static/"
+STATIC_URL = "/api/static/"
 STATIC_ROOT = BASE_DIR / "static"
 
 ASGI_APPLICATION = SITE_NAME + ".asgi.application"
