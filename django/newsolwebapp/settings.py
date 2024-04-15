@@ -30,10 +30,6 @@ STATIC_ROOT = BASE_DIR / "static"
 
 ASGI_APPLICATION = SITE_NAME + ".asgi.application"
 
-NEXTJS_SETTINGS = {
-    "nextjs_server_url": "http://" + SITE_BASE_DOMAIN + ":3000",
-}
-
 INSTALLED_APPS = [
     "daphne",
     "django.contrib.admin",
