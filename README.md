@@ -46,3 +46,5 @@ POSTGRES_PASSWORD=
 9. Run `npm install` in the root directory
 
 10. Run `npm install` in /nextjs
+
+11. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` and `.prod.env` files
