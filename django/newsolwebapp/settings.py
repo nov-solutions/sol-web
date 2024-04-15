@@ -93,19 +93,11 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://" + SITE_BASE_DOMAIN,
     "https://" + SITE_BASE_DOMAIN,
-    "http://" + SITE_BASE_DOMAIN + ":3000",
-    "https://" + SITE_BASE_DOMAIN + ":3000",
-    "http://" + SITE_BASE_DOMAIN + ":8000",
-    "https://" + SITE_BASE_DOMAIN + ":8000",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://" + SITE_BASE_DOMAIN,
     "https://" + SITE_BASE_DOMAIN,
-    "http://" + SITE_BASE_DOMAIN + ":3000",
-    "https://" + SITE_BASE_DOMAIN + ":3000",
-    "http://" + SITE_BASE_DOMAIN + ":8000",
-    "https://" + SITE_BASE_DOMAIN + ":8000",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -127,15 +119,18 @@ TEMPLATES = [
 ]
 
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
     },
 }
