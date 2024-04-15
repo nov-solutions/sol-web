@@ -20,7 +20,7 @@ drop-db-dev:
 	docker volume rm $(SITE_NAME)_pgdata
 
 drop-db-prod:
-	docker compose  down
+	docker compose down
 	docker volume rm $(SITE_NAME)_pgdata
 
 key-pair:
