@@ -17,14 +17,14 @@ seed-db:
 
 drop-db-dev:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm $(SITE_NAME)_pgdata
+	docker volume rm NEWSOLWEBAPP_pgdata
 
 drop-db-prod:
 	docker compose down
-	docker volume rm $(SITE_NAME)_pgdata
+	docker volume rm NEWSOLWEBAPP_pgdata
 
 key-pair:
-	aws ec2 create-key-pair --key-name $(SITE_NAME)-web-39 --query 'KeyMaterial' --output text > $(SITE_NAME)-web.pem
+	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web-39 --query 'KeyMaterial' --output text > NEWSOLWEBAPP-web.pem
 
 venv:
 	python -m venv .venv
