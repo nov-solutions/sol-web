@@ -51,9 +51,9 @@ class WebStack(Stack):
         ec2.Instance(
             self,
             SITE_NAME + "-web",
-            instance_type=ec2.InstanceType("TODO"),
+            instance_type=ec2.InstanceType("t2.micro"),
             machine_image=ec2.MachineImage.generic_linux(
-                {"TODO": "TODO"}
+                {"us-west-2": "ami-0e4a0595b254f1a4f"}
             ),
             vpc=vpc,
             # vpc_subnets=public_subnet,
