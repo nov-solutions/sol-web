@@ -11,7 +11,7 @@ app = cdk.App()
 
 env = cdk.Environment(
     account="TODO",
-    region="TODO",
+    region="us-west-2",
 )
 
 WebStack(
