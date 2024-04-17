@@ -65,4 +65,13 @@ class WebStack(Stack):
             security_group=security_group,
             instance_name=SITE_NAME + "-web",
             key_name=SITE_NAME + "-web",
+            block_devices=[
+                ec2.BlockDevice(
+                    device_name="/dev/sda1",
+                    volume=ec2.BlockDeviceVolume.ebs(
+                        volume_size=50,  # Set volume size to 50 GiB
+                        delete_on_termination=True,
+                    ),
+                )
+            ],
         )
