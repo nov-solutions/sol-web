@@ -64,5 +64,5 @@ class WebStack(Stack):
             ),
             security_group=security_group,
             instance_name=SITE_NAME + "-web",
-            key_name=SITE_NAME + "-web-backend",
+            key_name=SITE_NAME + "-web",
         )
