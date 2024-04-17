@@ -17,3 +17,4 @@ package-lock.json
 cdk.out
 staticfiles
 nextjs/package-lock.json
+cdk/cdk.context.json
