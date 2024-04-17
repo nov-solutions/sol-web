@@ -1,10 +1,5 @@
-docker run -it --rm --name letsencrypt \
-	-v "/etc/letsencrypt:/etc/letsencrypt" \
-	-v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-	quay.io/letsencrypt/letsencrypt:latest \
-		certonly \
-		-d newsolwebapp.com \
-		-d *newsolwebapp.com \
-		--manual \
-		--preferred-challenges dns \
-		--server https://acme-v02.api.letsencrypt.org/directory
+sudo docker run -it --rm --name certbot \
+            -p 80:80 \
+            -v "/etc/letsencrypt:/etc/letsencrypt" \
+            -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+            certbot/certbot certonly
