@@ -2,11 +2,40 @@
 
 ## Setup
 
-1. `git clone git@github.com:nov-solutions/sol.git`
+1. Clone the repository
 
-2. fill out the `.env` and `.prod.env` files
+2. Create an `.env` file in the root directory and populate it with the following essential keys and their respective values for the project:
 
-3. Run `python find_replace.py`
+```
+ENVIRONMENT=dev
+
+SITE_NAME=
+SITE_DESCRIPTION=
+SITE_TAGLINE=
+SITE_BASE_DOMAIN=localhost
+SECRET_KEY=
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+
+3. Create a `.prod.env` file in the root directory and populate it with the following essential keys and their respective values for the project:
+
+```
+ENVIRONMENT=prod
+GITHUB_REPO=
+
+SITE_NAME=
+SITE_DESCRIPTION=
+SITE_TAGLINE=
+SITE_BASE_DOMAIN=
+SECRET_KEY=
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+
+3. Run `python find_replace.py` in the root directory
 
 4. Address all of the repo-wide `TODO`s
 
