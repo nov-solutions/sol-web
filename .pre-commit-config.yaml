@@ -21,7 +21,7 @@ repos:
     rev: v9.0.0-rc.0
     hooks:
       - id: eslint
-        args: [--config eslint.config.json]
+        args: [--config eslint.config.js]
 
   # dockerfile linter and formatter
   - repo: https://github.com/AleksaC/hadolint-py
