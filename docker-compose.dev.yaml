@@ -1,5 +1,6 @@
 volumes:
   pgdata:
+  style:
 
 services:
   nextjs:
@@ -16,6 +17,7 @@ services:
     volumes:
       - ./nextjs/public:/app/public
       - ./nextjs/src:/app/src
+      - style:/app/public/static/css:ro
     env_file:
       - .env
     environment:
@@ -41,10 +43,11 @@ services:
   tailwind-watcher:
     restart: always
     build:
-      context: .
+      context: ./nextjs
       dockerfile: Dockerfile.tailwind-watcher
     volumes:
-      - .:/app
+      - ./nextjs:/app
+      - style:/app/public/static/css
     tty: true
     stop_grace_period: 0s
     logging:

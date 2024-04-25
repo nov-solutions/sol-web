@@ -1,5 +1,8 @@
 FROM node:21-alpine
 
+# sensible default
+ARG NODE_ENV=dev
+
 WORKDIR /app
 
 COPY . /app
