@@ -2,9 +2,9 @@ FROM python:3.9
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-WORKDIR /app/django
+WORKDIR /app
 
-COPY ./django /app/django
+COPY . /app
 
 RUN pip install -r requirements.txt --no-cache-dir
 
