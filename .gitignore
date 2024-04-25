@@ -7,7 +7,7 @@ styles.css
 __pycache__
 *.pyc
 *.cache
-django/static/admin
+django/static
 migrations
 node_modules
 *.next
