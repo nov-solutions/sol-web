@@ -7,13 +7,16 @@ services:
     restart: always
     depends_on:
       - django
-      - tailwind-watcher
     build:
       context: ./nextjs
     expose:
       - 3000
     env_file:
       - .prod.env
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   django:
     restart: always
