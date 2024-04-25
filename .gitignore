@@ -12,8 +12,8 @@ migrations
 node_modules
 *.next
 next-env.d.ts
-package-lock.json
 cdk.out
 staticfiles
-nextjs/package-lock.json
 cdk/cdk.context.json
+**/sw.js
+**/workbox-*.js

@@ -1,9 +1,0 @@
-FROM node:21-alpine
-
-WORKDIR /app/nextjs
-
-COPY ./nextjs /app/nextjs
-
-RUN npm install
-
-CMD npm run build && npm run start

@@ -21,7 +21,7 @@ repos:
     rev: v9.0.0-rc.0
     hooks:
       - id: eslint
-        args: [--config eslint.config.js]
+        args: [--config ./nextjs/eslint.config.js]
 
   # dockerfile linter and formatter
   - repo: https://github.com/AleksaC/hadolint-py
@@ -37,13 +37,6 @@ repos:
       - id: prettier
         types: [javascript, json, yaml, markdown]
 
-  # python dependency checker
-  - repo: https://github.com/fpgmaas/deptry.git
-    rev: 0.14.2
-    hooks:
-      - id: deptry
-        args: [--requirements-txt, "./django/requirements.txt,./cdk/requirements.txt", --per-rule-ignores, DEP002=daphne|django-cors-headers|psycopg2-binary|python-decouple]
-
   # python dependency sorter
   - repo: https://github.com/pycqa/isort
     rev: 5.13.2
@@ -56,5 +49,5 @@ repos:
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.3.1
     hooks:
-    -   id: autoflake
+      - id: autoflake
         args: [--remove-all-unused-imports, --remove-unused-variables, --in-place]
