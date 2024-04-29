@@ -1,5 +1,6 @@
 volumes:
   pgdata:
+  style:
 
 services:
   nextjs:
@@ -8,32 +9,30 @@ services:
       - django
       - tailwind-watcher
     build:
-      context: .
-      dockerfile: Dockerfile.nextjs-dev
+      context: ./nextjs
+      args:
+        - ENV=dev
     expose:
       - 3000
     volumes:
-      - .:/app
+      - ./nextjs/public:/app/public
+      - ./nextjs/src:/app/src
+      - style:/app/public/static/css:ro
     env_file:
       - .env
     environment:
       - WATCHPACK_POLLING=true
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   django:
     restart: always
     depends_on:
       - postgres
     build:
-      context: .
-      dockerfile: Dockerfile.django
+      context: ./django
     expose:
       - 8000
     volumes:
-      - .:/app
+      - ./django:/app
     env_file:
       - .env
     logging:
@@ -44,10 +43,11 @@ services:
   tailwind-watcher:
     restart: always
     build:
-      context: .
+      context: ./nextjs
       dockerfile: Dockerfile.tailwind-watcher
     volumes:
-      - .:/app
+      - ./nextjs:/app
+      - style:/app/public/static/css
     tty: true
     stop_grace_period: 0s
     logging:
@@ -61,13 +61,12 @@ services:
       - django
       - nextjs
     build:
-      context: .
-      dockerfile: Dockerfile.nginx
+      context: ./nginx
+      args:
+        - ENV=dev
     ports:
       - 80:80
       - 443:443
-    env_file:
-      - .env
     logging:
       options:
         max-size: "10m"
