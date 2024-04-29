@@ -28,7 +28,7 @@ export default function Footer({
   const pagesHTML =
     pages && pagesLocs && footerPagesColor
       ? pages.map((page, i) => (
-          <Link key={page[i]} href={pagesLocs[i]} className={"text-opacity-50 lg:hover:text-opacity-100 " + footerPagesColor}>
+          <Link key={page[i]} href={pagesLocs[i]} className={"font-semibold text-opacity-50 lg:hover:text-opacity-100 " + footerPagesColor}>
             {page}
           </Link>
         ))
@@ -45,8 +45,8 @@ export default function Footer({
     ) : null;
 
   return (
-    <footer className="h-[15vh] w-full">
-      <div className="flex flex-col items-center justify-center h-full px-4 mx-auto space-y-4 text-xs lg:px-0 lg:w-1/2">
+    <footer className="w-full">
+      <div className="flex flex-col items-center justify-center !h-[15vh] px-4 mx-auto space-y-4 text-xs lg:px-0 lg:w-2/3">
         <hr className={"w-full border-t border-opacity-25 " + footerDividerColor }/>
         <div className="flex justify-between w-full">
           <div className="flex items-center space-x-4">
