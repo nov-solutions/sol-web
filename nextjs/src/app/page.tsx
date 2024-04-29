@@ -5,7 +5,7 @@ import Body from "@/layouts/body";
 import Nav from "@/layouts/nav";
 import Footer from "@/layouts/footer";
 
-import FullHeightSplash from "@/components/fullheightsplash";
+import FullHeightSplash from "@/layouts/fullheightsplash";
 
 const SITE_BASE_DOMAIN = String(process.env.SITE_BASE_DOMAIN);
 const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
