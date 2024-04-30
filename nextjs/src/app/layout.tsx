@@ -45,8 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
           rel="stylesheet"
         />
-        {/* htmx */}
-        <script src="https://unpkg.com/htmx.org@1.9.8"></script>
       </head>
       {children}
     </html>
