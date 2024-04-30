@@ -8,7 +8,7 @@
 
 3. Run `python find_replace.py` in the root directory
 
-4. Delete `python find_replace.py`
+4. Delete "find_replace.py"
 
 5. Address all of the repo-wide `TODO`s
 
