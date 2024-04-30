@@ -40,9 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* google tag manager */}
 
-        {/* icon libraries */}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+        {/* icon library */}
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
         {/* htmx */}
         <script src="https://unpkg.com/htmx.org@1.9.8"></script>
       </head>

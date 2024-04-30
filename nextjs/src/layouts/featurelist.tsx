@@ -39,15 +39,15 @@ export default function FeatureList({
         <div className="flex flex-col space-y-16">
           <p className={"text-xs self-center lg:self-start font-semibold uppercase " + featureListSupertitleColor}>{featureListSupertitle}</p>
           <div className={"!mt-4 flex items-center space-x-2 " + featureListItemOneTextColor}>
-            <i className="mr-2 material-icons">{featureListItemOneIcon}</i>
+            <i className={"mr-2 " + featureListItemOneIcon}></i>
             <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemOneText}</h3>
           </div>
           <div className={"flex items-center space-x-2 " + featureListItemTwoTextColor}>
-            <i className="mr-2 material-icons">{featureListItemTwoIcon}</i>
+            <i className={"mr-2 " + featureListItemTwoIcon}></i>
             <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemTwoText}</h3>
           </div>
           <div className={"flex items-center space-x-2 " + featureListItemThreeTextColor}>
-            <i className="mr-2 material-icons">{featureListItemThreeIcon}</i>
+            <i className={"mr-2 " + featureListItemThreeIcon}></i>
             <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemThreeText}</h3>
           </div>
         </div>
