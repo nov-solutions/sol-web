@@ -31,6 +31,8 @@ const splashImageAlt = "TODO";
 const footerDividerColor = "TODO";
 const footerLogoFileName = "TODO";
 const footerPagesColor = "TODO";
+const footerTaglineColor = "TODO";
+const footerTagline = SITE_TAGLINE.charAt(0).toUpperCase() + SITE_TAGLINE.slice(1).toLowerCase();
 const footerFinePrintColor = "TODO";
 const socialsLocs = ["https://www.linkedin.com/company/TODO/"];
 const socialsColor = "TODO";
@@ -100,7 +102,17 @@ export default function Home() {
   return (
     <RootLayout>
       <Body bodyBG={bodyBG}>
-        <Nav navBG={navBG} navLogoFileName={navLogoFileName} SITE_NAME={SITE_NAME} pages={pages} pagesLocs={pagesLocs} navPagesColor={navPagesColor} cta={cta} ctaLoc={ctaLoc} mobileDrawerToggleColor={mobileDrawerToggleColor} />
+        <Nav
+          navBG={navBG}
+          navLogoFileName={navLogoFileName}
+          SITE_NAME={SITE_NAME}
+          pages={pages}
+          pagesLocs={pagesLocs}
+          navPagesColor={navPagesColor}
+          cta={cta}
+          ctaLoc={ctaLoc}
+          mobileDrawerToggleColor={mobileDrawerToggleColor}
+        />
         <FullHeightSplash
           splashBG={splashBG}
           splashLogoFileName={splashLogoFileName}
@@ -112,7 +124,20 @@ export default function Home() {
           splashImageFileName={splashImageFileName}
           splashImageAlt={splashImageAlt}
         />
-        <Footer footerDividerColor={footerDividerColor} footerLogoFileName={footerLogoFileName} SITE_NAME={SITE_NAME} pages={pages} pagesLocs={pagesLocs} footerPagesColor={footerPagesColor} socialsLocs={socialsLocs} socialsColor={socialsColor} socialsIcons={socialsIcons} footerFinePrintColor={footerFinePrintColor} />
+        <Footer
+          footerDividerColor={footerDividerColor}
+          footerLogoFileName={footerLogoFileName}
+          SITE_NAME={SITE_NAME}
+          pages={pages}
+          pagesLocs={pagesLocs}
+          footerPagesColor={footerPagesColor}
+          footerTaglineColor={footerTaglineColor}
+          footerTagline={footerTagline}
+          socialsLocs={socialsLocs}
+          socialsColor={socialsColor}
+          socialsIcons={socialsIcons}
+          footerFinePrintColor={footerFinePrintColor}
+        />
       </Body>
     </RootLayout>
   );
