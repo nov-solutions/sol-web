@@ -42,7 +42,7 @@ export default function Footer({
       <div className="flex items-center space-x-4">
         {socialsLocs.map((socialLoc, i) => (
           <Link key={socialLoc[i]} href={socialsLocs[i]} target="_blank" className={"text-opacity-50 lg:hover:text-opacity-100 " + socialsColor}>
-            <i className={"h-5 bi " + socialsIcons[i]}></i>
+            <i className={"h-5 " + socialsIcons[i]}></i>
           </Link>
         ))}
       </div>
