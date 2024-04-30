@@ -3,9 +3,8 @@ import { Metadata, Viewport } from "next";
 import RootLayout from "./layout";
 import Body from "@/layouts/body";
 import Nav from "@/layouts/nav";
-import Footer from "@/layouts/footer";
-
 import FullHeightSplash from "@/layouts/fullheightsplash";
+import Footer from "@/layouts/footer";
 
 const SITE_BASE_DOMAIN = String(process.env.SITE_BASE_DOMAIN);
 const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
