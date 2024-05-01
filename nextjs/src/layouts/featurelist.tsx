@@ -36,19 +36,19 @@ export default function FeatureList({
     <div className="px-4 py-24 lg:px-0">
       <div className={"grid items-center gap-8 mx-auto lg:grid-cols-2 lg:w-2/3 p-8 rounded-lg " + featureListBG}>
         <img src={"/static/assets/img/" + featureListImageFileName} alt={featureListImageAlt} className="w-3/4 mx-auto rounded-lg shadow-lg" />
-        <div className="flex flex-col space-y-16">
-          <p className={"text-xs self-center lg:self-start font-semibold uppercase " + featureListSupertitleColor}>{featureListSupertitle}</p>
-          <div className={"!mt-4 flex items-center space-x-2 " + featureListItemOneTextColor}>
+        <div className="flex flex-col items-center space-y-16 lg:items-start">
+          <p className={"text-xs font-semibold uppercase " + featureListSupertitleColor}>{featureListSupertitle}</p>
+          <div className={"!mt-4 text-3xl flex items-center space-x-2 " + featureListItemOneTextColor}>
             <i className={"mr-2 " + featureListItemOneIcon}></i>
-            <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemOneText}</h3>
+            <h3 className="font-semibold leading-none tracking-tight">{featureListItemOneText}</h3>
           </div>
-          <div className={"flex items-center space-x-2 " + featureListItemTwoTextColor}>
+          <div className={"text-3xl flex items-center space-x-2 " + featureListItemTwoTextColor}>
             <i className={"mr-2 " + featureListItemTwoIcon}></i>
-            <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemTwoText}</h3>
+            <h3 className="font-semibold leading-none tracking-tight">{featureListItemTwoText}</h3>
           </div>
-          <div className={"flex items-center space-x-2 " + featureListItemThreeTextColor}>
+          <div className={"text-3xl flex items-center space-x-2 " + featureListItemThreeTextColor}>
             <i className={"mr-2 " + featureListItemThreeIcon}></i>
-            <h3 className="text-3xl font-semibold leading-none tracking-tight">{featureListItemThreeText}</h3>
+            <h3 className="font-semibold leading-none tracking-tight">{featureListItemThreeText}</h3>
           </div>
         </div>
       </div>
