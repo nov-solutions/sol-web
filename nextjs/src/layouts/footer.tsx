@@ -49,8 +49,8 @@ export default function Footer({
     ) : null;
 
   return (
-    <footer className="w-full">
-      <div className="flex flex-col justify-center !h-[30vh] px-4 mx-auto space-y-8 lg:px-0 lg:w-2/3">
+    <footer className="w-full py-4">
+      <div className="flex flex-col justify-center px-4 mx-auto space-y-8 lg:px-0 lg:w-2/3">
         <hr className={"w-full border-t border-opacity-10 " + footerDividerColor }/>
         <div className="flex flex-col w-full space-y-8 text-sm lg:space-y-0 lg:justify-between lg:flex-row">
           <div className="flex flex-col space-y-4">
