@@ -36,7 +36,7 @@ const footerTagline = SITE_TAGLINE.charAt(0).toUpperCase() + SITE_TAGLINE.slice(
 const footerFinePrintColor = "TODO";
 const socialsLocs = ["https://www.linkedin.com/company/TODO/"];
 const socialsColor = "TODO";
-const socialsIcons = ["bi-linkedin"];
+const socialsIcons = ["ri-linkedin-fill"];
 
 const title = SITE_NAME + " • " + SITE_TAGLINE;
 const currentYear = new Date().getFullYear();
