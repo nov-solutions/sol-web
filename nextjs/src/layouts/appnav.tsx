@@ -87,7 +87,7 @@ export default function AppNav({
           <img src={"/static/assets/img/logos/" + navLogoFileName} alt={SITE_NAME + " logo"} className="h-5 my-auto" />
         </Link>
 
-        <button id="mobile-drawer-toggle" className={"text-[1.25rem] ri-menu-fill " + mobileDrawerToggleColor}></button>
+        <button id="mobile-drawer-toggle" className={"text-xl ri-menu-fill " + mobileDrawerToggleColor}></button>
         {mobilePagesHTML}
       </div>
     </nav>
