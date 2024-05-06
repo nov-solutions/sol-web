@@ -15,11 +15,11 @@ seed-db:
 
 drop-db-dev:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm NEWSOLWEBAPP_pgdata
+	docker volume rm NEWSOLWEBAPP-web_pgdata
 
 drop-db-prod:
 	docker compose down
-	docker volume rm NEWSOLWEBAPP_pgdata
+	docker volume rm NEWSOLWEBAPP-web_pgdata
 
 key-pair:
 	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web-39 --query 'KeyMaterial' --output text > NEWSOLWEBAPP-web.pem

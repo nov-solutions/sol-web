@@ -6,15 +6,13 @@ import { useEffect } from "react";
 
 import Link from "next/link";
 
-export default function Nav({
+export default function AppNav({
   navBG,
   navLogoFileName,
   SITE_NAME,
   pages,
   pagesLocs,
   navPagesColor,
-  cta,
-  ctaLoc,
   mobileDrawerToggleColor,
 }: {
   navBG: string;
@@ -23,11 +21,9 @@ export default function Nav({
   pages?: string[];
   pagesLocs?: string[];
   navPagesColor?: string;
-  cta?: string;
-  ctaLoc?: string;
   mobileDrawerToggleColor: string;
 }) {
-  const pagesCTAHTML =
+  const pagesHTML =
     pages && pagesLocs && navPagesColor ? (
       <div className="items-center hidden space-x-4 font-semibold lg:flex">
         {pages.map((page, i) => (
@@ -35,15 +31,10 @@ export default function Nav({
             {page}
           </Link>
         ))}
-        {cta && ctaLoc ? (
-          <Link href={ctaLoc} className="text-white btn btn-sm btn-primary">
-            {cta}
-          </Link>
-        ) : null}
       </div>
     ) : null;
 
-    const mobilePagesCTAHTML =
+    const mobilePagesHTML =
     pages && pagesLocs && navPagesColor ? (
       <nav
         id="mobile-drawer"
@@ -55,11 +46,6 @@ export default function Nav({
             <Link href={pagesLocs[i]}>{page}</Link>
           </li>
         ))}
-        {cta && ctaLoc ? (
-          <li>
-            <Link key={ctaLoc} href={ctaLoc} className="text-white btn btn-sm btn-primary">{cta}</Link>
-          </li>
-        ) : null}
       </ul>
       </nav>
     ) : null;
@@ -93,7 +79,7 @@ export default function Nav({
           <img src={"/static/assets/img/logos/" + navLogoFileName} alt={SITE_NAME + " logo"} className="h-5 my-auto" />
         </Link>
 
-        {pagesCTAHTML}
+        {pagesHTML}
       </div>
 
       <div className="flex items-center justify-between w-full h-full px-4 dropdown lg:hidden">
@@ -102,7 +88,7 @@ export default function Nav({
         </Link>
 
         <button id="mobile-drawer-toggle" className={"text-xl ri-menu-fill " + mobileDrawerToggleColor}></button>
-        {mobilePagesCTAHTML}
+        {mobilePagesHTML}
       </div>
     </nav>
   );

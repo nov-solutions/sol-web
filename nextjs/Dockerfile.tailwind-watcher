@@ -6,4 +6,4 @@ COPY . /app
 
 RUN npm install
 
-CMD npx tailwindcss -i /app/input.css -o /app/public/static/css/styles.css --watch --poll
+CMD npx tailwindcss -i /app/public/static/css/input.css -o /app/public/static/css/styles.css --watch --poll

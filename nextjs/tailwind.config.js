@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./nextjs/src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./nextjs/src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./nextjs/src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -35,5 +36,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require("@headlessui/tailwindcss"),
+    require("@tailwindcss/forms"),
+  ],
 };

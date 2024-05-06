@@ -1,12 +1,9 @@
 FROM node:21-alpine
 
-# sensible default
-ARG NODE_ENV=dev
-
 WORKDIR /app
 
 COPY . /app
 
 RUN npm install
 
-CMD if [ ${NODE_ENV} = "dev" ]; then npm run dev; else npm run build && npm run start; fi
+CMD if [ ${ENVIRONMENT} = "dev" ]; then npm run dev; else npm run build && npm run start; fi
