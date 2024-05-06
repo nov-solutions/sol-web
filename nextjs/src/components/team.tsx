@@ -22,7 +22,7 @@ export default function Team({
         ? team.map((teammate, i) => (
             <div key={i} className={"flex flex-col items-center justify-center w-full p-4 text-center rounded-lg lg:p-8 " + teamCardBG}>
                 <img src={"/static/assets/img/headshots/" + teammate.headshotLoc} alt={teammate.name + "'s headshot"} className="w-1/2 mx-auto rounded-full filter grayscale" />
-                <h2 className={"mt-4 font-medium " + teamCardNameColor}>{teammate.name}</h2>
+                <h2 className={"mt-4 text-sm font-medium " + teamCardNameColor}>{teammate.name}</h2>
                 <h3 className={"text-xs " + teamCardRoleColor}>{teammate.role}</h3>
                 <Link href={teammate.linkedInLoc} target="_blank" className="mt-4 w-fit">
                     <i className={"h-5 ri-linkedin-fill text-opacity-50 hover:text-opacity-100 " + teamCardLinkedInIconColor}></i>
