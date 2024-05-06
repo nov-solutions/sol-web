@@ -8,7 +8,6 @@ __pycache__
 *.pyc
 *.cache
 django/static
-migrations
 node_modules
 *.next
 next-env.d.ts
