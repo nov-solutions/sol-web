@@ -8,7 +8,7 @@ from django.urls import re_path
 
 SITE_NAME = config("SITE_NAME")
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django." + SITE_NAME + ".settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", SITE_NAME + ".settings")
 
 django_asgi_application = get_asgi_application()
 
