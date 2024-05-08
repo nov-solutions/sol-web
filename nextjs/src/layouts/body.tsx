@@ -1,5 +1,5 @@
 import "../../public/static/css/styles.css";
 
 export default function Body({ children, bodyBG }: { children: React.ReactNode; bodyBG: string }) {
-  return <body className={"min-h-[100dvh] lg:h-[100vh] " + bodyBG}>{children}</body>;
+  return <body className={"flex flex-col min-h-[100dvh] lg:h-[100vh] " + bodyBG}>{children}</body>;
 }
