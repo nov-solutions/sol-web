@@ -1,6 +1,5 @@
 volumes:
   pgdata:
-  style:
 
 services:
   nextjs:

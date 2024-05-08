@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm install
+RUN npm ci
 
 CMD npx tailwindcss -i /app/public/static/css/input.css -o /app/public/static/css/styles.css --watch --poll

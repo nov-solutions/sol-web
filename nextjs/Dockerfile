@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm install
+RUN npm ci
 
 CMD if [ ${ENVIRONMENT} = "dev" ]; then npm run dev; else npm run build && npm run start; fi
