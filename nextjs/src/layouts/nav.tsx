@@ -45,14 +45,14 @@ export default function Nav({
 
     const mobilePagesCTAHTML =
     pages && pagesLocs && navPagesColor ? (
-      <nav
+      <ul
+        tabIndex={Number(0)}
         id="mobile-drawer"
-        className={"z-20 dropdown-content dropdown-end fixed left-0 top-[7.5vh] w-screen border-b border-black border-opacity-10 " + navBG}
-        >
-      <ul className={"flex flex-col p-4 space-y-4 font-semibold text-center " + navPagesColor}>
+        className={"z-20 dropdown-content flex flex-col p-4 space-y-4 font-semibold text-center dropdown-end fixed left-0 top-[7.5vh] w-screen border-b border-black border-opacity-10 " + navBG + " " + navPagesColor}
+      >
         {pages.map((page, i) => (
-          <li key={i}>
-            <Link href={pagesLocs[i]}>{page}</Link>
+          <li>
+            <Link key={i} href={pagesLocs[i]}>{page}</Link>
           </li>
         ))}
         {cta && ctaLoc ? (
@@ -61,7 +61,6 @@ export default function Nav({
           </li>
         ) : null}
       </ul>
-      </nav>
     ) : null;
 
       useEffect(() => {
