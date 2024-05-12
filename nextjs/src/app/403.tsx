@@ -77,7 +77,12 @@ export default function Forbidden() {
   return (
     <RootLayout>
       <Body bodyBG={"bg-black"}>
-        <ErrorPage logoFileName={logoFileName} SITE_NAME={SITE_NAME} statusCode={statusCode} statusDescription={statusDescription} />
+        <ErrorPage
+          logoFileName={logoFileName}
+          SITE_NAME={SITE_NAME}
+          statusCode={statusCode}
+          statusDescription={statusDescription}
+        />
       </Body>
     </RootLayout>
   );
