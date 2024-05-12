@@ -1,8 +1,8 @@
 import "../../public/static/css/styles.css";
 
-const SITE_BASE_DOMAIN = process.env.SITE_BASE_DOMAIN
+const SITE_BASE_DOMAIN = String(process.env.SITE_BASE_DOMAIN)
 const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
-const SITE_DESCRIPTION = process.env.SITE_DESCRIPTION
+const SITE_DESCRIPTION = String(process.env.SITE_DESCRIPTION)
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
