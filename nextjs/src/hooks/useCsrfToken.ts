@@ -1,7 +1,13 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useCsrfToken = (SITE_BASE_DOMAIN) => {
+import { useState, useEffect } from "react";
+
+export default function useCsrfToken({
+  SITE_BASE_DOMAIN,
+}: {
+  SITE_BASE_DOMAIN: string;
+}) {
+  
   const [csrfToken, setCsrfToken] = useState("");
 
   useEffect(() => {
@@ -13,13 +19,13 @@ const useCsrfToken = (SITE_BASE_DOMAIN) => {
         const csrfToken = response.data.csrftoken;
         setCsrfToken(csrfToken);
       } catch (error) {
-        console.error("Failed to fetch CSRF token:", error);
+          console.error("Failed to fetch CSRF token:", error);
       }
     };
 
     fetchCsrfToken();
   }, [SITE_BASE_DOMAIN]);
+
   return csrfToken;
 };
 
-export default useCsrfToken;
