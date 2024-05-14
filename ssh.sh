@@ -1,1 +1,1 @@
-ssh -i "NEWSOLWEBAPP-web.pem" ubuntu@TODO<ipaddress>
+ssh -i "NEWSOLWEBAPP-web.pem" ubuntu@TODOipaddress
