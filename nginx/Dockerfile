@@ -1,9 +1,11 @@
 FROM nginx:1.15-alpine
 
-ARG ENV=dev
+# defaults to 'dev' if not provided
+ARG BUILD_ENV=dev
 
-COPY ./$ENV /etc/nginx/conf.d
-
+# site conf
+COPY ./${BUILD_ENV} /etc/nginx/conf.d/
+# main conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-CMD nginx -g "daemon off;"
+CMD ["nginx", "-g", "daemon off;"]
