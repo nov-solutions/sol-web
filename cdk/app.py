@@ -10,7 +10,7 @@ SITE_NAME = config("SITE_NAME")
 app = cdk.App()
 
 env = cdk.Environment(
-    account="TODO",
+    account="714108659434",
     region="us-west-2",
 )
 
