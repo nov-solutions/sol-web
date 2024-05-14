@@ -19,3 +19,36 @@
 8. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` and `.prod.env` files
 
 9. Run `pre-commit install` in the root directory
+
+## Getting Started
+
+0. Make sure you have a `.env` file with the appropriate keys
+1. Run `make` to start the development environment
+
+## Infrastructure
+
+TODO
+
+### Nginx
+
+### Django
+
+### Next.js
+
+### Postgres
+
+## Other Infra
+
+### Github Actions
+
+### Tailwind
+
+### Docker
+
+### Docker Compose
+
+### Pre-Commit
+
+### Make
+
+### Deployment
