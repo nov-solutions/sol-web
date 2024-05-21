@@ -51,13 +51,13 @@ export default function Nav({
         className={"z-20 dropdown-content flex flex-col p-4 space-y-4 font-semibold text-center dropdown-end fixed left-0 top-[7.5vh] w-screen border-b border-black border-opacity-10 " + navBG + " " + navPagesColor}
       >
         {pages.map((page, i) => (
-          <li>
-            <Link key={i} href={pagesLocs[i]}>{page}</Link>
+          <li key={i}>
+            <Link href={pagesLocs[i]}>{page}</Link>
           </li>
         ))}
         {cta && ctaLoc ? (
-          <li>
-            <Link key={ctaLoc} href={ctaLoc} className="text-white btn btn-sm btn-primary">{cta}</Link>
+          <li key={ctaLoc}>
+            <Link href={ctaLoc} className="text-white btn btn-sm btn-primary">{cta}</Link>
           </li>
         ) : null}
       </ul>

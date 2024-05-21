@@ -7,10 +7,8 @@ WORKDIR /app
 
 COPY . /app
 
-# clean install
 RUN npm ci
 
-# run dev server or prod
 CMD if [ "$BUILD_ENV" = "dev" ]; then \
         npm run dev; \
     else \
