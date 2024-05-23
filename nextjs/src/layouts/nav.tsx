@@ -48,11 +48,11 @@ export default function Nav({
       <ul
         tabIndex={Number(0)}
         id="mobile-drawer"
-        className={"z-20 dropdown-content flex flex-col p-4 space-y-4 font-semibold text-center dropdown-end fixed left-0 top-[7.5vh] w-screen border-b border-black border-opacity-10 " + navBG + " " + navPagesColor}
+        className={"z-20 dropdown-content flex flex-col p-4 space-y-4 font-semibold dropdown-end fixed left-0 top-[7.5vh] w-screen shadow-gray/10 shadow-[inset_0px_-1px_1px] " + navBG + " " + navPagesColor}
       >
         {pages.map((page, i) => (
           <li key={i}>
-            <Link href={pagesLocs[i]}>{page}</Link>
+            <Link href={pagesLocs[i] } className="text-xl">{page}</Link>
           </li>
         ))}
         {cta && ctaLoc ? (
@@ -69,12 +69,12 @@ export default function Nav({
 
         if (navBar && mobileDrawerToggle) {
           mobileDrawerToggle.addEventListener("click", () => {
-            navBar.classList.remove("bg-opacity-75", "border-b");
+            navBar.classList.remove("bg-opacity-75", "shadow-gray/10", "shadow-[inset_0px_-1px_1px]");
             navBar.classList.add("bg-opacity-100");
           });
           document.addEventListener("click", (e) => {
             if (e.target !== mobileDrawerToggle) {
-              navBar.classList.add("bg-opacity-75", "border-b");
+              navBar.classList.add("bg-opacity-75", "shadow-gray/10", "shadow-[inset_0px_-1px_1px]");
               navBar.classList.remove("bg-opacity-100");
             }
           });
@@ -85,7 +85,7 @@ export default function Nav({
   return (
     <nav
       id="navbar"
-      className={"fixed top-0 left-0 z-10 w-full h-[7.5vh] bg-opacity-75 backdrop-blur-sm border-b border-black border-opacity-10 " + navBG}
+      className={"fixed top-0 left-0 z-10 w-full h-[7.5vh] bg-opacity-75 backdrop-blur-sm shadow-gray/10 shadow-[inset_0px_-1px_1px] " + navBG}
     >
       <div className="items-center justify-between hidden w-2/3 h-full px-0 mx-auto text-sm lg:flex">
         <Link href="/" className="flex items-center">

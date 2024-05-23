@@ -12,7 +12,7 @@ export default function Heading({
 
   return (
     <div className={"px-4 py-24 lg:px-0 " + headingBG}>
-      <div className="flex flex-col items-center mx-auto text-center lg:w-2/3">
+      <div className="flex flex-col items-center mx-auto text-center lg:w-1/2">
         <h3 className={"text-3xl font-semibold tracking-tight leading-none " + headingColor}>{heading}</h3>
       </div>
     </div>
