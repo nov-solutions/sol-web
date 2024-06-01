@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "name": `${SITE_NAME}`,
           "description": `${SITE_DESCRIPTION}`,
           "foundingDate": "TODO",
-          "logo": "/public/static/assets/img/logos/TODO",
+          "logo": "/static/assets/img/logos/TODO",
           "sameAs": ["https://www.linkedin.com/company/TODO"]
           })
         }}/>
