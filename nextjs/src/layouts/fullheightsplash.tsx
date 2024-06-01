@@ -27,8 +27,8 @@ export default function FullHeightSplash({
       <div className="grid items-center h-full gap-16 mx-auto lg:grid-cols-2 lg:w-2/3">
         <div className="flex flex-col space-y-4">
           <img src={"/static/assets/img/logos/" + splashLogoFileName} alt={SITE_NAME + " logo"} className="w-1/12" />
-          <h1 className={"text-5xl font-bold leading-none tracking-tight " + splashTitleColor}>{splashTitle}</h1>
-          <h2 className={"text-lg w-fit " + splashSubtitleColor}>{splashSubtitle}</h2>
+          <h1 className={"text-6xl font-bold leading-none tracking-tight " + splashTitleColor}>{splashTitle}</h1>
+          <h2 className={"!mt-2 text-xl font-medium w-fit " + splashSubtitleColor}>{splashSubtitle}</h2>
         </div>
         <img src={"/static/assets/img/" + splashImageFileName} alt={splashImageAlt} className="lg:mx-auto" />
       </div>

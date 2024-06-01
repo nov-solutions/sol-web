@@ -59,7 +59,7 @@ export default function SignIn({
 
   return (
     <div className={"flex flex-col flex-grow justify-center px-4 lg:px-0 " + signInBG}>
-      <div className={"flex flex-col p-8 mx-auto space-y-8 border-2 rounded-lg shadow-lg border-gray-light lg:w-1/5 " + signInCardBG}>
+      <div className={"flex flex-col p-8 mx-auto space-y-8 border-2 rounded-lg border-gray-light lg:w-1/5 " + signInCardBG}>
         <div className="flex flex-col mx-auto">
           <Link href="/" className="w-1/5 place-self-center">
             <img src={"/static/assets/img/logos/" + signInLogoFileName} alt={SITE_NAME + " logo"} />
