@@ -53,17 +53,17 @@ export default function FeatureImages({
           <div className={"flex flex-col p-8 space-y-4 rounded-lg " + imagesCardBG}>
             <img src={"/static/assets/img/" + imageOneFileName} alt={imageOneAlt} className="rounded-lg" />
             <h4 className={"text-lg font-semibold " + imagesTitleColor}>{imageOneTitle}</h4>
-            <p className={"!mt-2 text-sm" + imagesDescriptionColor}>{imageOneDescription}</p>
+            <p className={"!mt-2 text-sm " + imagesDescriptionColor}>{imageOneDescription}</p>
           </div>
           <div className={"flex flex-col p-8 space-y-4 rounded-lg " + imagesCardBG}>
             <img src={"/static/assets/img/" + imageTwoFileName} alt={imageTwoAlt} className="rounded-lg" />
             <h4 className={"text-lg font-semibold " + imagesTitleColor}>{imageTwoTitle}</h4>
-            <p className={"!mt-2 text-sm" + imagesDescriptionColor}>{imageTwoDescription}</p>
+            <p className={"!mt-2 text-sm " + imagesDescriptionColor}>{imageTwoDescription}</p>
           </div>
           <div className={"flex flex-col p-8 space-y-4 rounded-lg " + imagesCardBG}>
             <img src={"/static/assets/img/" + imageThreeFileName} alt={imageThreeAlt} className="rounded-lg" />
             <h4 className={"text-lg font-semibold " + imagesTitleColor}>{imageThreeTitle}</h4>
-            <p className={"!mt-2 text-sm" + imagesDescriptionColor}>{imageThreeDescription}</p>
+            <p className={"!mt-2 text-sm " + imagesDescriptionColor}>{imageThreeDescription}</p>
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function FeatureList({
           <div className={"flex flex-col p-8 rounded-lg lg:col-span-3 " + listsCardBG}>
             <img src={"/static/assets/img/" + featureListImageFileName} alt={featureListImageAlt} className="rounded-lg shadow-lg" />
           </div>
-          <div className={"flex flex-col p-8 lg:justify-evenly justify-normal space-y-8 lg:space-y-0 text-3xl lg:col-span-2 rounded-lg " + listsCardBG}>
+          <div className={"flex flex-col p-8 lg:justify-evenly justify-normal space-y-8 text-3xl lg:col-span-2 rounded-lg " + listsCardBG}>
             <div className={"flex space-x-2 rounded-lg p-4 " + featureListItemOneCardBG + " " + featureListItemOneTextColor}>
               <i className={"mr-2 " + featureListItemOneIcon}></i>
               <h3 className="font-semibold leading-none tracking-tight">{featureListItemOneText}</h3>
