@@ -14,6 +14,9 @@ export default function Footer({
   socialsLocs,
   socialsColor,
   socialsIcons,
+  legal,
+  legalLocs,
+  legalColor,
   footerFinePrintColor,
 }: {
   footerDividerColor: string;
@@ -27,6 +30,9 @@ export default function Footer({
   socialsLocs?: string[];
   socialsColor?: string;
   socialsIcons?: string[];
+  legal?: string[];
+  legalLocs?: string[];
+  legalColor?: string;
   footerFinePrintColor: string;
 }) {
   const pagesHTML =
@@ -37,12 +43,24 @@ export default function Footer({
             </Link>
         ))
       : null;
+      
   const socialsHTML =
     socialsLocs && socialsColor && socialsIcons ? (
       <div className="flex items-center space-x-4">
         {socialsLocs.map((socialLoc, i) => (
           <Link key={socialLoc[i]} href={socialsLocs[i]} target="_blank" className={"text-opacity-50 lg:hover:text-opacity-100 " + socialsColor}>
             <i className={"text-xl " + socialsIcons[i]}></i>
+          </Link>
+        ))}
+      </div>
+    ) : null;
+
+    const legalHTML =
+    legal && legalLocs && legalColor ? (
+      <div className="flex items-center space-x-4">
+        {legal.map((legal, i) => (
+          <Link key={legalLocs[i]} href={legalLocs[i]} target="_blank" className={"text-opacity-50 lg:hover:text-opacity-100 " + legalColor}>
+            {legal}
           </Link>
         ))}
       </div>
@@ -59,6 +77,7 @@ export default function Footer({
             </Link>
             <p className={"font-medium " + footerTaglineColor}>{footerTagline}</p>
             {socialsHTML}
+            {legalHTML}
           </div>
           <div className="flex space-x-4">
             {pagesHTML}
