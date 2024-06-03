@@ -11,7 +11,7 @@ export default function AppNav({
   navPages,
   navPagesIcons,
   navPagesLocs,
-  navPagesCurrentBG,
+  navPagesCurrentDisplay,
   navPagesHoverInteraction,
   navPagesColor,
   appNavLogoLoc,
@@ -24,7 +24,7 @@ export default function AppNav({
   currentNavPage: string;
   navPages: string[];
   navPagesLocs: string[];
-  navPagesCurrentBG: string;
+  navPagesCurrentDisplay: string;
   navPagesHoverInteraction: string;
   navPagesColor: string;
   navPagesIcons: string[];
@@ -38,7 +38,7 @@ export default function AppNav({
     <ul className="space-y-2">
       {navPages.map((navPage, i) => (
         <li key={navPage[i]}>
-          <Link href={navPagesLocs[i]} className={currentNavPage == navPage ? "p-2 flex font-medium rounded-lg " + navPagesCurrentBG + " " + navPagesColor : "p-2 flex font-medium rounded-lg " + navPagesHoverInteraction + " " + navPagesColor}>
+          <Link href={navPagesLocs[i]} className={currentNavPage == navPage ? "p-2 flex font-medium rounded-lg " + navPagesCurrentDisplay + " " + navPagesColor : "p-2 flex font-medium rounded-lg " + navPagesHoverInteraction + " " + navPagesColor}>
             <i className={"mr-2 " + navPagesIcons[i]}></i>
             {navPage}
           </Link>
