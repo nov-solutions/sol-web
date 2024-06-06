@@ -69,7 +69,7 @@ export default function AppNav({
           </div>
           <div className="z-20 w-32 bg-white rounded-lg shadow-lg dropdown-content menu">
             <li>
-              <Link href={"http://" + SITE_BASE_DOMAIN + signOutLoc}>
+              <Link href={SITE_BASE_DOMAIN + signOutLoc}>
                 Sign out
               </Link>
             </li>

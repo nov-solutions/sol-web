@@ -29,18 +29,18 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     statusBarStyle: "default",
   },
-  metadataBase: new URL("https://" + SITE_BASE_DOMAIN),
+  metadataBase: new URL(SITE_BASE_DOMAIN),
   alternates: {
-    canonical: "https://" + SITE_BASE_DOMAIN + pageRelativePath,
+    canonical: SITE_BASE_DOMAIN + pageRelativePath,
   },
   openGraph: {
     title: title,
     siteName: SITE_NAME + " • " + SITE_TAGLINE,
     description: SITE_DESCRIPTION,
-    url: "https://" + SITE_BASE_DOMAIN + pageRelativePath,
+    url: SITE_BASE_DOMAIN + pageRelativePath,
     images: [
       {
-        url: "https://" + SITE_BASE_DOMAIN + "/static/assets/img/logos/TODO"
+        url: SITE_BASE_DOMAIN + "/static/assets/img/logos/TODO"
       },
     ],
     type: "website",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "https://" + SITE_BASE_DOMAIN + "/static/assets/img/logos/TODO"
+        url: SITE_BASE_DOMAIN + "/static/assets/img/logos/TODO"
       },
     ],
   },

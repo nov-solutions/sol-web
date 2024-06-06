@@ -46,7 +46,7 @@ export default function SignIn({
       password: signInFormData.getAll("password"),
     };
 
-    const response = await fetch("http://" + SITE_BASE_DOMAIN + "/api/sign-in", {
+    const response = await fetch(SITE_BASE_DOMAIN + "/api/sign-in", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

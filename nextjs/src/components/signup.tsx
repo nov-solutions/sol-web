@@ -44,7 +44,7 @@ export default function SignUp({
       password: signUpFormData.getAll("password"),
     };
 
-    const response = await fetch("http://" + SITE_BASE_DOMAIN + "/api/sign-up", {
+    const response = await fetch(SITE_BASE_DOMAIN + "/api/sign-up", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
