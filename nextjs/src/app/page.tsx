@@ -37,6 +37,9 @@ const footerFinePrintColor = "TODO";
 const socialsLocs = ["https://www.linkedin.com/company/TODO/"];
 const socialsColor = "TODO";
 const socialsIcons = ["ri-linkedin-fill"];
+const legal = ["TODO"];
+const legalLocs = ["TODO"];
+const legalColor = "TODO";
 
 const title = SITE_NAME + " • " + SITE_TAGLINE;
 const currentYear = new Date().getFullYear();
@@ -136,6 +139,9 @@ export default function Home() {
           socialsLocs={socialsLocs}
           socialsColor={socialsColor}
           socialsIcons={socialsIcons}
+          legal={legal}
+          legalLocs={legalLocs}
+          legalColor={legalColor}
           footerFinePrintColor={footerFinePrintColor}
         />
       </Body>
