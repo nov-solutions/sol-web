@@ -6,8 +6,7 @@ import RootLayout from "./layout";
 import ErrorPage from "@/layouts/errorpage";
 import Body from "@/layouts/body";
 
-// TODO: THIS DONT WORK
-const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
+const SITE_NAME = "TODO";
 
 const logoFileName = "TODO";
 const statusCode = "500";
@@ -31,7 +30,6 @@ export default function Error() {
       <Body bodyBG={"bg-black"}>
         <ErrorPage
           logoFileName={logoFileName}
-          // TODO: THIS DONT WORK
           SITE_NAME={SITE_NAME}
           statusCode={statusCode}
           statusDescription={statusDescription}
