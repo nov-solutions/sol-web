@@ -58,7 +58,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 ### Production Deployment
 #### One-Time Setup
-0. Execute `app.py` in `/cdk` to provision AWS resources
+0. Run `python app.py` in `/cdk` to provision AWS resources
 
 1. Acquire a domain name
 
