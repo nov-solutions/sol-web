@@ -1,6 +1,6 @@
 # Sol
 
-Sol is a web app SDK that enables developers to create reliable, robust, and responsive web apps in minutes.
+Sol is a web app SDK that enables developers to create robust, reliable and responsive web apps in minutes.
 
 © nov
 
