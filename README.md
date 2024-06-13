@@ -16,14 +16,14 @@ Sol is a web app SDK that enables developers to create reliable, robust, and res
 Data is interacted with through Django's ORM in the application layer.
 
 ### Application Layer
-**Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app./
+**Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app.\
 **Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.
 
 ### Presentation Layer
-**Typescript**, a superset of Javascript, the core programming language of the Internet, handles the frontend logic of the web app./
-**React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it./
+**Typescript**, a superset of Javascript, the core programming language of the Internet, handles the frontend logic of the web app.\
+**React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it.\
 **Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.
-**Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer./
+**Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **daisyUI**, a component library for Tailwind CSS, provides several pre-built, customizable components for typical UI elements.
 
 ### Web Server
