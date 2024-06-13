@@ -2,7 +2,7 @@
 
 Sol is a web app SDK that enables developers to create robust, reliable and responsive web apps in minutes.
 
-© nov
+© [nov](https://github.com/nov-solutions)
 
 ## Architecture
 ### Cloud Infrastructure
