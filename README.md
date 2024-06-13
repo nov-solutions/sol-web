@@ -27,7 +27,7 @@ Data is interacted with through Django's ORM in the application layer.
 **daisyUI**, a component library for Tailwind CSS, provides several pre-built, customizable components for typical UI elements.
 
 ### Web Server
-**nginx**, an open-source web server, acts as a reverse proxy that routes both external and internal traffic to the appropriate layer of the web app.
+**Nginx**, an open-source web server, acts as a reverse proxy that routes both external and internal traffic to the appropriate layer of the web app.
 
 ## Setup
 
