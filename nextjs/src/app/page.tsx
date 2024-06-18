@@ -33,13 +33,13 @@ const footerLogoFileName = "TODO";
 const footerPagesColor = "TODO";
 const footerTaglineColor = "TODO";
 const footerTagline = SITE_TAGLINE.charAt(0).toUpperCase() + SITE_TAGLINE.slice(1).toLowerCase();
-const footerFinePrintColor = "TODO";
 const socialsLocs = ["https://www.linkedin.com/company/TODO/"];
 const socialsColor = "TODO";
 const socialsIcons = ["ri-linkedin-fill"];
 const legal = ["TODO"];
 const legalLocs = ["TODO"];
 const legalColor = "TODO";
+const footerFinePrintColor = "TODO";
 
 const title = SITE_NAME + " • " + SITE_TAGLINE;
 const currentYear = new Date().getFullYear();
