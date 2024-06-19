@@ -25,7 +25,7 @@ export default function Team({
                 <h2 className={"mt-4 text-sm font-medium " + teamCardNameColor}>{teammate.name}</h2>
                 <h3 className={"text-xs " + teamCardRoleColor}>{teammate.role}</h3>
                 <Link href={teammate.linkedInLoc} target="_blank" className="mt-4 w-fit">
-                    <i className={"h-5 ri-linkedin-fill text-opacity-50 hover:text-opacity-100 " + teamCardLinkedInIconColor}></i>
+                    <i className={"ri-linkedin-fill text-opacity-50 hover:text-opacity-100 " + teamCardLinkedInIconColor}></i>
                 </Link>
             </div>
         )) : null;
