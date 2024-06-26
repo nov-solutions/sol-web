@@ -31,7 +31,7 @@ export default function Nav({
     pages && pagesLocs && navPagesColor ? (
       <div className="items-center hidden space-x-4 font-semibold lg:flex">
         {pages.map((page, i) => (
-          <Link key={page[i]} href={pagesLocs[i]} className={"text-opacity-50 lg:hover:text-opacity-100 " + navPagesColor}>
+          <Link key={page[i]} href={pagesLocs[i]} className={"lg:text-opacity-50 lg:hover:text-opacity-100 " + navPagesColor}>
             {page}
           </Link>
         ))}

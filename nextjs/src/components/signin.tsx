@@ -84,7 +84,7 @@ export default function SignIn({
           <div className="space-y-2">
             <label htmlFor="password" className={"flex justify-between font-semibold " + signInInputLabelTextColor}>
               Password
-              <Link href="/app/password-reset" className={"font-semibold text-opacity-50 lg:hover:text-opacity-100 " + signInForgotPasswordTextColor}>
+              <Link href="/app/password-reset" className={"font-semibold lg:text-opacity-50 lg:hover:text-opacity-100 " + signInForgotPasswordTextColor}>
                 Forgot your password?
               </Link>
             </label>
@@ -95,7 +95,7 @@ export default function SignIn({
           </button>
         </form>
         <p className={"text-sm " + signInSignUpDescriptionTextColor}>New to {SITE_NAME}?&nbsp;
-          <Link href="/app/sign-up" className={"font-semibold text-opacity-50 lg:hover:text-opacity-100 " + signInSignUpAnchorTextColor }>
+          <Link href="/app/sign-up" className={"font-semibold lg:text-opacity-50 lg:hover:text-opacity-100 " + signInSignUpAnchorTextColor }>
             Sign up
           </Link>
         </p>

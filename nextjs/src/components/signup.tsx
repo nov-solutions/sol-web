@@ -90,7 +90,7 @@ export default function SignUp({
           </button>
         </form>
         <p className={"text-sm " + signUpSignInDescriptionTextColor}>Already have an account?&nbsp;
-          <Link href="/app/sign-in" className={"font-semibold text-opacity-50 lg:hover:text-opacity-100 " + signUpSignInAnchorTextColor }>
+          <Link href="/app/sign-in" className={"font-semibold lg:text-opacity-50 lg:hover:text-opacity-100 " + signUpSignInAnchorTextColor }>
             Sign in
           </Link>
         </p>

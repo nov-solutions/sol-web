@@ -38,7 +38,7 @@ export default function Footer({
   const pagesHTML =
     pages && pagesLocs && footerPagesColor
       ? pages.map((page, i) => (
-            <Link key={page[i]} href={pagesLocs[i]} className={"font-semibold text-opacity-50 lg:hover:text-opacity-100 " + footerPagesColor}>
+            <Link key={page[i]} href={pagesLocs[i]} className={"font-semibold lg:text-opacity-50 lg:hover:text-opacity-100 " + footerPagesColor}>
               {page}
             </Link>
         ))
@@ -48,7 +48,7 @@ export default function Footer({
     socialsLocs && socialsColor && socialsIcons ? (
       <div className="flex items-center space-x-4">
         {socialsLocs.map((socialLoc, i) => (
-          <Link key={socialLoc[i]} href={socialsLocs[i]} target="_blank" className={"text-opacity-50 lg:hover:text-opacity-100 " + socialsColor}>
+          <Link key={socialLoc[i]} href={socialsLocs[i]} target="_blank" className={"lg:text-opacity-50 lg:hover:text-opacity-100 " + socialsColor}>
             <i className={"text-xl " + socialsIcons[i]}></i>
           </Link>
         ))}
@@ -59,7 +59,7 @@ export default function Footer({
     legal && legalLocs && legalColor ? (
       <div className="flex items-center space-x-4">
         {legal.map((legal, i) => (
-          <Link key={legalLocs[i]} href={legalLocs[i]} target="_blank" className={"text-opacity-50 lg:hover:text-opacity-100 " + legalColor}>
+          <Link key={legalLocs[i]} href={legalLocs[i]} target="_blank" className={"lg:text-opacity-50 lg:hover:text-opacity-100 " + legalColor}>
             {legal}
           </Link>
         ))}
