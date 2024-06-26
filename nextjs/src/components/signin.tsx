@@ -66,7 +66,7 @@ export default function SignIn({
           </Link>
         </div>
         <h1 className={"text-xl text-center font-semibold " + signInTitleColor}>Sign in to {SITE_NAME}</h1>
-        <form className="flex flex-col w-full mx-auto space-y-4 text-sm">
+        <form onSubmit={signIn} className="flex flex-col w-full mx-auto space-y-4 text-sm">
           <div className="space-y-2">
             <label htmlFor="email" className={"font-semibold " + signInInputLabelTextColor}>
               Email

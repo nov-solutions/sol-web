@@ -64,7 +64,7 @@ export default function SignUp({
           </Link>
         </div>
         <h1 className={"text-xl text-center font-semibold " + signUpTitleColor}>Sign up for {SITE_NAME}</h1>
-        <form className="flex flex-col w-full mx-auto space-y-4 text-sm">
+        <form onSubmit={signUp} className="flex flex-col w-full mx-auto space-y-4 text-sm">
           <div className="space-y-2">
             <label htmlFor="email" className={"font-semibold " + signUpInputLabelTextColor}>
               Email
