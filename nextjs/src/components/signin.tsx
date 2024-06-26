@@ -1,6 +1,9 @@
 import "../../public/static/css/styles.css";
 import { TextInput } from "@tremor/react";
 
+import axios from 'axios';
+import useCsrfToken from "@/hooks/useCsrfToken";
+
 import { FormEvent } from "react";
 
 import Link from "next/link";
@@ -36,6 +39,7 @@ export default function SignIn({
   signInSignUpDescriptionTextColor: string;
   signInSignUpAnchorTextColor: string;
 }) {
+  const csrfToken = useCsrfToken({ SITE_BASE_DOMAIN });
 
   const signIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,15 +50,19 @@ export default function SignIn({
       password: signInFormData.getAll("password"),
     };
 
-    const response = await fetch(SITE_BASE_DOMAIN + "/api/sign-in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    // const result = await response.json();
+    const headers = {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+    };
 
+    try {
+      axios.post(SITE_BASE_DOMAIN + "/api/sign-in/", data, { headers })
+      .then((response) => {
+        console.log("Success:", response);
+      })
+    } catch (error) {
+      console.error("Failed to sign in:", error);
+    }
   }
 
   return (
