@@ -43,23 +43,19 @@ export default function SignUp({
     event.preventDefault();
     const signUpForm = event.currentTarget;
     const signUpFormData = new FormData(signUpForm);
-    const data = {
-      email: signUpFormData.get("email"),
-      password: signUpFormData.getAll("password"),
-    };
 
     const headers = {
-      "Content-Type": "application/json",
       "X-CSRFToken": csrfToken,
     };
 
     try {
-      axios.post(SITE_BASE_DOMAIN + "/api/sign-up/", data, { headers })
+      const signUpURL = SITE_BASE_DOMAIN + "/api/sign-up/";
+      axios.post(signUpURL, signUpFormData, { headers })
       .then((response) => {
-        console.log("Success:", response);
+        // do something
       })
     } catch (error) {
-      console.error("Failed to sign up:", error);
+        console.error(error);
     }
   }
 

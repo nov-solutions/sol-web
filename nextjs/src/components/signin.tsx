@@ -45,23 +45,19 @@ export default function SignIn({
     event.preventDefault();
     const signInForm = event.currentTarget;
     const signInFormData = new FormData(signInForm);
-    const data = {
-      email: signInFormData.get("email"),
-      password: signInFormData.getAll("password"),
-    };
 
     const headers = {
-      "Content-Type": "application/json",
       "X-CSRFToken": csrfToken,
     };
 
     try {
-      axios.post(SITE_BASE_DOMAIN + "/api/sign-in/", data, { headers })
+      const signInURL = SITE_BASE_DOMAIN + "/api/sign-in/";
+      axios.post(signInURL, signInFormData, { headers })
       .then((response) => {
-        console.log("Success:", response);
+        // do something
       })
     } catch (error) {
-      console.error("Failed to sign in:", error);
+        console.error(error);
     }
   }
 
