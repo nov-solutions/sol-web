@@ -44,12 +44,11 @@ export default function SignUp({
     const signUpForm = event.currentTarget;
     const signUpFormData = new FormData(signUpForm);
 
-    const headers = {
-      "X-CSRFToken": csrfToken,
-    };
-
     try {
       const signUpURL = SITE_BASE_DOMAIN + "/api/sign-up/";
+      const headers = {
+        "X-CSRFToken": csrfToken,
+      };
       axios.post(signUpURL, signUpFormData, { headers })
       .then((response) => {
         // do something

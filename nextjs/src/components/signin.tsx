@@ -46,12 +46,11 @@ export default function SignIn({
     const signInForm = event.currentTarget;
     const signInFormData = new FormData(signInForm);
 
-    const headers = {
-      "X-CSRFToken": csrfToken,
-    };
-
     try {
       const signInURL = SITE_BASE_DOMAIN + "/api/sign-in/";
+      const headers = {
+        "X-CSRFToken": csrfToken,
+      };
       axios.post(signInURL, signInFormData, { headers })
       .then((response) => {
         // do something
