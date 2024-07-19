@@ -21,13 +21,11 @@ elif ENVIRONMENT == "prod":
     DEBUG = False
     config._load(".prod.env")
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 # TODO: uncomment if project uses auth
 # AUTH_USER_MODEL = SITE_NAME + ".User"
 
 STATIC_URL = "/api/static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = "/static/"
 
 ASGI_APPLICATION = SITE_NAME + ".asgi.application"
 
