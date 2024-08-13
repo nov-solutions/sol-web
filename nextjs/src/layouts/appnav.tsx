@@ -65,7 +65,7 @@ export default function AppNav({
         </Link>
         <div className="flex flex-col my-auto space-y-4 h-1/2 my dropdown dropdown-bottom dropdown-end">
           <div tabIndex={Number(0)} className="h-full">
-            <img src="https://docs.material-tailwind.com/img/face-2.jpg" alt={"Account avatar"} className="h-full rounded-full hover:cursor-pointer" />
+            <img src="https://docs.material-tailwind.com/img/face-2.jpg" alt={"Account avatar"} className="h-full rounded-full lg:hover:cursor-pointer" />
           </div>
           <div className="z-20 w-32 bg-white rounded-lg shadow-lg dropdown-content menu">
             <li>
