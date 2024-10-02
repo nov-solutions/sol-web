@@ -43,7 +43,7 @@ export default function Footer({
             </Link>
         ))
       : null;
-      
+
   const socialsHTML =
     socialsLocs && socialsColor && socialsIcons ? (
       <div className="flex items-center space-x-4">

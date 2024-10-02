@@ -7,7 +7,7 @@ export default function useCsrfToken({
 }: {
   SITE_BASE_DOMAIN: string;
 }) {
-  
+
   const [csrfToken, setCsrfToken] = useState("");
 
   useEffect(() => {
@@ -28,4 +28,3 @@ export default function useCsrfToken({
 
   return csrfToken;
 };
-

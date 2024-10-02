@@ -8,7 +8,7 @@ services:
       - django
     build:
       context: ./nextjs
-      args: 
+      args:
         - BUILD_ENV=prod
     expose:
       - 3000
@@ -25,7 +25,7 @@ services:
       - postgres
     build:
       context: ./django
-      args: 
+      args:
         - BUILD_ENV=prod
     expose:
       - 8000
@@ -44,7 +44,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
-      args: 
+      args:
         - BUILD_ENV=prod
     ports:
       - 80:80

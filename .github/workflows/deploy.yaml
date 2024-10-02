@@ -1,0 +1,61 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/hydrogen"
+
+      - name: Install Dependencies and Build CSS with Tailwind
+        run: |
+          cd ./nextjs
+          npm ci
+          npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
+
+      - name: Setup SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > raiquun-web.pem
+          chmod 400 raiquun-web.pem
+
+          - name: Create .env file
+          run: |
+            echo "ENVIRONMENT=prod" >> .env
+            echo "SITE_NAME=TODO" >> .env
+            echo "SITE_DESCRIPTION=TODO" >> .env
+            echo "SITE_TAGLINE=TODO" >> .env
+            echo "SITE_DOMAIN=TODO" >> .env
+            echo "SITE_BASE_DOMAIN=TODO" >> .env
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+            echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+            echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+            echo "HEROKU_OAUTH_SECRET=${{ secrets.HEROKU_OAUTH_SECRET }}" >> .env
+            echo "HEROKU_API_CLIENT_ID=${{ secrets.HEROKU_API_CLIENT_ID }}" >> .env
+            echo "HEROKU_API_CLIENT_SECRET=${{ secrets.HEROKU_API_CLIENT_SECRET }}" >> .env
+            echo "NEXT_PUBLIC_SITE_DOMAIN=TODO" >> .env
+            echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
+            echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
+
+      - name: Sync files
+        run: |
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/raiquun-web.pem -o StrictHostKeyChecking=no" . ubuntu@54.149.89.23:app
+
+      - name: Docker Compose Up
+        run: |
+          ssh -i $(pwd)/raiquun-web.pem ubuntu@54.149.89.23 'cd app && docker compose up --build -d'
+
+      - name: Clean up
+        run: |
+          rm -f raiquun-web.pem

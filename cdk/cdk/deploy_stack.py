@@ -1,15 +1,13 @@
 import json
-from aws_cdk import (
-    aws_ecs as ecs,
-    aws_secretsmanager as sm,
-    aws_ec2 as ec2,
-    aws_efs as efs,
-    aws_ecs as ecs,
-    aws_elasticloadbalancingv2 as elbv2,
-)
-from aws_cdk import Stack
 
+from aws_cdk import Stack
+from aws_cdk import aws_ec2 as ec2
+from aws_cdk import aws_ecs as ecs
+from aws_cdk import aws_efs as efs
+from aws_cdk import aws_elasticloadbalancingv2 as elbv2
+from aws_cdk import aws_secretsmanager as sm
 from constructs import Construct
+
 
 class DeployStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
@@ -26,7 +24,7 @@ class DeployStack(Stack):
                 file_system_id=file_system.file_system_id,
                 # Ensure your EFS is set to use the correct root directory
                 # root_directory="/path/to/nginx/configs" if your configs are not in the root
-            )
+            ),
         )
 
         task_definition.add_volume(efs_volume)
@@ -47,9 +45,7 @@ class DeployStack(Stack):
 
         container = task_definition.add_container(
             "NEWSOLWEBAPPContainer",
-            image=ecs.ContainerImage.from_registry(
-                "TODO"
-            ),
+            image=ecs.ContainerImage.from_registry("TODO"),
         )
 
         container.add_mount_points(
@@ -62,7 +58,7 @@ class DeployStack(Stack):
                 container_path="/etc/nginx/conf.d",
                 source_volume="NginxConfigVolume",
                 read_only=True,
-            )
+            ),
         )
 
         container.add_port_mappings(ecs.PortMapping(container_port=80))
