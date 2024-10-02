@@ -11,6 +11,7 @@ from aws_cdk import Stack
 
 from constructs import Construct
 
+
 class DeployStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -26,7 +27,7 @@ class DeployStack(Stack):
                 file_system_id=file_system.file_system_id,
                 # Ensure your EFS is set to use the correct root directory
                 # root_directory="/path/to/nginx/configs" if your configs are not in the root
-            )
+            ),
         )
 
         task_definition.add_volume(efs_volume)
@@ -47,9 +48,7 @@ class DeployStack(Stack):
 
         container = task_definition.add_container(
             "NEWSOLWEBAPPContainer",
-            image=ecs.ContainerImage.from_registry(
-                "TODO"
-            ),
+            image=ecs.ContainerImage.from_registry("TODO"),
         )
 
         container.add_mount_points(
@@ -62,7 +61,7 @@ class DeployStack(Stack):
                 container_path="/etc/nginx/conf.d",
                 source_volume="NginxConfigVolume",
                 read_only=True,
-            )
+            ),
         )
 
         container.add_port_mappings(ecs.PortMapping(container_port=80))

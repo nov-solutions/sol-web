@@ -9,7 +9,7 @@ services:
       - tailwind-watcher
     build:
       context: ./nextjs
-      args: 
+      args:
         - BUILD_ENV=dev
     expose:
       - 3000
@@ -27,7 +27,7 @@ services:
       - postgres
     build:
       context: ./django
-      args: 
+      args:
         - BUILD_ENV=dev
     expose:
       - 8000
