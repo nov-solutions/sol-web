@@ -1,4 +1,4 @@
-name: Deployment Pipeline
+name: Deploy
 
 on:
   push:
@@ -13,18 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up workflow with Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
 
-      - name: Install Dependencies and Build CSS with Tailwind
+      - name: Minify CSS
         run: |
           cd ./nextjs
           npm ci
           npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
 
-      - name: Setup SSH key
+      - name: Expose SSH key
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > raiquun-web.pem
           chmod 400 raiquun-web.pem
@@ -48,14 +48,14 @@ jobs:
             echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
             echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
 
-      - name: Sync files
+      - name: Sync files with server
         run: |
           rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/raiquun-web.pem -o StrictHostKeyChecking=no" . ubuntu@54.149.89.23:app
 
-      - name: Docker Compose Up
+      - name: SSH into server; rebuild Docker containers
         run: |
           ssh -i $(pwd)/raiquun-web.pem ubuntu@54.149.89.23 'cd app && docker compose up --build -d'
 
-      - name: Clean up
+      - name: Remove SSH key
         run: |
           rm -f raiquun-web.pem
