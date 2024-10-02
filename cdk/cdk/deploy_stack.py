@@ -1,14 +1,11 @@
 import json
-from aws_cdk import (
-    aws_ecs as ecs,
-    aws_secretsmanager as sm,
-    aws_ec2 as ec2,
-    aws_efs as efs,
-    aws_ecs as ecs,
-    aws_elasticloadbalancingv2 as elbv2,
-)
-from aws_cdk import Stack
 
+from aws_cdk import Stack
+from aws_cdk import aws_ec2 as ec2
+from aws_cdk import aws_ecs as ecs
+from aws_cdk import aws_efs as efs
+from aws_cdk import aws_elasticloadbalancingv2 as elbv2
+from aws_cdk import aws_secretsmanager as sm
 from constructs import Construct
 
 
