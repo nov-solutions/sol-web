@@ -32,14 +32,14 @@ jobs:
           echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
 
-      - name: Build Docker Images
+      - name: Build Docker containers
         run: |
           docker compose up --build -d
 
-      - name: Run specific tasks or tests
+      - name: Run tests
         run: |
           # Run your tests or other commands here
           echo "Tests or other tasks run here"
 
-      - name: Clean up
+      - name: Bring down Docker containers
         run: docker compose down
