@@ -13,7 +13,7 @@ services:
     expose:
       - 3000
     env_file:
-      - .prod.env
+      - .env
     logging:
       options:
         max-size: "10m"
@@ -30,7 +30,7 @@ services:
     expose:
       - 8000
     env_file:
-      - .prod.env
+      - .env
     logging:
       options:
         max-size: "10m"
@@ -71,7 +71,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     env_file:
-      - .prod.env
+      - .env
     logging:
       options:
         max-size: "10m"
