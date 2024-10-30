@@ -52,6 +52,9 @@ jobs:
         run: |
           rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/raiquun-web.pem -o StrictHostKeyChecking=no" . ubuntu@54.149.89.23:app
 
+      - name: Initialize ./django/static
+        run: mkdir -p ./django/static
+
       - name: SSH into server; rebuild Docker containers
         run: |
           ssh -i $(pwd)/raiquun-web.pem ubuntu@54.149.89.23 'cd app && docker compose up --build -d'
