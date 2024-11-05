@@ -23,7 +23,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        [process.env.SITE_NAME]: {
+        [process.env.NEXT_PUBLIC_SITE_NAME]: {
           primary: "TODO",
           secondary: "TODO",
           accent: "TODO",

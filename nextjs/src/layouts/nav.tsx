@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import "../../public/static/css/styles.css";
 
@@ -6,102 +6,98 @@ import { useEffect } from "react";
 
 import Link from "next/link";
 
-export default function Nav({
-  navBG,
-  navLogoFileName,
-  SITE_NAME,
-  pages,
-  pagesLocs,
-  navPagesColor,
-  cta,
-  ctaLoc,
-  mobileDrawerToggleColor,
-}: {
-  navBG: string;
-  navLogoFileName: string;
-  SITE_NAME: string;
-  pages?: string[];
-  pagesLocs?: string[];
-  navPagesColor?: string;
-  cta?: string;
-  ctaLoc?: string;
-  mobileDrawerToggleColor: string;
-}) {
-  const pagesCTAHTML =
-    pages && pagesLocs && navPagesColor ? (
-      <div className="items-center hidden space-x-4 font-semibold lg:flex">
-        {pages.map((page, i) => (
-          <Link key={page[i]} href={pagesLocs[i]} className={"lg:text-opacity-50 lg:hover:text-opacity-100 " + navPagesColor}>
-            {page}
-          </Link>
-        ))}
-        {cta && ctaLoc ? (
-          <Link href={ctaLoc} className="text-white btn btn-sm btn-primary">
-            {cta}
-          </Link>
-        ) : null}
-      </div>
-    ) : null;
+export default function Nav() {
+  const pages = [
+    { name: "TODO", loc: "TODO" }
+  ];
 
-    const mobilePagesCTAHTML =
-    pages && pagesLocs && navPagesColor ? (
-      <ul
-        tabIndex={Number(0)}
-        id="mobile-drawer"
-        className={"z-20 dropdown-content flex flex-col p-4 space-y-4 font-semibold dropdown-end fixed left-0 top-[7.5vh] w-screen shadow-gray/10 shadow-[inset_0px_-1px_1px] " + navBG + " " + navPagesColor}
-      >
-        {pages.map((page, i) => (
-          <li key={i}>
-            <Link href={pagesLocs[i] } className="text-xl">{page}</Link>
-          </li>
-        ))}
-        {cta && ctaLoc ? (
-          <li key={ctaLoc}>
-            <Link href={ctaLoc} className="text-white btn btn-sm btn-primary">{cta}</Link>
-          </li>
-        ) : null}
-      </ul>
-    ) : null;
+  useEffect(() => {
+    const mobileNavbar = document.getElementById("mobile-navbar");
+    const mobileDrawerToggle = document.getElementById("mobile-drawer-toggle");
 
-      useEffect(() => {
-        const navBar = document.getElementById("navbar");
-        const mobileDrawerToggle = document.getElementById("mobile-drawer-toggle");
+    let isDrawerOpen = false;
 
-        if (navBar && mobileDrawerToggle) {
-          mobileDrawerToggle.addEventListener("click", () => {
-            navBar.classList.remove("bg-opacity-75", "shadow-gray/10", "shadow-[inset_0px_-1px_1px]");
-            navBar.classList.add("bg-opacity-100");
-          });
-          document.addEventListener("click", (e) => {
-            if (e.target !== mobileDrawerToggle) {
-              navBar.classList.add("bg-opacity-75", "shadow-gray/10", "shadow-[inset_0px_-1px_1px]");
-              navBar.classList.remove("bg-opacity-100");
-            }
-          });
-        }
-      },
+    mobileDrawerToggle!.addEventListener("click", () => {
+      isDrawerOpen = !isDrawerOpen;
+
+      if (isDrawerOpen) {
+        mobileNavbar!.classList.remove("bg-white/75");
+        mobileNavbar!.classList.add("bg-white");
+      } else {
+        mobileNavbar!.classList.add("bg-white/75");
+        mobileNavbar!.classList.remove("bg-white");
+      }
+    }
     );
+  }, []);
 
   return (
     <nav
-      id="navbar"
-      className={"fixed top-0 left-0 z-10 w-full h-[7.5vh] bg-opacity-75 backdrop-blur-sm shadow-gray/10 shadow-[inset_0px_-1px_1px] " + navBG}
+      className="fixed top-0 left-0 z-10 w-full"
     >
-      <div className="items-center justify-between hidden w-2/3 h-full px-0 mx-auto text-sm lg:flex">
+      <div className="items-center justify-between hidden w-1/2 h-full p-4 mx-auto mt-2 text-sm rounded-lg shadow-lg lg:flex backdrop-blur-lg bg-white/75">
         <Link href="/" className="flex items-center">
-          <img src={"/static/assets/img/logos/" + navLogoFileName} alt={SITE_NAME + " logo"} className="h-5 my-auto" />
+          <img
+            src="/static/assets/img/logos/TODO"
+            alt="TODO"
+            className="h-5 my-auto"
+          />
         </Link>
-
-        {pagesCTAHTML}
+        <div className="items-center space-x-4 font-semibold">
+          {pages.map((page, i) => (
+            <Link
+              key={i}
+              href={page.loc}
+              className="lg:text-black/50 hover:text-black"
+            >
+              {page.name}
+            </Link>
+          ))}
+        </div>
+        <a
+          href="TODO"
+          className="text-white btn btn-sm btn-primary"
+        >
+          TODO
+        </a>
       </div>
 
-      <div className="flex items-center justify-between w-full h-full px-4 dropdown lg:hidden">
+      <div id="mobile-navbar" className="flex items-center justify-between w-full h-full py-2 pl-4 rounded-b-lg shadow-lg lg:hidden bg-white/75 backdrop-blur-lg">
         <Link href="/" className="flex items-center">
-          <img src={"/static/assets/img/logos/" + navLogoFileName} alt={SITE_NAME + " logo"} className="h-5 my-auto" />
+          <img
+            src="/static/assets/img/logos/TODO"
+            alt="TODO"
+            className="h-5 my-auto"
+          />
         </Link>
-
-        <div tabIndex={Number(0)} id="mobile-drawer-toggle" className={"text-xl ri-menu-fill " + mobileDrawerToggleColor}></div>
-        {mobilePagesCTAHTML}
+        <div className="flex items-center space-x-2">
+          <a
+            href="TODO"
+            className="text-white btn btn-sm btn-primary"
+          >
+            TODO
+          </a>
+          <details className="dropdown dropdown-end">
+            <summary
+              tabIndex={Number(0)}
+              id="mobile-drawer-toggle"
+              className="text-2xl ri-menu-fill btn btn-ghost text-primary"
+            />
+            <ul
+              tabIndex={Number(0)}
+              id="mobile-drawer"
+              className="z-20 flex flex-col w-screen p-4 space-y-4 font-semibold bg-white rounded-b-lg shadow-lg dropdown-content"
+            >
+              {pages.map((page, i) => (
+                <li key={i}>
+                  <Link href={page.loc}>
+                    {page.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </div>
       </div>
     </nav>
   );

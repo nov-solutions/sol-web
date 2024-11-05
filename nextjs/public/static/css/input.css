@@ -9,12 +9,15 @@
 
 /* scrollbar design */
 ::-webkit-scrollbar {
-  background-color: black;
   width: 0.5rem;
+  height: 0.5rem;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #8c8c8c;
+  background-color: #d6dee1;
   border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #8c8c8c;
 }
 
 /* generate unwatched styles */

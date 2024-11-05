@@ -4,12 +4,13 @@ import RootLayout from "./layout";
 import ErrorPage from "@/layouts/errorpage";
 import Body from "@/layouts/body";
 
-const SITE_BASE_DOMAIN = String(process.env.SITE_BASE_DOMAIN);
-const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
-const SITE_TAGLINE = String(process.env.SITE_TAGLINE);
-const SITE_DESCRIPTION = String(process.env.SITE_DESCRIPTION);
+const SITE_BASE_DOMAIN = String(process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN);
+const SITE_NAME = String(process.env.NEXT_PUBLIC_SITE_NAME).replace(/\b\w/g, (char) =>
+  char.toUpperCase(),
+);
+const SITE_TAGLINE = String(process.env.NEXT_PUBLIC_SITE_TAGLINE);
+const SITE_DESCRIPTION = String(process.env.NEXT_PUBLIC_SITE_DESCRIPTION);
 
-const logoFileName = "TODO";
 const statusCode = "403";
 const statusDescription = "You are not allowed to access this page!";
 
@@ -78,8 +79,6 @@ export default function Forbidden() {
     <RootLayout>
       <Body bodyBG={"bg-black"}>
         <ErrorPage
-          logoFileName={logoFileName}
-          SITE_NAME={SITE_NAME}
           statusCode={statusCode}
           statusDescription={statusDescription}
         />

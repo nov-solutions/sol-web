@@ -3,43 +3,16 @@ import { Metadata, Viewport } from "next";
 import RootLayout from "./layout";
 import Body from "@/layouts/body";
 import Nav from "@/layouts/nav";
+import MarketingPageContainer from "@/layouts/marketingpagecontainer";
 import FullHeightSplash from "@/layouts/fullheightsplash";
 import Footer from "@/layouts/footer";
 
-const SITE_BASE_DOMAIN = String(process.env.SITE_BASE_DOMAIN);
-const SITE_NAME = String(process.env.SITE_NAME).replace(/\b\w/g, (char) => char.toUpperCase());
-const SITE_TAGLINE = String(process.env.SITE_TAGLINE);
-const SITE_DESCRIPTION = String(process.env.SITE_DESCRIPTION);
-
-const bodyBG = "TODO";
-const navBG = "TODO";
-const navLogoFileName = "TODO";
-const pages = ["TODO"];
-const pagesLocs = ["TODO"];
-const navPagesColor = "TODO";
-const cta = "TODO";
-const ctaLoc = "TODO";
-const mobileDrawerToggleColor = "TODO";
-const splashBG = "TODO";
-const splashLogoFileName = "TODO";
-const splashTitleColor = "TODO";
-const splashTitle = "TODO";
-const splashSubtitleColor = "TODO";
-const splashSubtitle = "TODO";
-const splashImageFileName = "TODO";
-const splashImageAlt = "TODO";
-const footerDividerColor = "TODO";
-const footerLogoFileName = "TODO";
-const footerPagesColor = "TODO";
-const footerTaglineColor = "TODO";
-const footerTagline = SITE_TAGLINE.charAt(0).toUpperCase() + SITE_TAGLINE.slice(1).toLowerCase();
-const socialsLocs = ["https://www.linkedin.com/company/TODO/"];
-const socialsColor = "TODO";
-const socialsIcons = ["ri-linkedin-fill"];
-const legal = ["TODO"];
-const legalLocs = ["TODO"];
-const legalColor = "TODO";
-const footerFinePrintColor = "TODO";
+const SITE_BASE_DOMAIN = String(process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN);
+const SITE_NAME = String(process.env.NEXT_PUBLIC_SITE_NAME).replace(/\b\w/g, (char) =>
+  char.toUpperCase(),
+);
+const SITE_TAGLINE = String(process.env.NEXT_PUBLIC_SITE_TAGLINE);
+const SITE_DESCRIPTION = String(process.env.NEXT_PUBLIC_SITE_DESCRIPTION);
 
 const title = SITE_NAME + " • " + SITE_TAGLINE;
 const currentYear = new Date().getFullYear();
@@ -104,46 +77,12 @@ export const viewport: Viewport = {
 export default function Home() {
   return (
     <RootLayout>
-      <Body bodyBG={bodyBG}>
-        <Nav
-          navBG={navBG}
-          navLogoFileName={navLogoFileName}
-          SITE_NAME={SITE_NAME}
-          pages={pages}
-          pagesLocs={pagesLocs}
-          navPagesColor={navPagesColor}
-          cta={cta}
-          ctaLoc={ctaLoc}
-          mobileDrawerToggleColor={mobileDrawerToggleColor}
-        />
-        <FullHeightSplash
-          splashBG={splashBG}
-          splashLogoFileName={splashLogoFileName}
-          SITE_NAME={SITE_NAME}
-          splashTitleColor={splashTitleColor}
-          splashTitle={splashTitle}
-          splashSubtitleColor={splashSubtitleColor}
-          splashSubtitle={splashSubtitle}
-          splashImageFileName={splashImageFileName}
-          splashImageAlt={splashImageAlt}
-        />
-        <Footer
-          footerDividerColor={footerDividerColor}
-          footerLogoFileName={footerLogoFileName}
-          SITE_NAME={SITE_NAME}
-          pages={pages}
-          pagesLocs={pagesLocs}
-          footerPagesColor={footerPagesColor}
-          footerTaglineColor={footerTaglineColor}
-          footerTagline={footerTagline}
-          socialsLocs={socialsLocs}
-          socialsColor={socialsColor}
-          socialsIcons={socialsIcons}
-          legal={legal}
-          legalLocs={legalLocs}
-          legalColor={legalColor}
-          footerFinePrintColor={footerFinePrintColor}
-        />
+      <Body>
+        <Nav />
+        <MarketingPageContainer>
+          <FullHeightSplash />
+          <Footer />
+        </MarketingPageContainer>
       </Body>
     </RootLayout>
   );

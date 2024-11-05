@@ -1,17 +1,13 @@
 'use client';
 
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 
 import RootLayout from "./layout";
 import ErrorPage from "@/layouts/errorpage";
 import Body from "@/layouts/body";
 
-const SITE_NAME = "TODO";
-
-const logoFileName = "TODO";
 const statusCode = "500";
 const statusDescription = "Something went wrong!";
-
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -29,8 +25,6 @@ export default function Error() {
     <RootLayout>
       <Body bodyBG={"bg-black"}>
         <ErrorPage
-          logoFileName={logoFileName}
-          SITE_NAME={SITE_NAME}
           statusCode={statusCode}
           statusDescription={statusDescription}
         />

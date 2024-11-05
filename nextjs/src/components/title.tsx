@@ -1,19 +1,16 @@
 import "../../public/static/css/styles.css";
 
 export default function Title({
-    titleBG,
-    titleColor,
-    titleText,
+  title,
 }: {
-    titleBG: string;
-    titleColor: string;
-    titleText: string;
+  title: string;
 }) {
-
   return (
-    <div className={"mt-[7.5vh] py-12 px-4 lg:px-0 " + titleBG}>
+    <div className="px-4 pt-24 pb-12 lg:pt-36 lg:px-0">
       <div className="flex flex-col mx-auto lg:w-2/3">
-        <h1 className={"text-3xl font-bold leading-none tracking-tight " + titleColor}>{titleText}</h1>
+        <h1 className="text-3xl font-bold leading-none tracking-tighter">
+          {title}
+        </h1>
       </div>
     </div>
   );
