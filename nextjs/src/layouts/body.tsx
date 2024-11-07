@@ -10,7 +10,7 @@ export default function Body({
   bodyBG?: string;
 }) {
   return (
-    <body className={"flex min-h-[100dvh] lg:h-screen " + bodyBG}>
+    <body className={"flex min-h-[100dvh] " + bodyBG}>
       <ProgressBarProvider>
         {children}
       </ProgressBarProvider>
