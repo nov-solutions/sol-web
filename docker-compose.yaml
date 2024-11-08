@@ -1,6 +1,6 @@
 volumes:
   pgdata:
-  django_static:
+  static:
 
 services:
   nextjs:
@@ -33,7 +33,7 @@ services:
     env_file:
       - .env
     volumes:
-      - django_static:/app/static
+      - static:/app/static
     logging:
       options:
         max-size: "10m"
@@ -54,7 +54,7 @@ services:
       - 443:443
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-      - django_static:/app/static:ro
+      - static:/app/static:ro
     logging:
       options:
         max-size: "10m"

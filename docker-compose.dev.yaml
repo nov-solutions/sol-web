@@ -1,5 +1,6 @@
 volumes:
   pgdata:
+  static:
 
 services:
   nextjs:
@@ -33,6 +34,7 @@ services:
       - 8000
     volumes:
       - ./django:/app
+      - static:/app/static
     env_file:
       - .env
     logging:
@@ -71,6 +73,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    volumes:
+      - static:/app/static:ro
 
   postgres:
     restart: always
