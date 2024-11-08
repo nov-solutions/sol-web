@@ -15,16 +15,19 @@ seed-db:
 
 drop-db-dev:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm NEWSOLWEBAPP-web_pgdata
+	docker volume rm sol_pgdata
 
 drop-db-prod:
 	docker compose down
-	docker volume rm NEWSOLWEBAPP-web_pgdata
+	docker volume rm sol_pgdata
 
 key-pair:
-	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web-39 --query 'KeyMaterial' --output text > NEWSOLWEBAPP-web.pem
+	aws ec2 create-key-pair --key-name sol --query 'KeyMaterial' --output text > sol.pem
 
 venv:
 	python -m venv .venv
 	source .venv/bin/activate
 	pip install -r requirements.txt
+
+ssh:
+	ssh -i "sol.pem" ubuntu@TODOipaddress
