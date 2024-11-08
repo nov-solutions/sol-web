@@ -30,7 +30,7 @@ export default function Team() {
               target="_blank"
               className="mt-4 w-fit"
             >
-              <i className="h-5 ri-linkedin-fill lg:text-black/50 hover:text-black"></i>
+              <i className="h-5 ri-linkedin-fill lg:text-black/75 hover:text-black"></i>
             </a>
           </div>
         ))}

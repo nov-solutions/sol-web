@@ -5,13 +5,13 @@ from decouple import config
 from cdk.deploy_stack import DeployStack
 from cdk.web_stack import WebStack
 
-SITE_NAME = config("SITE_NAME")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 
 app = cdk.App()
 
 env = cdk.Environment(
-    account="714108659434",
-    region="us-west-2",
+    account="TODO",
+    region="TODO",
 )
 
 WebStack(

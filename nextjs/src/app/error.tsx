@@ -3,6 +3,7 @@
 import { Viewport } from "next";
 
 import RootLayout from "./layout";
+import ErrorPageContainer from "@/layouts/errorpagecontainer";
 import ErrorPage from "@/layouts/errorpage";
 import Body from "@/layouts/body";
 
@@ -24,10 +25,12 @@ export default function Error() {
   return (
     <RootLayout>
       <Body bodyBG={"bg-black"}>
-        <ErrorPage
-          statusCode={statusCode}
-          statusDescription={statusDescription}
-        />
+        <ErrorPageContainer>
+          <ErrorPage
+            statusCode={statusCode}
+            statusDescription={statusDescription}
+          />
+        </ErrorPageContainer>
       </Body>
     </RootLayout>
   );

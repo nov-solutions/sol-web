@@ -35,7 +35,7 @@ export default function Footer() {
                   key={social.name}
                   href={social.loc}
                   target="_blank"
-                  className="lg:text-opacity-50 hover:text-opacity-100 text-gray"
+                  className="lg:text-opacity-75 hover:text-opacity-100 text-gray"
                 >
                   <i className={"text-lg " + social.icon}></i>
                 </a>
@@ -47,7 +47,7 @@ export default function Footer() {
               <Link
                 key={i}
                 href={page.loc}
-                className="font-semibold lg:text-black/50 hover:text-black"
+                className="font-semibold lg:text-black/75 hover:text-black"
               >
                 {page.name}
               </Link>

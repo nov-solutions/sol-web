@@ -48,7 +48,7 @@ export default function Nav() {
             <Link
               key={i}
               href={page.loc}
-              className="lg:text-black/50 hover:text-black"
+              className="lg:text-black/75 hover:text-black"
             >
               {page.name}
             </Link>

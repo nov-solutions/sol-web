@@ -3,7 +3,7 @@ import sys
 
 from decouple import config
 
-SITE_NAME = config("SITE_NAME")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 
 
 def main():

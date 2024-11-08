@@ -1,8 +1,8 @@
 from decouple import config
 
 ENVIRONMENT = config("ENVIRONMENT")
-SITE_NAME = config("SITE_NAME")
-SITE_BASE_DOMAIN = config("SITE_BASE_DOMAIN")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
+SITE_BASE_DOMAIN = config("NEXT_PUBLIC_SITE_BASE_DOMAIN")
 SITE_DOMAIN = config("SITE_DOMAIN")
 SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
@@ -14,10 +14,8 @@ TIME_ZONE = "UTC"
 
 if ENVIRONMENT == "dev":
     DEBUG = True
-    config._load(".env")
 elif ENVIRONMENT == "prod":
     DEBUG = False
-    config._load(".prod.env")
 
 # TODO: uncomment if project uses auth
 # AUTH_USER_MODEL = SITE_NAME + ".User"

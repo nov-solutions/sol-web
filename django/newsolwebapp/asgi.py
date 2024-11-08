@@ -6,7 +6,7 @@ from decouple import config
 from django.core.asgi import get_asgi_application
 from django.urls import re_path
 
-SITE_NAME = config("SITE_NAME")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", SITE_NAME + ".settings")
 

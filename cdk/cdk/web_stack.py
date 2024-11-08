@@ -4,7 +4,7 @@ from aws_cdk import aws_iam as iam
 from constructs import Construct
 from decouple import config
 
-SITE_NAME = config("SITE_NAME")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 
 
 class WebStack(Stack):
