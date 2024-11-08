@@ -1,5 +1,4 @@
 repos:
-  # pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
@@ -17,13 +16,6 @@ repos:
     hooks:
       - id: black
 
-  # typescript and javascript linter
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.0.0-rc.0
-    hooks:
-      - id: eslint
-        args: [--config ./nextjs/eslint.config.js]
-
   # dockerfile linter and formatter
   - repo: https://github.com/AleksaC/hadolint-py
     rev: v2.12.0.3
@@ -33,10 +25,11 @@ repos:
 
   # prettier formatters
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+    rev: v3.1.0
     hooks:
       - id: prettier
-        types: [javascript, json, yaml, markdown]
+        types: [file] # Apply to all file types, then filter by regex
+        files: '\.(js|jsx|ts|tsx|json|yaml|md|css|html)$'
 
   # python dependency sorter
   - repo: https://github.com/pycqa/isort
@@ -51,4 +44,5 @@ repos:
     rev: v2.3.1
     hooks:
       - id: autoflake
-        args: [--remove-all-unused-imports, --remove-unused-variables, --in-place]
+        args:
+          [--remove-all-unused-imports, --remove-unused-variables, --in-place]
