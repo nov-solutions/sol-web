@@ -26,8 +26,8 @@ jobs:
 
       - name: Expose SSH key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > NEWSOLWEBAPP-web.pem
-          chmod 400 NEWSOLWEBAPP-web.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app-web.pem
+          chmod 400 app-web.pem
 
       - name: Create .env file
         run: |
@@ -48,12 +48,12 @@ jobs:
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/NEWSOLWEBAPP-web.pem -o StrictHostKeyChecking=no" . ubuntu@TODOipaddress:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app-web.pem -o StrictHostKeyChecking=no" . ubuntu@TODOipaddress:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/NEWSOLWEBAPP-web.pem ubuntu@TODOipaddress 'cd app && docker compose up --build -d'
+          ssh -i $(pwd)/app-web.pem ubuntu@${{ secrets.SERVER_IP }} 'cd app && docker compose up --build -d'
 
       - name: Remove SSH key
         run: |
-          rm -f NEWSOLWEBAPP-web.pem
+          rm -f app-web.pem
