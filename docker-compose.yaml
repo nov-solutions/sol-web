@@ -5,16 +5,17 @@ volumes:
 services:
   nextjs:
     restart: always
-    depends_on:
-      - django
     build:
       context: ./nextjs
-      args:
-        - BUILD_ENV=prod
     expose:
       - 3000
+    volumes:
+      - ./nextjs/public:/app/public
+      - ./nextjs/src:/app/src
     env_file:
       - .env
+    depends_on:
+      - django
     logging:
       options:
         max-size: "10m"
@@ -22,18 +23,16 @@ services:
 
   django:
     restart: always
-    depends_on:
-      - postgres
     build:
       context: ./django
-      args:
-        - BUILD_ENV=prod
     expose:
       - 8000
-    env_file:
-      - .env
     volumes:
       - static:/app/static
+    env_file:
+      - .env
+    depends_on:
+      - postgres
     logging:
       options:
         max-size: "10m"
@@ -47,13 +46,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
-      args:
-        - BUILD_ENV=prod
     ports:
       - 80:80
       - 443:443
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro
       - static:/app/static:ro
     logging:
       options:

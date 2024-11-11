@@ -1,46 +1,20 @@
-volumes:
-  pgdata:
-  static:
-
 services:
   nextjs:
-    restart: always
     depends_on:
       - django
       - tailwind-watcher
     build:
-      context: ./nextjs
       args:
         - BUILD_ENV=dev
-    expose:
-      - 3000
-    volumes:
-      - ./nextjs/public:/app/public
-      - ./nextjs/src:/app/src
-    env_file:
-      - .env
     environment:
       - WATCHPACK_POLLING=true
 
   django:
-    restart: always
-    depends_on:
-      - postgres
     build:
-      context: ./django
       args:
         - BUILD_ENV=dev
-    expose:
-      - 8000
     volumes:
       - ./django:/app
-      - static:/app/static
-    env_file:
-      - .env
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   tailwind-watcher:
     restart: always
@@ -57,42 +31,6 @@ services:
         max-file: "3"
 
   nginx:
-    restart: always
-    depends_on:
-      - django
-      - nextjs
     build:
-      context: .
-      dockerfile: Dockerfile.nginx
       args:
         - BUILD_ENV=dev
-    ports:
-      - 80:80
-      - 443:443
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
-    volumes:
-      - static:/app/static:ro
-
-  postgres:
-    restart: always
-    image: postgres:12.0-alpine
-    healthcheck:
-      interval: 5s
-      retries: 5
-      test:
-        - CMD-SHELL
-        - pg_isready -U $POSTGRES_USER -d $POSTGRES_DB
-      timeout: 5s
-    expose:
-      - 5432
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    env_file:
-      - .env
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"

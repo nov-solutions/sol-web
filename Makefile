@@ -1,5 +1,5 @@
 dev:
-	docker compose -f docker-compose.dev.yaml up --build
+	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml -f docker-compose.custom.yaml up --build
 prod:
 	docker compose up --build
 
@@ -14,7 +14,7 @@ seed-db:
 	python manage.py loaddata seed.json
 
 drop-db-dev:
-	docker compose -f docker-compose.dev.yaml down
+	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down
 	docker volume rm sol_pgdata
 
 drop-db-prod:
