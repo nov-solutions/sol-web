@@ -1,0 +1,12 @@
+node_modules
+nextjs/.next
+nextjs/node_modules
+.venv
+.git
+staticfiles
+.github
+.gitignore
+.pre-commit-config.yaml
+docker-compose.dev.yaml
+README.md
+*.log*
