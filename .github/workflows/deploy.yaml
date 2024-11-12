@@ -32,13 +32,6 @@ jobs:
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "SITE_NAME=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
-          echo "SITE_DESCRIPTION=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_DESCRIPTION=TODO" >> .env
-          echo "SITE_TAGLINE=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_TAGLINE=TODO" >> .env
-          echo "SITE_BASE_DOMAIN=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
           echo "SITE_DOMAIN=TODO" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env

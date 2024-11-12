@@ -6,11 +6,7 @@ import ErrorPage from "@/layouts/errorpage";
 import Body from "@/layouts/body";
 
 const SITE_BASE_DOMAIN = String(process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN);
-const SITE_NAME = String(process.env.NEXT_PUBLIC_SITE_NAME).replace(/\b\w/g, (char) =>
-  char.toUpperCase(),
-);
-const SITE_TAGLINE = String(process.env.NEXT_PUBLIC_SITE_TAGLINE);
-const SITE_DESCRIPTION = String(process.env.NEXT_PUBLIC_SITE_DESCRIPTION);
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "@/config";
 
 const statusCode = "404";
 const statusDescription = "We can't find that page!";
@@ -42,7 +38,7 @@ export const metadata: Metadata = {
     url: SITE_BASE_DOMAIN + pageRelativePath,
     images: [
       {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/TODO"
+        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
       },
     ],
     type: "website",
@@ -53,7 +49,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/TODO"
+        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
       },
     ],
   },
@@ -61,7 +57,6 @@ export const metadata: Metadata = {
     follow: true,
     index: true,
   },
-
 };
 
 export const viewport: Viewport = {
