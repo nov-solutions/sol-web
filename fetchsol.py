@@ -2,6 +2,9 @@ import os
 
 import requests
 
+sol_config = {}
+
+
 file_names = [
     # Add file names here, e.g., "django/base_urls.py"
 ]
