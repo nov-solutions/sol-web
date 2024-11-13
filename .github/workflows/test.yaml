@@ -16,11 +16,8 @@ jobs:
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "SITE_NAME=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
-          echo "SITE_BASE_DOMAIN=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
-          echo "SITE_DOMAIN=TODO" >> .env
+          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=${{ secrets.NEXT_PUBLIC_SITE_BASE_DOMAIN }}" >> .env
+          echo "SITE_DOMAIN=${{ secrets.SITE_DOMAIN }}" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
