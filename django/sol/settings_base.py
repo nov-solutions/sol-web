@@ -89,6 +89,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
     SITE_BASE_DOMAIN,
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = SITE_NAME + ".urls"
@@ -111,15 +112,44 @@ TEMPLATES = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
     "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "django_debug.log",
+            "maxBytes": 1024 * 1024 * 25,  # 25 MB
+            "backupCount": 5,
+            "formatter": "verbose",
+        },
         "console": {
+            "level": "WARN",
             "class": "logging.StreamHandler",
+            "formatter": "simple",
         },
     },
     "loggers": {
         "django": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "sol": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+        },
+        "django.utils.autoreload": {
             "handlers": ["console"],
-            "level": "INFO",
+            "level": "ERROR",
             "propagate": False,
         },
     },
