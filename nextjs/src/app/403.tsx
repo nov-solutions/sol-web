@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     url: SITE_BASE_DOMAIN + pageRelativePath,
     images: [
       {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/TODO",
+        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
       },
     ],
     type: "website",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/TODO",
+        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
       },
     ],
   },

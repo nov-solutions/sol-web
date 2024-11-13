@@ -8,11 +8,9 @@ export default function Footer() {
       name: "LinkedIn",
       icon: "ri-linkedin-fill",
       loc: "https://www.linkedin.com/company/TODO",
-    }
+    },
   ];
-  const pages = [
-    { name: "TODO", loc: "TODO" }
-  ];
+  const pages = [{ name: "TODO", loc: "TODO" }];
 
   return (
     <footer className="w-full">
@@ -21,14 +19,12 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <Link href="/">
               <img
-                src="/static/assets/img/logos/TODO"
-                alt="TODO"
+                src="/static/assets/img/logos/app.png"
+                alt="Logo"
                 className="h-5 my-auto"
               />
             </Link>
-            <p className="!mt-2 font-medium">
-              TODO
-            </p>
+            <p className="!mt-2 font-medium">TODO</p>
             <div className="flex items-center space-x-2">
               {socials.map((social, i) => (
                 <a

@@ -22,7 +22,7 @@ export default function RootLayout({
               name: `${SITE_NAME}`,
               description: `${SITE_DESCRIPTION}`,
               foundingDate: "TODO",
-              logo: "/static/assets/img/logos/TODO",
+              logo: "/static/assets/img/logos/app.png",
               sameAs: ["https://www.linkedin.com/company/TODO"],
             }),
           }}
