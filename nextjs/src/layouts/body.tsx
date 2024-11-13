@@ -11,9 +11,7 @@ export default function Body({
 }) {
   return (
     <body className={"flex min-h-[100dvh] " + bodyBG}>
-      <ProgressBarProvider>
-        {children}
-      </ProgressBarProvider>
+      <ProgressBarProvider>{children}</ProgressBarProvider>
     </body>
   );
 }

@@ -17,8 +17,7 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-# TODO: uncomment if project uses auth
-# AUTH_USER_MODEL = SITE_NAME + ".User"
+AUTH_USER_MODEL = SITE_NAME + ".User"
 
 STATIC_URL = "/api/static/"
 STATIC_ROOT = "/static/"

@@ -1,5 +1,6 @@
 dev:
 	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml -f docker-compose.custom.yaml up --build
+	# docker compose -f docker-compose.yaml -f docker-compose.dev.yaml -f docker-compose.custom.yaml -f docker-compose.scheduler.yaml up --build
 prod:
 	docker compose up --build
 
