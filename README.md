@@ -1,6 +1,6 @@
 # Sol
 
-Sol is a monorepo web app SDK that enables developers to create robust, reliable and responsive web apps in minutes.
+Sol is an all-in-one template that enables developers to create robust, reliable and responsive web apps in minutes.
 
 © [nov](https://github.com/nov-solutions)
 
@@ -43,7 +43,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 5. Replace all instances of `newsolwebapp.com` with the domain of the project
 
-6. Add "apple_touch_icon.png," "favicon.png," and "social.png" to `nextjs/public/static/assets/img`
+6. Add "logo.png", "wordmark.png", "social.png," "favicon.png", and "apple_touch_icon.png" to `nextjs/public/static/assets/img`
 
 7. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` and `.prod.env` files
 

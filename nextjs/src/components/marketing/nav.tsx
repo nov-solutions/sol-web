@@ -1,15 +1,17 @@
 "use client";
 
-import "../../public/static/css/styles.css";
-
 import { useEffect } from "react";
 
 import Link from "next/link";
 
+import "../../../public/static/css/styles.css";
+
+import { PAGES } from "@/constants";
+
 export default function Nav() {
-  const pages = [
-    { name: "TODO", loc: "TODO" }
-  ];
+  const pages = PAGES
+  .filter(({ relativePath }) => relativePath !== "/" && !relativePath.startsWith("/app"))
+  .map(({ name, relativePath }) => ({ name, relativePath }));
 
   useEffect(() => {
     const mobileNavbar = document.getElementById("mobile-navbar");
@@ -38,7 +40,7 @@ export default function Nav() {
       <div className="items-center justify-between hidden w-1/2 h-full p-4 mx-auto mt-2 text-sm rounded-lg shadow-lg lg:flex backdrop-blur-lg bg-white/75">
         <Link href="/" className="flex items-center">
           <img
-            src="/static/assets/img/logos/TODO"
+            src="/static/assets/img/logos/wordmark.png"
             alt="TODO"
             className="h-5 my-auto"
           />
@@ -47,7 +49,7 @@ export default function Nav() {
           {pages.map((page, i) => (
             <Link
               key={i}
-              href={page.loc}
+              href={page.relativePath}
               className="lg:text-black/75 hover:text-black"
             >
               {page.name}
@@ -65,7 +67,7 @@ export default function Nav() {
       <div id="mobile-navbar" className="flex items-center justify-between w-full h-full py-2 pl-4 rounded-b-lg shadow-lg lg:hidden bg-white/75 backdrop-blur-lg">
         <Link href="/" className="flex items-center">
           <img
-            src="/static/assets/img/logos/TODO"
+            src="/static/assets/img/logos/wordmark.png"
             alt="TODO"
             className="h-5 my-auto"
           />
@@ -90,7 +92,7 @@ export default function Nav() {
             >
               {pages.map((page, i) => (
                 <li key={i}>
-                  <Link href={page.loc}>
+                  <Link href={page.relativePath}>
                     {page.name}
                   </Link>
                 </li>

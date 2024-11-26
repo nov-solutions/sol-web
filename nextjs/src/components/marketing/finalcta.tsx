@@ -1,4 +1,4 @@
-import "../../public/static/css/styles.css";
+import "../../../public/static/css/styles.css";
 
 export default function FinalCTA() {
   return (

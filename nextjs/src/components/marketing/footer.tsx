@@ -1,6 +1,8 @@
-import "../../public/static/css/styles.css";
-
 import Link from "next/link";
+
+import "../../../public/static/css/styles.css";
+
+import { PAGES, SITE_NAME } from "@/constants";
 
 export default function Footer() {
   const socials = [
@@ -10,9 +12,9 @@ export default function Footer() {
       loc: "https://www.linkedin.com/company/TODO",
     }
   ];
-  const pages = [
-    { name: "TODO", loc: "TODO" }
-  ];
+  const pages = PAGES
+  .filter(({ relativePath }) => relativePath !== "/" && !relativePath.startsWith("/app"))
+  .map(({ name, relativePath }) => ({ name, relativePath }));
 
   return (
     <footer className="w-full">
@@ -21,7 +23,7 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <Link href="/">
               <img
-                src="/static/assets/img/logos/TODO"
+                src="/static/assets/img/logos/wordmark.png"
                 alt="TODO"
                 className="h-5 my-auto"
               />
@@ -46,7 +48,7 @@ export default function Footer() {
             {pages.map((page, i) => (
               <Link
                 key={i}
-                href={page.loc}
+                href={page.relativePath}
                 className="font-semibold lg:text-black/75 hover:text-black"
               >
                 {page.name}
@@ -55,7 +57,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="self-end text-xs text-gray">
-          <p>{"© " + new Date().getFullYear() + " TODO"}</p>
+          <p>© {new Date().getFullYear()} {SITE_NAME}</p>
         </div>
       </div>
     </footer>

@@ -1,4 +1,4 @@
-import "../../public/static/css/styles.css";
+import "../../../public/static/css/styles.css";
 
 export default function Team() {
   const team = [
@@ -19,15 +19,15 @@ export default function Team() {
             className="flex flex-col items-center justify-center w-full h-full p-4 text-center border rounded-lg shadow-lg lg:p-8 border-gray-light"
           >
             <img
-              src={"/static/assets/img/headshots/" + teammate.headshotLoc}
-              alt={teammate.name + "'s headshot"}
+              src={`/static/assets/img/headshots/${teammate.headshotLoc}`}
+              alt={`${teammate.name}'s headshot`}
               className="w-1/2 mx-auto rounded-full filter grayscale"
             />
             <h2 className="mt-4 text-sm font-medium">{teammate.name}</h2>
             <h3 className="text-xs text-gray">{teammate.role}</h3>
             <a
               href={teammate.linkedInLoc}
-              target="_blank"
+            target="_blank"
               className="mt-4 w-fit"
             >
               <i className="h-5 ri-linkedin-fill lg:text-black/75 hover:text-black"></i>
