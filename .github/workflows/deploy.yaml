@@ -48,11 +48,11 @@ jobs:
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/NEWSOLWEBAPP-web.pem -o StrictHostKeyChecking=no" . ubuntu@TODOipaddress:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/NEWSOLWEBAPP-web.pem -o StrictHostKeyChecking=no" . ubuntu@TODO:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/NEWSOLWEBAPP-web.pem ubuntu@TODOipaddress 'cd app && docker compose up --build -d'
+          ssh -i $(pwd)/NEWSOLWEBAPP-web.pem ubuntu@TODO 'cd app && docker compose up --build -d'
 
       - name: Remove SSH key
         run: |

@@ -36,7 +36,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Clone the repository
 
-1. Populate the keys in the `.env` and `.prod.env` files with appropriate values for the project
+1. Populate the keys in the `.env` file with appropriate values for the project
 
 2. Run `python find_replace.py` in the root directory
 
@@ -48,7 +48,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. Add "logo.png", "wordmark.png", "social.png," "favicon.png", and "apple_touch_icon.png" to `nextjs/public/static/assets/img`
 
-7. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` and `.prod.env` files
+7. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` file
 
 8. Run `pre-commit install` in the root directory
 
