@@ -1,5 +1,4 @@
 import os
-import shutil
 
 
 def find_replace():
@@ -28,8 +27,6 @@ def find_replace():
                 text = f.read()
             with open(os.path.join(root, file), "w") as f:
                 f.write(text.replace("sol", replace))
-
-    shutil.move("./django/sol", f"./django/{replace}")
 
 
 if __name__ == "__main__":
