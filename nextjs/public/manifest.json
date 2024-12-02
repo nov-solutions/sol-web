@@ -1,6 +1,6 @@
 {
-  "name": "NEWSOLWEBAPP",
-  "short_name": "NEWSOLWEBAPP",
+  "name": "sol",
+  "short_name": "sol",
   "description": "Mostly working web stack.",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",

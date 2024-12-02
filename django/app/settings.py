@@ -35,7 +35,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.messages",
     "corsheaders",
-    "app",
+    # app
+    "app.apps.AppConfig",
+    # drf
+    "rest_framework",
+    "django_extensions",
+    "django_filters",
+    # swagger
+    "drf_spectacular",
+    # redis queues
+    "django_rq",
 ]
 
 MIDDLEWARE = [
@@ -97,6 +106,15 @@ CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = "app.urls"
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -111,6 +129,23 @@ TEMPLATES = [
         },
     },
 ]
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "sol API",
+    "DESCRIPTION": "TODO",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "redis",
+        "PORT": 6379,
+        "DB": 0,
+        "PASSWORD": config("REDIS_PASSWORD"),
+        "DEFAULT_TIMEOUT": 3600,
+    }
+}
 
 LOGGING = {
     "version": 1,

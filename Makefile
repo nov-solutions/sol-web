@@ -8,15 +8,16 @@ prod:
 
 drop-db:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm NEWSOLWEBAPP-web_pgdata
+	docker volume rm sol-web_pgdata
 
 mk-mig:
 	sudo rm ./django/*.log*
 	cd django && python manage.py makemigrations
-	docker exec -it NEWSOLWEBAPP-web-django python manage.py migrate
+	#
+	docker exec -it sol-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web --query 'KeyMaterial' --output text > app.pem
+	aws ec2 create-key-pair --key-name sol-web --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv

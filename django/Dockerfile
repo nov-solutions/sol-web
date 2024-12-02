@@ -19,5 +19,5 @@ CMD if [ "$BUILD_ENV" = "dev" ]; then \
     else \
         python manage.py collectstatic --noinput && \
         python manage.py migrate && \
-        daphne -b 0.0.0.0 -p 8000 NEWSOLWEBAPP.asgi:application --application-close-timeout 120; \
+        daphne -b 0.0.0.0 -p 8000 app.asgi:application --application-close-timeout 120; \
     fi
