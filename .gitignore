@@ -16,3 +16,4 @@ staticfiles
 cdk/cdk.context.json
 **/sw.js
 **/workbox-*.js
+*.log
