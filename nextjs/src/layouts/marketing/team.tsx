@@ -27,7 +27,7 @@ export default function Team() {
             <h3 className="text-xs text-gray">{teammate.role}</h3>
             <a
               href={teammate.linkedInLoc}
-            target="_blank"
+              target="_blank"
               className="mt-4 w-fit"
             >
               <i className="h-5 ri-linkedin-fill lg:text-black/75 hover:text-black"></i>
