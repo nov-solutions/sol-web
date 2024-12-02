@@ -1,4 +1,5 @@
 from decouple import config
+from pathlib import Path
 
 ENVIRONMENT = config("ENVIRONMENT")
 SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
@@ -8,6 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
 POSTGRES_USER = config("POSTGRES_USER")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -21,7 +23,7 @@ elif ENVIRONMENT == "prod":
 # AUTH_USER_MODEL = SITE_NAME + ".User"
 
 STATIC_URL = "/nginx-static/"
-STATIC_ROOT = "/static/"
+STATIC_ROOT = BASE_DIR / "static/"
 
 ASGI_APPLICATION = SITE_NAME + ".asgi.application"
 
@@ -79,17 +81,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ALLOWED_HOSTS = [
+    "django",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     SITE_BASE_DOMAIN,
-    SITE_BASE_DOMAIN,
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    SITE_BASE_DOMAIN,
     SITE_BASE_DOMAIN,
 ]
 CORS_ALLOW_CREDENTIALS = True

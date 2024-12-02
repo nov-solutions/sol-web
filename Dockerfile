@@ -6,6 +6,6 @@ COPY ./nginx/${BUILD_ENV} /etc/nginx/conf.d/
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY ./django/static /app/django/static
+COPY ./django/static /app/static
 
 CMD ["nginx", "-g", "daemon off;"]

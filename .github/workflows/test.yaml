@@ -1,4 +1,4 @@
-name: Test Django
+name: Test
 
 on:
   pull_request:
@@ -6,23 +6,29 @@ on:
       - master
 
 jobs:
-  test-django:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up workflow with Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/hydrogen"
+
+      - name: Minify CSS
+        run: |
+          cd ./nextjs
+          npm ci
+          npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
+
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "SITE_NAME=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
-          echo "SITE_DESCRIPTION=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_DESCRIPTION=TODO" >> .env
-          echo "SITE_TAGLINE=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_TAGLINE=TODO" >> .env
-          echo "SITE_BASE_DOMAIN=TODO" >> .env
           echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
           echo "SITE_DOMAIN=TODO" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
@@ -30,16 +36,37 @@ jobs:
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
 
-      - name: Initialize ./django/static
-        run: mkdir -p ./django/static
+      - name: Create Django static directory
+        run: |
+          cd ./django
+          pip install -r requirements.txt
+          python manage.py collectstatic --noinput
 
       - name: Build Docker containers
         run: |
-          docker compose up --build -d
+          docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d
 
-      - name: Run tests
+      - name: Wait for Django container to be healthy
+        timeout-minutes: 2
         run: |
-          echo "Tests or other tasks run here"
+          end=$((SECONDS+300))
+          while [ $SECONDS -lt $end ]; do
+            if [ $(docker inspect --format='{{.State.Health.Status}}' NEWSOLWEBAPP-web-django) == "healthy" ]; then
+              echo "Django container is healthy."
+              exit 0
+            fi
+            echo "Waiting for Django container to be healthy..."
+            echo $(docker inspect --format='{{.State.Health.Status}}' NEWSOLWEBAPP-web-django)
+            echo $(docker ps -a)
+            echo $(docker logs NEWSOLWEBAPP-web-django)
+            sleep 5
+          done
+          echo "Timed out waiting for Django container to be healthy."
+          exit 1
+
+      - name: Run Django tests
+        run: |
+          docker exec NEWSOLWEBAPP-web-django python manage.py test
 
       - name: Bring down Docker containers
         run: docker compose down
