@@ -11,5 +11,6 @@ RUN export $(grep -v "^#" /etc/nginx/.env | xargs) && \
     for file in /etc/nginx/conf.d/*.conf /etc/nginx/nginx.conf; do \
         sed -i "s/\$SITE_DOMAIN/$SITE_DOMAIN/g" $file; \
     done
+COPY ./django/static /app/static
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -10,7 +10,7 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "/static/assets/img/logos/app.png",
+      "src": "/static/assets/img/logos/logo.png",
       "sizes": "1000x1000"
     }
   ],

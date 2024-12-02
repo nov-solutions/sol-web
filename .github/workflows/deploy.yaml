@@ -6,9 +6,8 @@ on:
       - master
 
 jobs:
-  release:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,29 +23,66 @@ jobs:
           npm ci
           npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
 
-      - name: Expose SSH key
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app-web.pem
-          chmod 400 app-web.pem
-
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=${{ secrets.NEXT_PUBLIC_SITE_BASE_DOMAIN }}" >> .env
-          echo "SITE_DOMAIN=${{ secrets.SITE_DOMAIN }}" >> .env
+          echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
+          echo "NEXT_PUBLIC_SITE_DESCRIPTION=TODO" >> .env
+          echo "NEXT_PUBLIC_SITE_TAGLINE=TODO" >> .env
+          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
+          echo "SITE_DOMAIN=TODO" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
 
+      - name: Create Django static directory
+        run: |
+          cd ./django
+          pip install -r requirements.txt
+          python manage.py collectstatic --noinput
+
+      - name: Expose SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > NEWSOLWEBAPP-web.pem
+          chmod 400 NEWSOLWEBAPP-web.pem
+
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app-web.pem -o StrictHostKeyChecking=no" . ubuntu@${{ secrets.SERVER_IP }}:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/NEWSOLWEBAPP-web.pem -o StrictHostKeyChecking=no" . ubuntu@TODO:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app-web.pem ubuntu@${{ secrets.SERVER_IP }} 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml -f docker-compose.custom.yaml up --build -d'
+          ssh -i $(pwd)/NEWSOLWEBAPP-web.pem ubuntu@TODO 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |
-          rm -f app-web.pem
+          rm -f NEWSOLWEBAPP-web.pem
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
+
+      - name: Build and push Next.js Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./nextjs
+          push: true
+          tags: ghcr.io/${{ github.repository }}/nextjs:latest
+
+      - name: Build and push Django Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./django
+          push: true
+          tags: ghcr.io/${{ github.repository }}/django:latest
+
+      - name: Build and push Nginx Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/nginx:latest

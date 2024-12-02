@@ -1,8 +1,3 @@
-# the purpose of this script is simple
-# it iterates through every file in a directory
-# for each file it looks for the string:
-# and replaces it with the string argument passed to the script
-
 import os
 import shutil
 
@@ -13,7 +8,6 @@ def find_replace():
     Also, renames ./django/newsolwebapp folder to the value of SITE_NAME.
     """
 
-    # read .env and get value of SITE_NAME
     with open(".env", "r") as f:
         file = f.readlines()
     for line in file:
@@ -26,7 +20,6 @@ def find_replace():
         raise ValueError("SITE_NAME not found in .env file")
     print("Replacing instances of NEWSOLWEBAPP with " + replace)
 
-    # walks through directory, replaces instances of NEWSOLWEBAPP with SITE_NAME
     for root, dirs, files in os.walk("."):
         for file in files:
             if file == "find_replace.py" or ".git" in os.path.join(root, file):
@@ -36,7 +29,6 @@ def find_replace():
             with open(os.path.join(root, file), "w") as f:
                 f.write(text.replace("NEWSOLWEBAPP", replace))
 
-    # rename ./django/newsolwebapp to SITE_NAME
     shutil.move("./django/newsolwebapp", f"./django/{replace}")
 
 

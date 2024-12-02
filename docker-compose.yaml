@@ -1,9 +1,9 @@
 volumes:
   pgdata:
-  static:
 
 services:
   nextjs:
+    container_name: nextjs
     restart: always
     build:
       context: ./nextjs
@@ -20,52 +20,71 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://nextjs:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
   django:
+    container_name: django
     restart: always
     build:
       context: ./django
     expose:
       - 8000
     volumes:
-      - static:/app/static
+      - ./logs:/app/logs
     env_file:
       - .env
     depends_on:
       - postgres
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - curl -f http://django:8000/api/admin/ || exit 1
+      interval: 30s
+      retries: 5
+      timeout: 5s
+      start_period: 30s
     logging:
       options:
         max-size: "10m"
         max-file: "3"
 
   nginx:
+    container_name: nginx
     restart: always
     depends_on:
       - django
       - nextjs
     build:
       context: .
-      dockerfile: Dockerfile.nginx
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - static:/app/static:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://nginx"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
     logging:
       options:
         max-size: "10m"
         max-file: "3"
 
   postgres:
+    container_name: postgres
     restart: always
     image: postgres:12.0-alpine
     healthcheck:
-      interval: 5s
-      retries: 5
-      test:
-        - CMD-SHELL
-        - pg_isready -U $POSTGRES_USER -d $POSTGRES_DB
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 30s
       timeout: 5s
+      retries: 3
+      start_period: 10s
     expose:
       - 5432
     volumes:

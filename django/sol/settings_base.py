@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from decouple import config
 
 ENVIRONMENT = config("ENVIRONMENT")
@@ -8,6 +10,7 @@ SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
 POSTGRES_USER = config("POSTGRES_USER")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -19,8 +22,8 @@ elif ENVIRONMENT == "prod":
 
 AUTH_USER_MODEL = SITE_NAME + ".User"
 
-STATIC_URL = "/api/static/"
-STATIC_ROOT = "/static/"
+STATIC_URL = "/nginx-static/"
+STATIC_ROOT = BASE_DIR / "static/"
 
 ASGI_APPLICATION = SITE_NAME + ".asgi.application"
 
@@ -78,6 +81,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ALLOWED_HOSTS = [
+    "django",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
 ]

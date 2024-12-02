@@ -1,14 +1,17 @@
 import { MetadataRoute } from "next";
 
-const SITE_BASE_DOMAIN = String(process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN);
+import { SITE_BASE_DOMAIN, PAGES } from "@/constants";
 
 export default function Sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: SITE_BASE_DOMAIN,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+  const sitemap = PAGES.map((page) => ({
+    url:
+      page.relativePath == "/"
+        ? SITE_BASE_DOMAIN
+        : `${SITE_BASE_DOMAIN}${page.relativePath}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as "monthly",
+    priority: page.relativePath == "/" ? 1 : 0.8,
+  }));
+
+  return sitemap;
 }

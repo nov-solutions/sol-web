@@ -1,84 +1,64 @@
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 
-import RootLayout from "./layout";
-import Body from "@/layouts/body";
-import Nav from "@/layouts/nav";
-import MarketingPageContainer from "@/layouts/marketingpagecontainer";
-import FullHeightSplash from "@/layouts/fullheightsplash";
-import Footer from "@/layouts/footer";
+import {
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_BASE_DOMAIN,
+} from "@/constants";
 
-const SITE_BASE_DOMAIN = String(process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN);
-import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "@/config";
+import Nav from "@/components/marketing/nav";
+import FullHeightSplash from "@/components/marketing/fullheightsplash";
+import FeatureDetails from "@/components/marketing/featuredetails";
+import FinalCTA from "@/components/marketing/finalcta";
+import Footer from "@/components/marketing/footer";
 
-const title = SITE_NAME + " • " + SITE_TAGLINE;
-const currentYear = new Date().getFullYear();
-const pageRelativePath = "/";
 export const metadata: Metadata = {
-  title: title,
-  description: SITE_DESCRIPTION,
-  authors: [{ name: "© " + SITE_NAME + " " + currentYear }],
-  icons: {
-    icon: "/static/assets/img/favicon.png",
-    apple: "/static/assets/img/apple_touch_icon.png",
-  },
-  applicationName: SITE_NAME,
-  appleWebApp: {
-    title: SITE_NAME,
-    statusBarStyle: "default",
-  },
-  metadataBase: new URL(SITE_BASE_DOMAIN),
-  alternates: {
-    canonical: SITE_BASE_DOMAIN + pageRelativePath,
-  },
   openGraph: {
-    title: title,
-    siteName: SITE_NAME + " • " + SITE_TAGLINE,
+    title: `${SITE_NAME} • ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
-    url: SITE_BASE_DOMAIN + pageRelativePath,
+    url: SITE_BASE_DOMAIN,
+    siteName: SITE_NAME,
     images: [
       {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
+        url: `${SITE_BASE_DOMAIN}/static/assets/img/social.png`,
+        width: 1200,
+        height: 630,
       },
     ],
+    locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: title,
-    description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: SITE_BASE_DOMAIN + "/static/assets/img/social.png",
-      },
-    ],
+  alternates: {
+    canonical: SITE_BASE_DOMAIN,
   },
-  robots: {
-    follow: true,
-    index: true,
-  },
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  height: "device-height",
-  initialScale: 1,
-  minimumScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: "cover",
-  themeColor: "#000000",
 };
 
 export default function Home() {
   return (
-    <RootLayout>
-      <Body>
-        <Nav />
-        <MarketingPageContainer>
-          <FullHeightSplash />
-          <Footer />
-        </MarketingPageContainer>
-      </Body>
-    </RootLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: SITE_NAME,
+                item: SITE_BASE_DOMAIN,
+              },
+            ],
+          }),
+        }}
+      />
+      <Nav />
+      <FullHeightSplash />
+      <FeatureDetails />
+      <FinalCTA />
+      <Footer />
+    </>
   );
 }
