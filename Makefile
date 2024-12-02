@@ -19,7 +19,7 @@ mk-mig:
 	docker exec -it NEWSOLWEBAPP-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name sol --query 'KeyMaterial' --output text > sol.pem
+	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv
@@ -27,4 +27,4 @@ venv:
 	pip install -r requirements.txt
 
 ssh:
-	ssh -i "sol.pem" ubuntu@TODOipaddress
+	ssh -i "app.pem" ubuntu@TODOipaddress
