@@ -35,9 +35,6 @@ export const viewport: Viewport = {
 
 export default function NotFound() {
   return (
-    <ErrorPage
-      statusCode={statusCode}
-      statusDescription={statusDescription}
-    />
+    <ErrorPage statusCode={statusCode} statusDescription={statusDescription} />
   );
 }
