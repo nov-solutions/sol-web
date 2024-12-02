@@ -60,6 +60,12 @@ Data is interacted with through Django's ORM in the application layer.
 
 8. Update manifest.json with colors
 
+9. Update pipeline variables, create git secrets
+
+10. Rm scheduler/redis if not needed
+
+11. Rm user model, reset migrations if not needed
+
 ## Operation
 
 ### Local Development

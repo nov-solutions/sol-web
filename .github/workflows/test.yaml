@@ -26,9 +26,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "NEXT_PUBLIC_SITE_NAME=TODO" >> .env
-          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=TODO" >> .env
-          echo "SITE_DOMAIN=TODO" >> .env
+          echo "NEXT_PUBLIC_SITE_NAME=sol" >> .env
+          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://sol.grav.solutions" >> .env
+          echo "SITE_DOMAIN=sol" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
