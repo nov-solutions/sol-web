@@ -19,7 +19,7 @@ export default function FullHeightSplash() {
           </a>
         </div>
         <img
-          src="/static/assets/img/app.png"
+          src="/static/assets/img/logo.png"
           alt="Logo"
           className="lg:mx-auto"
         />

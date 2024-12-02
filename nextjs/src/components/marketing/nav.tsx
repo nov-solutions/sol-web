@@ -39,7 +39,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center">
           <img
             src="/static/assets/img/logos/wordmark.png"
-            alt="TODO"
+            alt="Wordmark"
             className="h-5 my-auto"
           />
         </Link>
@@ -66,7 +66,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center">
           <img
             src="/static/assets/img/logos/wordmark.png"
-            alt="TODO"
+            alt="Wordmark"
             className="h-5 my-auto"
           />
         </Link>
