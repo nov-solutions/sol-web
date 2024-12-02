@@ -8,6 +8,9 @@ Sol is an all-in-one template that enables developers to create robust, reliable
 ### Cloud Infrastructure
 **AWS**, a cloud computing services company, provides cloud services, such as application hosting, for the web app. The AWS CDK is used to provision most of the resources needed to run the web app in the cloud.
 
+### Continuous Integration and Continuous Deployment
+**GitHub Actions**, a CI/CD platform, automates the process of building, testing, and deploying the web app to the cloud. The `.github/workflows` directory contains the configuration files for the GitHub Actions workflows that run when code is pushed to the primary branch of the repository.
+
 ### Virtualization and Containerization
 **Docker**, a bundle of PAAS products, enables the virtualization and containerization of the web app and standardizes the local development and production deployment environments.
 
@@ -33,7 +36,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Clone the repository
 
-1. Populate the keys in the `.env` and `.prod.env` files with appropriate values for the project
+1. Populate the keys in the `.env` file with appropriate values for the project
 
 2. Run `python find_replace.py` in the root directory
 
@@ -45,14 +48,14 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. Add "logo.png", "wordmark.png", "social.png," "favicon.png", and "apple_touch_icon.png" to `nextjs/public/static/assets/img`
 
-7. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` and `.prod.env` files
+7. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` file
 
 8. Run `pre-commit install` in the root directory
 
 ## Operation
 
 ### Local Development
-0. Run the appropriate `make` command (`make dev` or `make prod`) in the root directory
+0. Run `make dev` in the root directory
 
 1. Access the web app via `localhost`
 
@@ -65,10 +68,8 @@ Data is interacted with through Django's ORM in the application layer.
 2. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `<project name>-key` and place it in the root directory.
 
 #### Routine Deployment
-0. Execute `deploy.sh` in the root directory to transfer and synchronize files and directories from your computer to the AWS EC2 instance
+0. Push code to the primary branch of the repository
 
-1. Execute `ssh.sh` in the root directory to open a terminal connection from your computer to the AWS EC2 instance
+### Production Management
+0. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance
 
-2. Run `cd app` to access the web app files inside of the Docker container on the AWS EC2 instance
-
-3. Run `docker compose up --build` to rebuild the app containers with the synchronized files
