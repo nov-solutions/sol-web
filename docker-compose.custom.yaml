@@ -1,4 +1,0 @@
-services:
-  nginx:
-    volumes:
-      - .:/app/files
