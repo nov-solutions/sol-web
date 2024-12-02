@@ -4,7 +4,7 @@ export const SITE_NAME = String(process.env.NEXT_PUBLIC_SITE_NAME).replace(
 );
 // TODO: update tagline, description
 export const SITE_TAGLINE = "Rock Bottom";
-export const SITE_DESCRIPTION = "Software";
+export const SITE_DESCRIPTION = "Mostly working web stack.";
 export const SITE_BASE_DOMAIN = String(
   process.env.NEXT_PUBLIC_SITE_BASE_DOMAIN,
 );
