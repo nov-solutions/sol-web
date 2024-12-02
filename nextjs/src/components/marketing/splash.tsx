@@ -7,7 +7,7 @@ export default function Splash() {
         <div className="flex flex-col items-center space-y-4 text-center lg:items-start lg:text-left">
           <img
             src="/static/assets/img/logos/logo.png"
-            alt="TODO"
+            alt="Logo"
             className="w-1/6 lg:w-1/12"
           />
           <h1 className="!mt-2 text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">

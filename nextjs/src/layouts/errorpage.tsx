@@ -13,7 +13,7 @@ export default function ErrorPage({
         <img
           className="w-10 aspect-square"
           src="/static/assets/img/logos/logo.png"
-          alt="TODO"
+          alt="Logo"
         />
         <div className="!mt-2 flex items-center space-x-2 divide-x divide-gray-light divide-opacity-25">
           <h1 className="font-bold leading-none tracking-tight text-primary">

@@ -58,6 +58,8 @@ Data is interacted with through Django's ORM in the application layer.
 
 7. Run `pre-commit install` in the root directory
 
+8. Update manifest.json with colors
+
 ## Operation
 
 ### Local Development
