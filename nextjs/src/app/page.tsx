@@ -1,6 +1,11 @@
 import { Metadata } from "next";
 
-import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_BASE_DOMAIN } from "@/constants";
+import {
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_BASE_DOMAIN,
+} from "@/constants";
 
 import Nav from "@/components/marketing/nav";
 import FullHeightSplash from "@/components/marketing/fullheightsplash";
@@ -32,7 +37,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <script type="application/ld+json"
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -43,7 +49,7 @@ export default function Home() {
                 position: 1,
                 name: SITE_NAME,
                 item: SITE_BASE_DOMAIN,
-              }
+              },
             ],
           }),
         }}

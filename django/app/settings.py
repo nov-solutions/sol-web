@@ -1,8 +1,8 @@
-from decouple import config
 from pathlib import Path
 
+from decouple import config
+
 ENVIRONMENT = config("ENVIRONMENT")
-SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 SITE_BASE_DOMAIN = config("NEXT_PUBLIC_SITE_BASE_DOMAIN")
 SITE_DOMAIN = config("SITE_DOMAIN")
 SECRET_KEY = config("SECRET_KEY")
@@ -19,13 +19,12 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-# TODO: uncomment if project uses auth
-# AUTH_USER_MODEL = SITE_NAME + ".User"
+AUTH_USER_MODEL = "app.User"
 
 STATIC_URL = "/nginx-static/"
 STATIC_ROOT = BASE_DIR / "static/"
 
-ASGI_APPLICATION = SITE_NAME + ".asgi.application"
+ASGI_APPLICATION = "app.asgi.application"
 
 INSTALLED_APPS = [
     "daphne",
@@ -36,7 +35,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.messages",
     "corsheaders",
-    SITE_NAME,
+    # app
+    "app.apps.AppConfig",
+    # drf
+    "rest_framework",
+    "django_extensions",
+    "django_filters",
+    # swagger
+    "drf_spectacular",
+    # redis queues
+    "django_rq",
 ]
 
 MIDDLEWARE = [
@@ -93,9 +101,19 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
     SITE_BASE_DOMAIN,
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 
-ROOT_URLCONF = SITE_NAME + ".urls"
+ROOT_URLCONF = "app.urls"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
 TEMPLATES = [
     {
@@ -112,18 +130,64 @@ TEMPLATES = [
     },
 ]
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "sol API",
+    "DESCRIPTION": "TODO",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "redis",
+        "PORT": 6379,
+        "DB": 0,
+        "PASSWORD": config("REDIS_PASSWORD"),
+        "DEFAULT_TIMEOUT": 3600,
+    }
+}
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
     "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "django_debug.log",
+            "maxBytes": 1024 * 1024 * 25,  # 25 MB
+            "backupCount": 5,
+            "formatter": "verbose",
+        },
         "console": {
+            "level": "WARN",
             "class": "logging.StreamHandler",
+            "formatter": "simple",
         },
     },
     "loggers": {
         "django": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "sol": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+        },
+        "django.utils.autoreload": {
             "handlers": ["console"],
-            "level": "INFO",
+            "level": "ERROR",
             "propagate": False,
         },
     },
