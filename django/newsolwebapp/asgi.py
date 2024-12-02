@@ -1,11 +1,14 @@
 import os
 
 from channels.routing import ProtocolTypeRouter, URLRouter
+from decouple import config
 
 from django.core.asgi import get_asgi_application
 from django.urls import re_path
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", SITE_NAME + ".settings")
 
 django_asgi_application = get_asgi_application()
 

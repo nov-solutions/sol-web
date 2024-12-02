@@ -1,9 +1,13 @@
 import os
 import sys
 
+from decouple import config
+
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
+
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", SITE_NAME + ".settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

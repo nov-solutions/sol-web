@@ -8,14 +8,19 @@ export default function FinalCTA() {
           <h3 className="text-4xl font-bold leading-none tracking-tighter text-white">
             TODO
           </h3>
-          <p className="font-medium lg:text-lg text-gray-light">TODO</p>
-          <a href="TODO" className="w-fit btn btn-accent">
+          <p className="font-medium lg:text-lg text-gray-light">
+            TODO
+          </p>
+          <a
+            href="TODO"
+            className="w-fit btn btn-accent"
+          >
             TODO
           </a>
         </div>
         <img
-          src="/static/assets/img/mockup.png"
-          alt="Mockup"
+          src="/static/assets/img/TODO"
+          alt="TODO"
           className="mx-auto rounded-lg"
         />
       </div>

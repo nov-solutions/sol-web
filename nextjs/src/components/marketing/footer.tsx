@@ -10,12 +10,11 @@ export default function Footer() {
       name: "LinkedIn",
       icon: "ri-linkedin-fill",
       loc: "https://www.linkedin.com/company/TODO",
-    },
+    }
   ];
-  const pages = PAGES.filter(
-    ({ relativePath }) =>
-      relativePath !== "/" && !relativePath.startsWith("/app"),
-  ).map(({ name, relativePath }) => ({ name, relativePath }));
+  const pages = PAGES
+  .filter(({ relativePath }) => relativePath !== "/" && !relativePath.startsWith("/app"))
+  .map(({ name, relativePath }) => ({ name, relativePath }));
 
   return (
     <footer className="w-full">
@@ -25,11 +24,13 @@ export default function Footer() {
             <Link href="/">
               <img
                 src="/static/assets/img/logos/wordmark.png"
-                alt="Wordmark"
+                alt="TODO"
                 className="h-5 my-auto"
               />
             </Link>
-            <p className="!mt-2 font-medium">TODO</p>
+            <p className="!mt-2 font-medium">
+              TODO
+            </p>
             <div className="flex items-center space-x-2">
               {socials.map((social, i) => (
                 <a
@@ -56,9 +57,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="self-end text-xs text-gray">
-          <p>
-            © {new Date().getFullYear()} {SITE_NAME}
-          </p>
+          <p>© {new Date().getFullYear()} {SITE_NAME}</p>
         </div>
       </div>
     </footer>

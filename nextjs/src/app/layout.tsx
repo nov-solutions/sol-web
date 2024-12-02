@@ -2,12 +2,7 @@ import { Metadata, Viewport } from "next";
 
 import "../../public/static/css/styles.css";
 
-import {
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_DESCRIPTION,
-  SITE_BASE_DOMAIN,
-} from "@/constants";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_BASE_DOMAIN } from "@/constants";
 
 import ProgressBarProvider from "@/providers/progressbarprovider";
 
@@ -31,7 +26,7 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-    },
+    }
   },
   icons: {
     icon: "/static/assets/img/favicon.png",
@@ -93,7 +88,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-[100dvh]">
-        <ProgressBarProvider>{children}</ProgressBarProvider>
+        <ProgressBarProvider>
+          {children}
+        </ProgressBarProvider>
       </body>
     </html>
   );
