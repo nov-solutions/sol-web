@@ -3,7 +3,6 @@ from pathlib import Path
 from decouple import config
 
 ENVIRONMENT = config("ENVIRONMENT")
-SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 SITE_BASE_DOMAIN = config("NEXT_PUBLIC_SITE_BASE_DOMAIN")
 SITE_DOMAIN = config("SITE_DOMAIN")
 SECRET_KEY = config("SECRET_KEY")
@@ -20,12 +19,12 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-AUTH_USER_MODEL = SITE_NAME + ".User"
+AUTH_USER_MODEL = "app.User"
 
 STATIC_URL = "/nginx-static/"
 STATIC_ROOT = BASE_DIR / "static/"
 
-ASGI_APPLICATION = SITE_NAME + ".asgi.application"
+ASGI_APPLICATION = "app.asgi.application"
 
 INSTALLED_APPS = [
     "daphne",
@@ -36,7 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.messages",
     "corsheaders",
-    SITE_NAME,
+    "app",
 ]
 
 MIDDLEWARE = [
@@ -96,7 +95,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-ROOT_URLCONF = SITE_NAME + ".urls"
+ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
     {
