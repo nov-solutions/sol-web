@@ -8,10 +8,7 @@ prod:
 
 drop-db:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm NEWSOLWEBAPP-web_postgres_data
-
-ssh:
-	ssh -i "NEWSOLWEBAPP-web.pem" ubuntu@TODO
+	docker volume rm NEWSOLWEBAPP-web_pgdata
 
 mk-mig:
 	sudo rm ./django/*.log*
