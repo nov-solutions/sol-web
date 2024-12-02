@@ -12,26 +12,12 @@ module.exports = {
       colors: {
         gray: {
           DEFAULT: "#4B5563",
-          light: "#F5F5F7",
+          light: "#F5F5F7"
         },
       },
       fontFamily: {
-        body: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Inter",
-          "Segoe UI",
-          "Roboto",
-          "sans-serif",
-        ],
-        sans: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Inter",
-          "Segoe UI",
-          "Roboto",
-          "sans-serif",
-        ],
+        body: ["-apple-system", "BlinkMacSystemFont", "Inter", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "Inter", "Segoe UI", "Roboto", "sans-serif"],
       },
     },
   },
@@ -39,10 +25,9 @@ module.exports = {
     themes: [
       {
         [process.env.NEXT_PUBLIC_SITE_NAME]: {
-          // TODO colors
-          primary: "#FFFFFF",
-          secondary: "#FFFFFF",
-          accent: "#FFFFFF",
+          primary: "TODO",
+          secondary: "TODO",
+          accent: "TODO",
           neutral: "#4B5563",
           "base-100": "#FFFFFF",
           success: "#22C55E",

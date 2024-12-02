@@ -1,10 +1,11 @@
 import os
+import shutil
 
 
 def find_replace():
     """
-    Replaces instances of sol with the value of SITE_NAME in the .env file.
-    Also, renames ./django/sol folder to the value of SITE_NAME.
+    Replaces instances of NEWSOLWEBAPP with the value of SITE_NAME in the .env file.
+    Also, renames ./django/newsolwebapp folder to the value of SITE_NAME.
     """
 
     with open(".env", "r") as f:
@@ -17,7 +18,7 @@ def find_replace():
             break
     if not replace:
         raise ValueError("SITE_NAME not found in .env file")
-    print("Replacing instances of sol with " + replace)
+    print("Replacing instances of NEWSOLWEBAPP with " + replace)
 
     for root, dirs, files in os.walk("."):
         for file in files:
@@ -26,7 +27,9 @@ def find_replace():
             with open(os.path.join(root, file), "r") as f:
                 text = f.read()
             with open(os.path.join(root, file), "w") as f:
-                f.write(text.replace("sol", replace))
+                f.write(text.replace("NEWSOLWEBAPP", replace))
+
+    shutil.move("./django/newsolwebapp", f"./django/{replace}")
 
 
 if __name__ == "__main__":
