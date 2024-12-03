@@ -33,6 +33,6 @@ api_patterns = []
 
 urlpatterns = [
     path("api/", include(api_patterns)),
-    path("api/admin/", admin.site.urls),
     path("api/docs/", include(swagger_patterns)),
+    path("api/admin/", admin.site.urls),
 ]

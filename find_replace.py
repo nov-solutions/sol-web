@@ -3,8 +3,7 @@ import os
 
 def find_replace():
     """
-    Replaces instances of sol with the value of SITE_NAME in the .env file.
-    Also, renames ./django/sol folder to the value of SITE_NAME.
+    Replaces instances of "sol" with the value of SITE_NAME in the .env file.
     """
 
     with open(".env", "r") as f:

@@ -14,8 +14,8 @@ export default function FinalCTA() {
           </a>
         </div>
         <img
-          src="/static/assets/img/mockup.png"
-          alt="Mockup"
+          src="/static/assets/img/TODO"
+          alt="TODO"
           className="mx-auto rounded-lg"
         />
       </div>

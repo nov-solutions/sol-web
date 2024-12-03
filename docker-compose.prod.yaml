@@ -13,7 +13,6 @@ services:
         - BUILD_ENV=prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-
   scheduler:
     build:
       args:

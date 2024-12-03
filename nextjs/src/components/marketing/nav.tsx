@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import "../../../public/static/css/styles.css";
 
-import { PAGES } from "@/constants";
+import { PAGES, SITE_NAME } from "@/constants";
 
 export default function Nav() {
   const pages = PAGES.filter(
@@ -39,7 +39,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center">
           <img
             src="/static/assets/img/logos/wordmark.png"
-            alt="Wordmark"
+            alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
           />
         </Link>
@@ -66,7 +66,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center">
           <img
             src="/static/assets/img/logos/wordmark.png"
-            alt="Wordmark"
+            alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
           />
         </Link>

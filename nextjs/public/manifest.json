@@ -1,9 +1,9 @@
 {
   "name": "sol",
   "short_name": "sol",
-  "description": "Mostly working web stack.",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "description": "Sol is an all-in-one template that enables developers to create robust, reliable and responsive web apps in minutes.",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
   "orientation": "portrait",

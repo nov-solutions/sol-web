@@ -39,10 +39,10 @@ module.exports = {
     themes: [
       {
         [process.env.NEXT_PUBLIC_SITE_NAME]: {
-          // TODO colors
+          // TODO: update the project colors
           primary: "#FFFFFF",
-          secondary: "#FFFFFF",
-          accent: "#FFFFFF",
+          secondary: "#4B5563",
+          accent: "#F5F5F7",
           neutral: "#4B5563",
           "base-100": "#FFFFFF",
           success: "#22C55E",

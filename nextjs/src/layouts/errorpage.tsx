@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { SITE_NAME } from "@/constants";
+
 export default function ErrorPage({
   statusCode,
   statusDescription,
@@ -13,7 +15,7 @@ export default function ErrorPage({
         <img
           className="w-10 aspect-square"
           src="/static/assets/img/logos/logo.png"
-          alt="Logo"
+          alt={SITE_NAME + " logo"}
         />
         <div className="!mt-2 flex items-center space-x-2 divide-x divide-gray-light divide-opacity-25">
           <h1 className="font-bold leading-none tracking-tight text-primary">

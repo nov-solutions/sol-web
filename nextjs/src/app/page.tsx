@@ -9,8 +9,6 @@ import {
 
 import Nav from "@/components/marketing/nav";
 import FullHeightSplash from "@/components/marketing/fullheightsplash";
-import FeatureDetails from "@/components/marketing/featuredetails";
-import FinalCTA from "@/components/marketing/finalcta";
 import Footer from "@/components/marketing/footer";
 
 export const metadata: Metadata = {
@@ -56,8 +54,6 @@ export default function Home() {
       />
       <Nav />
       <FullHeightSplash />
-      <FeatureDetails />
-      <FinalCTA />
       <Footer />
     </>
   );

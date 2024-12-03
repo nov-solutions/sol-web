@@ -12,8 +12,7 @@ RUN export $(grep -v "^#" /etc/nginx/.env | xargs) && \
         sed -i "s/\$SITE_DOMAIN/$SITE_DOMAIN/g" $file; \
     done
 
-# this assumes the folder and files exists which is done with the command
-# python manage.py collectstatic
+# this assumes the folder and files exists which is done with the command `python manage.py collectstatic`
 # this has to be run once when developing locally and has to be run in the github pipeline
 COPY ./django/static /app/static
 

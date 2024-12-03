@@ -13,7 +13,7 @@ export default function useCsrfToken({
     const fetchCsrfToken = async () => {
       try {
         const response = await axios.get(
-          `http://${SITE_BASE_DOMAIN}/api/get-csrf-token/`,
+          `${SITE_BASE_DOMAIN}/api/get-csrf-token/`,
           {
             withCredentials: true,
           },

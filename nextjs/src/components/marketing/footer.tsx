@@ -25,7 +25,7 @@ export default function Footer() {
             <Link href="/">
               <img
                 src="/static/assets/img/logos/wordmark.png"
-                alt="Wordmark"
+                alt={SITE_NAME + " wordmark"}
                 className="h-5 my-auto"
               />
             </Link>

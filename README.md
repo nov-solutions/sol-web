@@ -44,45 +44,55 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Clone the repository
 
-1. Populate the keys in the `.env` file with appropriate values for the project
+1. Replace the values in ".env" with appropriate values for the local build of the project
 
 2. Run `python find_replace.py` in the root directory
 
 3. Delete "find_replace.py"
 
-4. Address all of the repo-wide `TODO`s
+4. Address all of the repository-wide `TODO`s
 
-5. Add "logo.png", "wordmark.png", "social.png," "favicon.png", and "apple_touch_icon.png" to `nextjs/public/static/assets/img`
+5. Update the web app manifest at "/nextjs/public/manifest.json" with appropriate values for the project
 
-6. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in /django to generate a Django secret key. Add it to the `.env` file
+6. Add "logo.png" and "wordmark.png" to "nextjs/public/static/assets/img/logos"
 
-7. Run `pre-commit install` in the root directory
+7. Add "social.png," "favicon.png", and "apple_touch_icon.png" to "nextjs/public/static/assets/img"
 
-8. Update manifest.json with colors
-
-9. Update pipeline variables, create git secrets
-
-10. Rm scheduler/redis if not needed
-
-11. Rm user model, reset migrations if not needed
+8. Run `pre-commit install` in the root directory
 
 ## Operation
 
 ### Local Development
 
-0. Run `make dev` in the root directory
+0. Run `make dev` in the root directory to start the development environment
 
-1. Access the web app via `localhost`
+1. Access the web app via "localhost"
 
 ### Production Deployment
 
 #### One-Time Setup
 
-0. Run `python app.py` in `/cdk` to provision AWS resources
+0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in ".env" with the appropriate values for the AWS account and region in which the project will be deployed
 
-1. Acquire a domain name
+1. Replace the values in ".github/workflows/deploy.yaml" and ".github/workflows/test.yaml" with appropriate values for the production build of the project
 
-2. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `<project name>-key` and place it in the root directory.
+2. Upload the production secrets referenced in ".github/workflows/deploy.yaml" and ".github/workflows/test.yaml" (except for `SECRET_KEY`) to the GitHub repository
+
+3. Run `python app.py` in `/cdk` to provision AWS resources for the project
+
+4. Replace `@EC2IPADDRESS` across the repository with the IP address of the project's AWS EC2 instance
+
+5. Acquire a domain name
+
+6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key` and place it in the root directory
+
+7. Run `make key-pair` in the root directory to generate an SSH key pair. Rename the output private key to `app-key` and place it in the root directory
+
+8. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
+
+9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to "/app" to access the project's files
+
+10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in "/django" to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
 
 #### Routine Deployment
 
