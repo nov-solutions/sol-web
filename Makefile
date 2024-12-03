@@ -8,7 +8,7 @@ prod:
 
 drop-db:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm app_pgdata
+	docker volume rm sol-web_pgdata
 
 ssh:
 	ssh -i "app.pem" ubuntu@EC2IPADDRESS
@@ -16,10 +16,10 @@ ssh:
 mk-mig:
 	sudo rm ./django/*.log*
 	cd django && python manage.py makemigrations
-	docker exec -it app-django python manage.py migrate
+	docker exec -it sol-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name app --query 'KeyMaterial' --output text > app.pem
+	aws ec2 create-key-pair --key-name sol-web --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv

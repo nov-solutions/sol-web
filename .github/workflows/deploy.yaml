@@ -43,20 +43,20 @@ jobs:
 
       - name: Expose SSH key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app-web.pem
-          chmod 400 app-web.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app.pem
+          chmod 400 app.pem
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app-web.pem -o StrictHostKeyChecking=no" . ubuntu@EC2IPADDRESS:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@EC2IPADDRESS:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app-web.pem ubuntu@EC2IPADDRESS 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
+          ssh -i $(pwd)/app.pem ubuntu@EC2IPADDRESS 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |
-          rm -f app-web.pem
+          rm -f app.pem
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2

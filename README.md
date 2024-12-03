@@ -86,7 +86,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key` and place it in the root directory
 
-7. Run `make key-pair` in the root directory to generate an SSH key pair. Rename the output private key to `app-key` and place it in the root directory
+7. Run `make key-pair` in the root directory to generate an SSH key pair
 
 8. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
 
