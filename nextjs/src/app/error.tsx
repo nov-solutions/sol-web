@@ -13,9 +13,6 @@ export const viewport: Viewport = {
 
 export default function Error() {
   return (
-    <ErrorPage
-      statusCode={statusCode}
-      statusDescription={statusDescription}
-    />
+    <ErrorPage statusCode={statusCode} statusDescription={statusDescription} />
   );
 }

@@ -8,18 +8,18 @@ prod:
 
 drop-db:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm NEWSOLWEBAPP-web_postgres_data
+	docker volume rm app_pgdata
 
 ssh:
-	ssh -i "NEWSOLWEBAPP-web.pem" ubuntu@TODO
+	ssh -i "app.pem" ubuntu@EC2IPADDRESS
 
 mk-mig:
 	sudo rm ./django/*.log*
 	cd django && python manage.py makemigrations
-	docker exec -it NEWSOLWEBAPP-web-django python manage.py migrate
+	docker exec -it app-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name NEWSOLWEBAPP-web-39 --query 'KeyMaterial' --output text > NEWSOLWEBAPP-web.pem
+	aws ec2 create-key-pair --key-name app --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv
