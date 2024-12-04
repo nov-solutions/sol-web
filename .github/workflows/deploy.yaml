@@ -48,7 +48,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           version: "latest"
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          project_id: commanding-bee-443615-n7
 
       - name: gcloud auth
         uses: "google-github-actions/auth@v2"
@@ -69,14 +69,14 @@ jobs:
       # - name: Build and push Next.js Docker image
       #   run: |
       #     cd ./nextjs
-      #     docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/sol-web-nextjs:latest .
-      #     docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/sol-web-nextjs:latest
+      #     docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest .
+      #     docker push gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
 
       # - name: Build and push Django Docker image
       #   run: |
       #     cd ./django
-      #     docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/sol-web-django:latest .
-      #     docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/sol-web-django:latest
+      #     docker build -t gcr.io/commanding-bee-443615-n7/sol-web-django:latest .
+      #     docker push gcr.io/commanding-bee-443615-n7/sol-web-django:latest
 
       # - name: Deploy to GKE
       #   run: |
