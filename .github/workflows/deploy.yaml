@@ -58,7 +58,7 @@ jobs:
 
       - name: test
         run: |
-          gcloud auth list
+          gcloud auth configure-docker
 
       # - name: Configure Docker to use gcloud as a credential helper
       #   run: |
