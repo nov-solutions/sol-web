@@ -54,8 +54,9 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: "projects/865656196371/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
-          service_account: "grav-sa@commanding-bee-443615-n7.iam.gserviceaccount.com"
+          # workload_identity_provider: "projects/865656196371/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          # service_account: "grav-sa@commanding-bee-443615-n7.iam.gserviceaccount.com"
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Verify Authentication
         run: |
