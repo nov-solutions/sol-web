@@ -8,8 +8,8 @@ on:
 jobs:
   deploy:
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -50,31 +50,33 @@ jobs:
           version: "latest"
           project_id: commanding-bee-443615-n7
 
-      - name: gcloud auth
-        uses: "google-github-actions/auth@v2"
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: "projects/865656196371/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
           service_account: "grav-sa@commanding-bee-443615-n7.iam.gserviceaccount.com"
 
-      - name: test
+      - name: Verify Authentication
         run: |
-          gcloud auth configure-docker
+          gcloud auth list
+          gcloud config list
 
-      # - name: Configure Docker to use gcloud as a credential helper
-      #   run: |
-      #     gcloud auth configure-docker
+      - name: Configure Docker to use gcloud as a credential helper
+        run: |
+          echo "Y" | gcloud auth configure-docker
 
-      # - name: Build and push Next.js Docker image
-      #   run: |
-      #     cd ./nextjs
-      #     docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest .
-      #     docker push gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
+      - name: Build and push Next.js Docker image
+        run: |
+          cd ./nextjs
+          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest .
+          docker push gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
 
-      # - name: Build and push Django Docker image
-      #   run: |
-      #     cd ./django
-      #     docker build -t gcr.io/commanding-bee-443615-n7/sol-web-django:latest .
-      #     docker push gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+      - name: Build and push Django Docker image
+        run: |
+          cd ./django
+          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-django:latest .
+          docker push gcr.io/commanding-bee-443615-n7/sol-web-django:latest
 
       # - name: Deploy to GKE
       #   run: |
