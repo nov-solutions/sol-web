@@ -76,6 +76,10 @@ jobs:
           cd ./django
           docker build -t gcr.io/commanding-bee-443615-n7/sol-web-django:latest .
           docker push gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+      - name: Build and push Nginx image
+        run: |
+          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest .
+          docker push gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest
 
       # - name: Deploy to GKE
       #   run: |
