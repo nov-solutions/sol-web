@@ -15,15 +15,23 @@ spec:
       labels:
         app: web
     spec:
+      imagePullSecrets:
+        - name: gcr-json-key
       containers:
         - name: django
           image: gcr.io/commanding-bee-443615-n7/sol-web-django:latest
           ports:
             - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: sol-web-secret
         - name: nextjs
           image: gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
           ports:
             - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: sol-web-secret
         - name: nginx
           image: gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest
           ports:
