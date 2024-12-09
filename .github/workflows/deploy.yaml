@@ -81,9 +81,8 @@ jobs:
           docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest .
           docker push gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest
 
-      # - name: Deploy to GKE
-      #   run: |
-      #     gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone
-      #     kubectl apply -f k8s/deployment.yaml
-      #     kubectl apply -f k8s/service.yaml
-      #     kubectl apply -f k8s/ingress.yaml
+      - name: Deploy to GKE
+        run: |
+          gcloud container clusters get-credentials primary-cluster --zone us-central1
+          kubectl apply -f terraform/k8s/kompose.yaml
+          kubectl rollout restart deployment sol-web
