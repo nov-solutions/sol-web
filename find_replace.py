@@ -3,7 +3,7 @@ import os
 
 def find_replace():
     """
-    Replaces instances of "sol" with the value of SITE_NAME in the .env file.
+    Replaces instances of "sol" with the value of SITE_NAME in ".env"
     """
 
     with open(".env", "r") as f:
@@ -11,7 +11,7 @@ def find_replace():
     for line in file:
         key = line.split("=")[0]
         print(key)
-        if key == "SITE_NAME":
+        if key == "NEXT_PUBLIC_SITE_NAME":
             replace = line.split("=")[1].strip()
             break
     if not replace:

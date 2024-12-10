@@ -4,7 +4,6 @@ volumes:
 
 services:
   nextjs:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-nextjs
     restart: always
     build:
@@ -30,7 +29,6 @@ services:
       start_period: 30s
 
   django:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-django
     restart: always
     build:
@@ -59,7 +57,6 @@ services:
         max-file: "3"
 
   nginx:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-nginx
     restart: always
     depends_on:
@@ -82,7 +79,6 @@ services:
         max-file: "3"
 
   postgres:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-postgres
     restart: always
     image: postgres:12.0-alpine
@@ -104,7 +100,6 @@ services:
         max-file: "3"
 
   redis:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-redis
     restart: always
     image: redis:6
@@ -122,7 +117,6 @@ services:
       start_period: 10s
 
   scheduler:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-scheduler
     build:
       context: ./django
@@ -144,7 +138,6 @@ services:
       start_period: 30s
 
   worker:
-    # TODO: replace "sol" with the name of the project
     container_name: sol-web-worker
     build:
       context: ./django
