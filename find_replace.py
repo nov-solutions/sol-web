@@ -20,7 +20,11 @@ def find_replace():
 
     for root, dirs, files in os.walk("."):
         for file in files:
-            if file == "find_replace.py" or ".git" in os.path.join(root, file):
+            if (
+                file == "find_replace.py"
+                or ".git"
+                or ".pyc" in os.path.join(root, file)
+            ):
                 continue
             with open(os.path.join(root, file), "r") as f:
                 text = f.read()

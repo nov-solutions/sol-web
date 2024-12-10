@@ -4,7 +4,7 @@ from decouple import config
 
 from cdk.web_stack import WebStack
 
-SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
+SITE_NAME = "Sol"
 account = config("CDK_ACCOUNT")
 region = config("CDK_REGION")
 
