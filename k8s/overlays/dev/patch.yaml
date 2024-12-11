@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sol-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: django
+          image: sol-web-django:dev
+          volumeMounts:
+            - mountPath: /app
+              name: django-src
+        - name: nextjs
+          image: sol-web-nextjs:dev
+          volumeMounts:
+            - mountPath: /app
+              name: nextjs-src
+        - name: nginx
+          image: sol-web-nginx:dev
+        - name: postgres
+          image: postgres:13
+      volumes:
+        - name: django-src
+          hostPath:
+            path: /home/thatcher/projects/grav/projects/sol-web/django
+        - name: nextjs-src
+          hostPath:
+            path: /home/thatcher/projects/grav/projects/sol-web/nextjs

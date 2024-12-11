@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sol-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: django
+          image: gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+        - name: nextjs
+          image: gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
