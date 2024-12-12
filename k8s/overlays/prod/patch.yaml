@@ -5,6 +5,8 @@ metadata:
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: gcr-json-key
       containers:
         - name: django
           image: gcr.io/commanding-bee-443615-n7/sol-web-django:latest

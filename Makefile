@@ -25,3 +25,18 @@ venv:
 	python -m venv .venv
 	source .venv/bin/activate
 	pip install -r requirements.txt
+
+apply:
+	kubectl apply -k k8s/overlays/dev
+
+start-cluster:
+	echo "Starting Minikube..."
+	minikube start --cpus=4 --memory=8192
+	echo "Configuring Docker to use Minikube's Docker daemon..."
+	eval $$(minikube -p minikube docker-env)
+	echo "Building local Docker images..."
+	docker build -t sol-web-django:dev ./django
+	docker build -t sol-web-nextjs:dev ./nextjs
+	docker build -t sol-web-nginx:dev .
+	echo "Applying the development configuration using Kustomize..."
+	kubectl apply -k k8s/overlays/dev
