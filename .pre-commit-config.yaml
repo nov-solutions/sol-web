@@ -40,6 +40,8 @@ repos:
             DL4006,
             --ignore,
             SC2086,
+            --ignore,
+            DL3059,
           ]
 
   # python dependency sorter

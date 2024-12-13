@@ -8,22 +8,42 @@ spec:
       containers:
         - name: django
           image: sol-web-django:dev
+          imagePullPolicy: IfNotPresent
           volumeMounts:
-            - mountPath: /app
+            - mountPath: /app/app
               name: django-src
+              readOnly: true
+
         - name: nextjs
           image: sol-web-nextjs:dev
+          imagePullPolicy: IfNotPresent
           volumeMounts:
-            - mountPath: /app
+            - mountPath: /app/src
               name: nextjs-src
+              readOnly: true
+
         - name: nginx
           image: sol-web-nginx:dev
+          imagePullPolicy: IfNotPresent
+
         - name: postgres
           image: postgres:13
+
+        - name: tailwind-watcher
+          image: sol-web-tailwind-watcher:dev
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /app/public
+              name: nextjs-public
+          tty: true
+          stdin: true
       volumes:
         - name: django-src
           hostPath:
-            path: /home/thatcher/projects/grav/projects/sol-web/django
+            path: /mnt/django/app
         - name: nextjs-src
           hostPath:
-            path: /home/thatcher/projects/grav/projects/sol-web/nextjs
+            path: /mnt/nextjs/src
+        - name: nextjs-public
+          hostPath:
+            path: /mnt/nextjs/public

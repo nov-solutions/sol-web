@@ -5,7 +5,7 @@ ENV BUILD_ENV=${BUILD_ENV}
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN npm ci
 

@@ -21,3 +21,4 @@ cdk/cdk.context.json
 .terraform
 *.tfstate*
 *.lock*
+*.out
