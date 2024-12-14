@@ -22,10 +22,18 @@ def find_replace():
         for file in files:
             if (
                 file == "find_replace.py"
-                or ".git"
+                or ".git/" in os.path.join(root, file)
                 or ".pyc" in os.path.join(root, file)
+                or ".terraform" in os.path.join(root, file)
+                or ".png" in os.path.join(root, file)
+                or ".ico" in os.path.join(root, file)
+                or ".eot" in os.path.join(root, file)
+                or ".ttf" in os.path.join(root, file)
+                or ".woff" in os.path.join(root, file)
+                or ".gif" in os.path.join(root, file)
             ):
                 continue
+            print("file: " + file)
             with open(os.path.join(root, file), "r") as f:
                 text = f.read()
             with open(os.path.join(root, file), "w") as f:
