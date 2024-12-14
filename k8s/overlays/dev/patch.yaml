@@ -20,7 +20,6 @@ spec:
           volumeMounts:
             - mountPath: /app/src
               name: nextjs-src
-              readOnly: true
 
         - name: nginx
           image: sol-web-nginx:dev

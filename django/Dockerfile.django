@@ -8,9 +8,11 @@ ENV BUILD_ENV=${BUILD_ENV}
 
 WORKDIR /app
 
-COPY . /app
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt --no-cache-dir
+
+COPY . .
 
 CMD if [ "$BUILD_ENV" = "dev" ]; then \
         python manage.py collectstatic --noinput && \

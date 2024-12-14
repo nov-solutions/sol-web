@@ -33,7 +33,7 @@ init-secret:
 	kubectl create secret generic sol-web-secret --from-env-file=.env
 
 logs:
-	kubectl logs -l app=web --all-containers=true
+	kubectl logs -f -l app=web --all-containers=true --max-log-requests=5
 
 restart:
 	kubectl rollout restart deployment sol-web
@@ -45,9 +45,9 @@ start-cluster:
 	eval $$(minikube -p minikube docker-env)
 	kubectl config set-context --current --namespace=dev
 	echo "Building local Docker images..."
-	docker build -t sol-web-django:dev --build-arg BUILD_ENV=dev ./django
-	docker build -t sol-web-nextjs:dev --build-arg BUILD_ENV=dev ./nextjs
-	docker build -t sol-web-nginx:dev --build-arg BUILD_ENV=dev .
+	docker build -t sol-web-django:dev -f ./django/Dockerfile.django --build-arg BUILD_ENV=dev ./django
+	docker build -t sol-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
+	docker build -t sol-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
 	docker build -t sol-web-tailwind-watcher:dev -f ./nextjs/Dockerfile.tailwind-watcher ./nextjs
 	echo "Applying the development configuration using Kustomize..."
 	kubectl apply -k k8s/overlays/dev
