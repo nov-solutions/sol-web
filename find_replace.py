@@ -20,18 +20,20 @@ def find_replace():
 
     for root, dirs, files in os.walk("."):
         for file in files:
-            if (
-                file == "find_replace.py"
-                or ".git/" in os.path.join(root, file)
-                or ".pyc" in os.path.join(root, file)
-                or ".terraform" in os.path.join(root, file)
-                or ".png" in os.path.join(root, file)
-                or ".ico" in os.path.join(root, file)
-                or ".eot" in os.path.join(root, file)
-                or ".ttf" in os.path.join(root, file)
-                or ".woff" in os.path.join(root, file)
-                or ".gif" in os.path.join(root, file)
-            ):
+            exclude_patterns = (
+                "find_replace.py",
+                ".git/",
+                ".pyc",
+                ".terraform",
+                ".png",
+                ".ico",
+                ".eot",
+                ".ttf",
+                ".woff",
+                ".gif",
+            )
+
+            if any(pattern in os.path.join(root, file) for pattern in exclude_patterns):
                 continue
             print("file: " + file)
             with open(os.path.join(root, file), "r") as f:
