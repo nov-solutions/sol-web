@@ -29,7 +29,7 @@ def find_replace():
             with open(os.path.join(root, file), "r") as f:
                 text = f.read()
             with open(os.path.join(root, file), "w") as f:
-                f.write(text.replace("sol", replace))
+                f.write(text.replace("sol-web", replace + "-web"))
 
 
 if __name__ == "__main__":
