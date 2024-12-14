@@ -45,9 +45,9 @@ start-cluster:
 	eval $$(minikube -p minikube docker-env)
 	kubectl config set-context --current --namespace=dev
 	echo "Building local Docker images..."
-	docker build -t sol-web-django:dev ./django
-	docker build -t sol-web-nextjs:dev ./nextjs
-	docker build -t sol-web-nginx:dev .
+	docker build -t sol-web-django:dev --build-arg BUILD_ENV=dev ./django
+	docker build -t sol-web-nextjs:dev --build-arg BUILD_ENV=dev ./nextjs
+	docker build -t sol-web-nginx:dev --build-arg BUILD_ENV=dev .
 	docker build -t sol-web-tailwind-watcher:dev -f ./nextjs/Dockerfile.tailwind-watcher ./nextjs
 	echo "Applying the development configuration using Kustomize..."
 	kubectl apply -k k8s/overlays/dev
