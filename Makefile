@@ -29,11 +29,14 @@ venv:
 apply:
 	kubectl apply -k k8s/overlays/dev
 
-init-secret:
-	kubectl create secret generic sol-web-secret --from-env-file=.env
+secret-init:
+	kubectl create secret generic event-web-secret --from-env-file=.env
+
+secret-update:
+	kubectl create secret generic event-web-secret --from-env-file=.env --dry-run=client -o yaml | kubectl apply -f -
 
 logs:
-	kubectl logs -f -l app=web --all-containers=true --max-log-requests=5
+	kubectl logs -f -l app=web --all-containers=true --max-log-requests=7
 
 restart:
 	kubectl rollout restart deployment sol-web
