@@ -64,9 +64,15 @@ Data is interacted with through Django's ORM in the application layer.
 
 ### Local Development
 
-0. Run `make dev` in the root directory to start the development environment
+You'll need Minikube installed for the project to work.
 
-1. Access the web app via "localhost"
+0. If you haven't yet, run `make init-secrets`
+
+1. To run the cluster locally, run `make start-cluster`
+
+2. Get the IP address of the cluster by running `minikube ip`
+
+3. get the port of the nginx service by running `kubectl get services`
 
 ### Production Deployment
 
@@ -94,10 +100,4 @@ Data is interacted with through Django's ORM in the application layer.
 
 10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in "/django" to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
 
-#### Routine Deployment
-
-0. Push code to the master branch of the repository
-
-### Production Management
-
-0. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance
+11. Update manifest.json with the appropriate values for the project
