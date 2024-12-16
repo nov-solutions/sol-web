@@ -64,7 +64,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 ### Local Development
 
-You'll need Minikube installed for the project to work.
+You'll need Minikube installed for the project to work. You'll need to start minikube with `minikube start`.
 
 0. If you haven't yet, run `make init-secrets`
 
