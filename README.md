@@ -44,35 +44,37 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Clone the repository
 
-1. Replace the values in ".env" with appropriate values for the local build of the project
+1. Install [minikube](https://minikube.sigs.k8s.io/docs/start/) if you haven't already
 
-2. Run `python find_replace.py` in the root directory
+2. Replace the values in ".env" with appropriate values for the local build of the project
 
-3. Delete "find_replace.py"
+3. Run `python find_replace.py` in the root directory
 
-4. Address all of the repository-wide `TODO`s
+4. Delete "find_replace.py"
 
-5. Update the web app manifest at "/nextjs/public/manifest.json" with appropriate values for the project
+5. Address all of the repository-wide `TODO`s
 
-6. Add "logo.png" and "wordmark.png" to "nextjs/public/static/assets/img/logos"
+6. Update the web app manifest at "/nextjs/public/manifest.json" with appropriate values for the project
 
-7. Add "social.png," "favicon.png", and "apple_touch_icon.png" to "nextjs/public/static/assets/img"
+7. Add "logo.png" and "wordmark.png" to "nextjs/public/static/assets/img/logos"
 
-8. Run `pre-commit install` in the root directory
+8. Add "social.png," "favicon.png", and "apple_touch_icon.png" to "nextjs/public/static/assets/img"
+
+9. Run `pre-commit install` in the root directory
 
 ## Operation
 
 ### Local Development
 
-You'll need Minikube installed for the project to work. You'll need to start minikube with `minikube start`.
+You'll need Minikube installed for the project to work. You'll need to start minikube with `minikube start`. 0. Run `make secret-init` if you haven't already
 
-0. If you haven't yet, run `make init-secrets`
+1. Run `make start-cluster` to start the minikube cluster
 
-1. To run the cluster locally, run `make start-cluster`
+2. Run `minikube ip` to get the IP address of the minikube cluster
 
-2. Get the IP address of the cluster by running `minikube ip`
+3. Run `kubectl get services` to get the port of the Nginx service
 
-3. get the port of the nginx service by running `kubectl get services`
+4. Access the web app at "<minikube-ip>:<nginx-port>"
 
 ### Production Deployment
 

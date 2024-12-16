@@ -72,21 +72,21 @@ jobs:
       - name: Build and push Next.js Docker image
         run: |
           cd ./nextjs
-          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest .
-          docker push gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
+          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest .
+          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest
 
       - name: Build and push Django Docker image
         run: |
           cd ./django
-          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-django:latest .
-          docker push gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest .
+          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest
       - name: Build and push Nginx image
         run: |
-          docker build -t gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest .
-          docker push gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest
+          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nginx:latest .
+          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nginx:latest
 
       - name: Deploy to GKE
         run: |
           gcloud container clusters get-credentials primary-cluster --zone us-central1
           kubectl apply -f terraform/k8s/kompose.yaml
-          kubectl rollout restart deployment sol-web
+          kubectl rollout restart deployment newsolwebapp-web

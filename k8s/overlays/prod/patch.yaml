@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sol-web
+  name: newsolwebapp-web
 spec:
   template:
     spec:
@@ -9,6 +9,6 @@ spec:
         - name: gcr-json-key
       containers:
         - name: django
-          image: gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+          image: gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest
         - name: nextjs
-          image: gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
+          image: gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest
