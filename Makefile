@@ -8,7 +8,7 @@ prod:
 
 drop-db:
 	docker compose -f docker-compose.dev.yaml down
-	docker volume rm sol-web_pgdata
+	docker volume rm newsolwebapp-web_pgdata
 
 ssh:
 	ssh -i "app.pem" ubuntu@EC2IPADDRESS
@@ -16,10 +16,10 @@ ssh:
 mk-mig:
 	sudo rm ./django/*.log*
 	cd django && python manage.py makemigrations
-	docker exec -it sol-web-django python manage.py migrate
+	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name sol-web --query 'KeyMaterial' --output text > app.pem
+	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv
@@ -39,7 +39,7 @@ logs:
 	kubectl logs -f -l app=web --all-containers=true --max-log-requests=7
 
 restart:
-	kubectl rollout restart deployment sol-web
+	kubectl rollout restart deployment newsolwebapp-web
 
 start-cluster:
 	echo "Starting Minikube..."
@@ -48,10 +48,10 @@ start-cluster:
 	eval $$(minikube -p minikube docker-env)
 	kubectl config set-context --current --namespace=dev
 	echo "Building local Docker images..."
-	docker build -t sol-web-django:dev -f ./django/Dockerfile.django --build-arg BUILD_ENV=dev ./django
-	docker build -t sol-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
-	docker build -t sol-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
-	docker build -t sol-web-tailwind-watcher:dev -f ./nextjs/Dockerfile.tailwind-watcher ./nextjs
+	docker build -t newsolwebapp-web-django:dev -f ./django/Dockerfile.django --build-arg BUILD_ENV=dev ./django
+	docker build -t newsolwebapp-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
+	docker build -t newsolwebapp-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
+	docker build -t newsolwebapp-web-tailwind-watcher:dev -f ./nextjs/Dockerfile.tailwind-watcher ./nextjs
 	echo "Applying the development configuration using Kustomize..."
 	kubectl apply -k k8s/overlays/dev
 	@echo "Mounting local directories into Minikube..."

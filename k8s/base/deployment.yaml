@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sol-web
+  name: newsolwebapp-web
   labels:
     app: web
 spec:
@@ -17,28 +17,28 @@ spec:
     spec:
       containers:
         - name: django
-          image: gcr.io/commanding-bee-443615-n7/sol-web-django:latest
+          image: gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest
           ports:
             - containerPort: 8000
           envFrom:
             - secretRef:
-                name: sol-web-secret
+                name: newsolwebapp-web-secret
         - name: nextjs
-          image: gcr.io/commanding-bee-443615-n7/sol-web-nextjs:latest
+          image: gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest
           ports:
             - containerPort: 3000
           envFrom:
             - secretRef:
-                name: sol-web-secret
+                name: newsolwebapp-web-secret
         - name: nginx
-          image: gcr.io/commanding-bee-443615-n7/sol-web-nginx:latest
+          image: gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nginx:latest
           ports:
             - containerPort: 80
         - name: postgres
           image: postgres:13
           envFrom:
             - secretRef:
-                name: sol-web-secret
+                name: newsolwebapp-web-secret
           ports:
             - containerPort: 5432
           volumeMounts:

@@ -3,7 +3,7 @@ import os
 
 def find_replace():
     """
-    Replaces instances of "sol" with the value of SITE_NAME in ".env"
+    Replaces instances of "newsolwebapp" with the value of SITE_NAME in ".env"
     """
 
     with open(".env", "r") as f:
@@ -15,8 +15,8 @@ def find_replace():
             replace = line.split("=")[1].strip()
             break
     if not replace:
-        raise ValueError("SITE_NAME not found in .env file")
-    print("Replacing instances of sol with " + replace)
+        raise ValueError("NEXT_PUBLIC_SITE_NAME not found in .env file")
+    print("Replacing instances of newsolwebapp with " + replace)
 
     for root, dirs, files in os.walk("."):
         for file in files:
@@ -25,11 +25,13 @@ def find_replace():
                 ".git/",
                 ".pyc",
                 ".terraform",
-                ".png",
-                ".ico",
                 ".eot",
                 ".ttf",
                 ".woff",
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".ico",
                 ".gif",
             )
 
@@ -39,7 +41,7 @@ def find_replace():
             with open(os.path.join(root, file), "r") as f:
                 text = f.read()
             with open(os.path.join(root, file), "w") as f:
-                f.write(text.replace("sol-web", replace + "-web"))
+                f.write(text.replace("newsolwebapp", replace))
 
 
 if __name__ == "__main__":

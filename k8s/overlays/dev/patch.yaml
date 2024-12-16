@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sol-web
+  name: newsolwebapp-web
 spec:
   template:
     spec:
       containers:
         - name: django
-          image: sol-web-django:dev
+          image: newsolwebapp-web-django:dev
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/app
@@ -15,21 +15,21 @@ spec:
               readOnly: true
 
         - name: nextjs
-          image: sol-web-nextjs:dev
+          image: newsolwebapp-web-nextjs:dev
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/src
               name: nextjs-src
 
         - name: nginx
-          image: sol-web-nginx:dev
+          image: newsolwebapp-web-nginx:dev
           imagePullPolicy: IfNotPresent
 
         - name: postgres
           image: postgres:13
 
         - name: tailwind-watcher
-          image: sol-web-tailwind-watcher:dev
+          image: newsolwebapp-web-tailwind-watcher:dev
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/public
