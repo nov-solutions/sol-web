@@ -66,15 +66,17 @@ Data is interacted with through Django's ORM in the application layer.
 
 ### Local Development
 
-You'll need Minikube installed for the project to work. You'll need to start minikube with `minikube start`. 0. Run `make secret-init` if you haven't already
+0. Run `minikube start` to start the minikube cluster
 
-1. Run `make start-cluster` to start the minikube cluster
+1. Run `make secret-init` if you haven't already to create the event web secret for
 
-2. Run `minikube ip` to get the IP address of the minikube cluster
+2. Run `make start-cluster` to start the minikube cluster
 
-3. Run `kubectl get services` to get the port of the Nginx service
+3. Run `minikube ip` to get the IP address of the minikube cluster
 
-4. Access the web app at "<minikube-ip>:<nginx-port>"
+4. Run `kubectl get services` to get the port of the Nginx service
+
+5. Access the web app at "<minikube-ip>:<nginx-port>"
 
 ### Production Deployment
 
