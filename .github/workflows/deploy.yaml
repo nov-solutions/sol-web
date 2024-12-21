@@ -20,11 +20,11 @@ jobs:
         with:
           node-version: "lts/hydrogen"
 
-      - name: Minify CSS
-        run: |
-          cd ./nextjs
-          npm ci
-          npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
+      # - name: Minify CSS
+      #   run: |
+      #     cd ./nextjs
+      #     npm ci
+      #     npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
 
       - name: Create .env file
         run: |
