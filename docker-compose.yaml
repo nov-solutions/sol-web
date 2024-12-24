@@ -8,6 +8,7 @@ services:
     restart: always
     build:
       context: ./nextjs
+      dockerfile: Dockerfile.nextjs
     expose:
       - 3000
     volumes:
@@ -33,6 +34,7 @@ services:
     restart: always
     build:
       context: ./django
+      dockerfile: Dockerfile.django
     expose:
       - 8000
     volumes:
@@ -64,6 +66,7 @@ services:
       - nextjs
     build:
       context: .
+      dockerfile: Dockerfile.nginx
     ports:
       - 80:80
       - 443:443
@@ -120,6 +123,7 @@ services:
     container_name: newsolwebapp-web-scheduler
     build:
       context: ./django
+      dockerfile: Dockerfile.django
     restart: always
     volumes:
       - ./logs:/app/logs
@@ -141,6 +145,7 @@ services:
     container_name: newsolwebapp-web-worker
     build:
       context: ./django
+      dockerfile: Dockerfile.django
     restart: always
     command: python manage.py rqworker default
     volumes:
