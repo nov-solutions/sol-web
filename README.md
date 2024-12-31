@@ -66,9 +66,9 @@ Update GH pipeline variables and push to master. Also, update the IP address in 
 
 6. Update the web app manifest at "/nextjs/public/manifest.json" with appropriate values for the project
 
-7. Add "logo.png" and "wordmark.png" to "nextjs/public/static/assets/img/logos"
+7. Replace the placeholder "logo.png" and "wordmark.png" in "nextjs/public/static/assets/img/logos" with the appropriate assets for the project
 
-8. Add "social.png," "favicon.png", and "apple_touch_icon.png" to "nextjs/public/static/assets/img"
+8. Replace the placeholder "social.png," "favicon.png", and "apple_touch_icon.png" in "nextjs/public/static/assets/img" with the appropriate assets for the project
 
 9. Run `pre-commit install` in the root directory
 
