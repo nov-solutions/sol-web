@@ -107,3 +107,5 @@ Update GH pipeline variables and push to master. Also, update the IP address in 
 10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in "/django" to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
 
 11. Update manifest.json with the appropriate values for the project
+
+12. Remove Redis, workers, scheduler, if you don't want it
