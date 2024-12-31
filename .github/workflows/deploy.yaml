@@ -7,31 +7,22 @@ on:
 
 jobs:
   deploy:
-    permissions:
-      contents: read
-      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up workflow with Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
-
-      # - name: Minify CSS
-      #   run: |
-      #     cd ./nextjs
-      #     npm ci
-      #     npx tailwindcss -i ./public/static/css/input.css -o ./public/static/css/styles.css --minify
 
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
           echo "NEXT_PUBLIC_SITE_NAME=sol" >> .env
           echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://sol.grav.solutions" >> .env
-          echo "SITE_DOMAIN=sol" >> .env
+          echo "SITE_DOMAIN=sol.grav.solutions" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
@@ -44,49 +35,19 @@ jobs:
           pip install -r requirements.txt
           python manage.py collectstatic --noinput
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          version: "latest"
-          project_id: commanding-bee-443615-n7
-      - name: Install gke-gcloud-auth-plugin
+      - name: Expose SSH key
         run: |
-          gcloud components install gke-gcloud-auth-plugin
-          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app-web.pem
+          chmod 400 app-web.pem
 
-      - name: Authenticate to Google Cloud
-        id: auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Sync files with server
+        run: |
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app-web.pem -o StrictHostKeyChecking=no" . ubuntu@35.94.11.240:app
 
-      - name: Verify Authentication
+      - name: SSH into server; rebuild Docker containers
         run: |
-          gcloud auth list
-          gcloud config list
+          ssh -i $(pwd)/app-web.pem ubuntu@35.94.11.240 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
-      - name: Configure Docker to use gcloud as a credential helper
+      - name: Remove SSH key
         run: |
-          echo "Y" | gcloud auth configure-docker
-
-      - name: Build and push Next.js Docker image
-        run: |
-          cd ./nextjs
-          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest .
-          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nextjs:latest
-
-      - name: Build and push Django Docker image
-        run: |
-          cd ./django
-          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest .
-          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-django:latest
-      - name: Build and push Nginx image
-        run: |
-          docker build -t gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nginx:latest .
-          docker push gcr.io/commanding-bee-443615-n7/newsolwebapp-web-nginx:latest
-
-      - name: Deploy to GKE
-        run: |
-          gcloud container clusters get-credentials primary-cluster --zone us-central1
-          kubectl apply -f terraform/k8s/kompose.yaml
-          kubectl rollout restart deployment newsolwebapp-web
+          rm app-web.pem

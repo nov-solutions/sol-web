@@ -36,6 +36,16 @@ Data is interacted with through Django's ORM in the application layer.
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **daisyUI**, a component library for Tailwind CSS, provides several pre-built, customizable components for typical UI elements.
 
+### CDK Deployment
+
+1. Sub out SITE_NAME in `app.py`
+2. `make key-pair`
+3. `cd ./cdk && cdk deploy`
+
+Resources are in us-west-2.
+SSH into instance and install docker
+Update GH pipeline variables and push to master. Also, update the IP address in deploy pipeline.
+
 ### Web Server
 
 **Nginx**, an open-source web server, acts as a reverse proxy that routes both external and internal traffic to the appropriate layer of the web app.
@@ -44,7 +54,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Clone the repository
 
-1. Install [minikube](https://minikube.sigs.k8s.io/docs/start/) if you haven't already
+1. Install [Docker Engine](https://docs.docker.com/engine/install/) if you haven't already
 
 2. Replace the values in ".env" with appropriate values for the local build of the project
 
@@ -66,17 +76,9 @@ Data is interacted with through Django's ORM in the application layer.
 
 ### Local Development
 
-0. Run `minikube start` to start the minikube cluster
+0. Run `make` to build the project's Docker images and start the project's Docker containers
 
-1. Run `make secret-init` if you haven't already to create the event web secret for
-
-2. Run `make start-cluster` to start the minikube cluster
-
-3. Run `minikube ip` to get the IP address of the minikube cluster
-
-4. Run `kubectl get services` to get the port of the Nginx service
-
-5. Access the web app at "<minikube-ip>:<nginx-port>"
+1. Access the web app via "localhost"
 
 ### Production Deployment
 
