@@ -3,7 +3,6 @@
 *.pem
 *.key
 *.crt
-styles.css
 __pycache__
 *.pyc
 *.cache

@@ -1,6 +1,6 @@
 import { Metadata, Viewport } from "next";
 
-import "../../public/static/css/styles.css";
+import "./globals.css";
 
 import {
   SITE_NAME,

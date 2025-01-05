@@ -51,7 +51,6 @@ start-cluster:
 	docker build -t newsolwebapp-web-django:dev -f ./django/Dockerfile.django --build-arg BUILD_ENV=dev ./django
 	docker build -t newsolwebapp-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
 	docker build -t newsolwebapp-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
-	docker build -t newsolwebapp-web-tailwind-watcher:dev -f ./nextjs/Dockerfile.tailwind-watcher ./nextjs
 	echo "Applying the development configuration using Kustomize..."
 	kubectl apply -k k8s/overlays/dev
 	@echo "Mounting local directories into Minikube..."

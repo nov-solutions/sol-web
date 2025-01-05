@@ -25,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
     "typescript": "^5",
     "daisyui": "^4.12.14",
     "postcss": "^8.4.49",

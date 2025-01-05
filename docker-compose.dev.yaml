@@ -2,7 +2,6 @@ services:
   nextjs:
     depends_on:
       - django
-      - tailwind-watcher
     build:
       args:
         - BUILD_ENV=dev
@@ -15,20 +14,6 @@ services:
         - BUILD_ENV=dev
     volumes:
       - ./django:/app
-
-  tailwind-watcher:
-    restart: always
-    build:
-      context: ./nextjs
-      dockerfile: Dockerfile.tailwind-watcher
-    volumes:
-      - ./nextjs:/app
-    tty: true
-    stop_grace_period: 0s
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   nginx:
     build:

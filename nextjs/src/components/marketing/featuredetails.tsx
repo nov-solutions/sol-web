@@ -1,5 +1,3 @@
-import "../../../public/static/css/styles.css";
-
 export default function FeatureDetails() {
   return (
     <div className="px-4 py-24 lg:px-0 bg-gray-light">

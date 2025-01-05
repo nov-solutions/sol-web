@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import "../../../public/static/css/styles.css";
-
 import { PAGES, SITE_NAME } from "@/constants";
 
 export default function Footer() {

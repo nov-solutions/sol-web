@@ -1,5 +1,3 @@
-import "../../../public/static/css/styles.css";
-
 export default function Title({ title }: { title: string }) {
   return (
     <div className="px-4 pt-24 pb-12 lg:pt-36 lg:px-0">

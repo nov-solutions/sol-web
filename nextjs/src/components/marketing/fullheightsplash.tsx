@@ -1,5 +1,3 @@
-import "../../../public/static/css/styles.css";
-
 import { SITE_NAME } from "@/constants";
 
 export default function FullHeightSplash() {

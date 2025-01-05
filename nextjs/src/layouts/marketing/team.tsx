@@ -1,5 +1,3 @@
-import "../../../public/static/css/styles.css";
-
 export default function Team() {
   const team = [
     {

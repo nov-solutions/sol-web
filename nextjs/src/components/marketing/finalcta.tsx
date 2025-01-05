@@ -1,5 +1,3 @@
-import "../../../public/static/css/styles.css";
-
 export default function FinalCTA() {
   return (
     <div className="px-4 py-24 bg-primary lg:px-0">
