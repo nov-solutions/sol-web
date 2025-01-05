@@ -19,7 +19,7 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-AUTH_USER_MODEL = "app.User"
+AUTH_USER_MODEL = "user.User"
 
 STATIC_URL = "/nginx-static/"
 STATIC_ROOT = BASE_DIR / "static/"
@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     "django_filters",
     # swagger
     "drf_spectacular",
-    # redis queues
-    "django_rq",
-    "rq.apps.RQConfig",
     # user
     "user.apps.UserConfig",
 ]

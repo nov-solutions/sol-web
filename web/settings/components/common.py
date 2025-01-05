@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     "django_filters",
     # swagger
     "drf_spectacular",
-    # redis queues
-    "django_rq",
-    "rq.apps.RQConfig",
     # user
     "user.apps.UserConfig",
 ]

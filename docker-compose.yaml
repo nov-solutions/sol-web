@@ -43,8 +43,7 @@ services:
       - .env
     depends_on:
       - postgres
-      - scheduler
-      - worker
+
     healthcheck:
       test:
         - CMD-SHELL
@@ -118,3 +117,79 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+  # rabbitmq:
+  #   container_name: newsolwebapp-web-rabbitmq
+  #   restart: always
+  #   image: rabbitmq:3-management
+  #   ports:
+  #     - 15672:15672 # Management console
+  #     - 5672:5672 # AMQP port for RabbitMQ
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+  #     RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+  #   healthcheck:
+  #     test: [ "CMD", "rabbitmqctl", "status" ]
+  #     interval: 30s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+  # worker:
+  #   container_name: newsolwebapp-web-worker
+  #   restart: always
+  #   build:
+  #     context: ./web
+  #     dockerfile: Dockerfile.django
+  #   command: >
+  #     celery -A your_project_name worker --loglevel=info
+  #   depends_on:
+  #     - django
+  #     - redis
+  #     - rabbitmq
+  #   env_file:
+  #     - .env
+  #   healthcheck:
+  #     test: ["CMD", "celery", "-A", "your_project_name", "status"]
+  #     interval: 30s
+  #     retries: 3
+  #     timeout: 5s
+  #     start_period: 30s
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+  # scheduler:
+  #   container_name: newsolwebapp-web-scheduler
+  #   restart: always
+  #   build:
+  #     context: ./web
+  #     dockerfile: Dockerfile.django
+  #   command: >
+  #     celery -A your_project_name beat --loglevel=info
+  #   depends_on:
+  #     - django
+  #     - redis
+  #     - rabbitmq
+  #   env_file:
+  #     - .env
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+  # pubsub-emulator:
+  #   image: pubsub-emulator:dev
+  #   ports:
+  #     - "8045:8045"
+  #   profiles: ["findings"]
+  #   healthcheck:
+  #     test: ["CMD", "/usr/bin/test", "-f", "/home/app/pub_sub_configured.txt"]
+  #     interval: 30s
+  #     timeout: 1s
+  #     retries: 1
+  #   restart: unless-stopped
