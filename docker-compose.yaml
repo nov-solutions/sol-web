@@ -33,7 +33,7 @@ services:
     container_name: newsolwebapp-web-django
     restart: always
     build:
-      context: ./django
+      context: ./web
       dockerfile: Dockerfile.django
     expose:
       - 8000
@@ -118,47 +118,3 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-
-  scheduler:
-    container_name: newsolwebapp-web-scheduler
-    build:
-      context: ./django
-      dockerfile: Dockerfile.django
-    restart: always
-    volumes:
-      - ./logs:/app/logs
-    command: python manage.py rqscheduler --queue default
-    env_file:
-      - .env
-    depends_on:
-      - redis
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - curl -f http://scheduler:8000/api/admin/ || exit 1
-      interval: 5m
-      retries: 1
-      timeout: 5s
-      start_period: 30s
-
-  worker:
-    container_name: newsolwebapp-web-worker
-    build:
-      context: ./django
-      dockerfile: Dockerfile.django
-    restart: always
-    command: python manage.py rqworker default
-    volumes:
-      - ./logs:/app/logs
-    env_file:
-      - .env
-    depends_on:
-      - redis
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - curl -f http://worker:8000/api/admin/ || exit 1
-      interval: 5m
-      retries: 1
-      timeout: 5s
-      start_period: 30s

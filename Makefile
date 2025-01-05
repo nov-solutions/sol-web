@@ -14,7 +14,7 @@ ssh:
 	ssh -i "app.pem" ubuntu@52.38.15.163
 
 mk-mig:
-	sudo rm ./django/*.log*
+	sudo rm ./web/*.log*
 	cd django && python manage.py makemigrations
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
@@ -48,7 +48,7 @@ start-cluster:
 	eval $$(minikube -p minikube docker-env)
 	kubectl config set-context --current --namespace=dev
 	echo "Building local Docker images..."
-	docker build -t newsolwebapp-web-django:dev -f ./django/Dockerfile.django --build-arg BUILD_ENV=dev ./django
+	docker build -t newsolwebapp-web-django:dev -f ./web/Dockerfile.django --build-arg BUILD_ENV=dev ./web
 	docker build -t newsolwebapp-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
 	docker build -t newsolwebapp-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
 	echo "Applying the development configuration using Kustomize..."

@@ -14,6 +14,6 @@ RUN export $(grep -v "^#" /etc/nginx/.env | xargs) && \
 
 # this assumes the folder and files exists which is done with the command `python manage.py collectstatic`
 # this has to be run once when developing locally and has to be run in the github pipeline
-COPY ./django/static /app/static
+COPY ./web/static /app/static
 
 CMD ["nginx", "-g", "daemon off;"]

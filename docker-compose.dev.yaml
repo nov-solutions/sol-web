@@ -13,7 +13,7 @@ services:
       args:
         - BUILD_ENV=dev
     volumes:
-      - ./django:/app
+      - ./web:/app
 
   nginx:
     build:

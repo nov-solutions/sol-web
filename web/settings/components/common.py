@@ -1,0 +1,197 @@
+from pathlib import Path
+
+from decouple import config
+
+ENVIRONMENT = config("ENVIRONMENT")
+SITE_BASE_DOMAIN = config("NEXT_PUBLIC_SITE_BASE_DOMAIN")
+SITE_DOMAIN = config("SITE_DOMAIN")
+SECRET_KEY = config("SECRET_KEY")
+POSTGRES_DB = config("POSTGRES_DB")
+POSTGRES_USER = config("POSTGRES_USER")
+POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+
+if ENVIRONMENT == "dev":
+    DEBUG = True
+elif ENVIRONMENT == "prod":
+    DEBUG = False
+
+AUTH_USER_MODEL = "app.User"
+
+STATIC_URL = "/nginx-static/"
+STATIC_ROOT = BASE_DIR / "static/"
+
+ASGI_APPLICATION = "app.asgi.application"
+
+INSTALLED_APPS = [
+    "daphne",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.staticfiles",
+    "django.contrib.messages",
+    "corsheaders",
+    # core
+    "core.apps.CoreConfig",
+    # drf
+    "rest_framework",
+    "django_extensions",
+    "django_filters",
+    # swagger
+    "drf_spectacular",
+    # redis queues
+    "django_rq",
+    "rq.apps.RQConfig",
+    # user
+    "user.apps.UserConfig",
+]
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+]
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": POSTGRES_DB,
+        "USER": POSTGRES_USER,
+        "PASSWORD": POSTGRES_PASSWORD,
+        "HOST": "postgres",
+        "PORT": 5432,
+    }
+}
+
+USE_TZ = True
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
+
+ALLOWED_HOSTS = [
+    "django",
+    SITE_DOMAIN,
+    "." + SITE_DOMAIN,
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    SITE_BASE_DOMAIN,
+]
+
+CORS_ALLOWED_ORIGINS = [
+    SITE_BASE_DOMAIN,
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+ROOT_URLCONF = "app.urls"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "sol API",
+    "DESCRIPTION": "TODO",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "redis",
+        "PORT": 6379,
+        "DB": 0,
+        "PASSWORD": config("REDIS_PASSWORD"),
+        "DEFAULT_TIMEOUT": 3600,
+    }
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "django_debug.log",
+            "maxBytes": 1024 * 1024 * 25,  # 25 MB
+            "backupCount": 5,
+            "formatter": "verbose",
+        },
+        "console": {
+            "level": "WARN",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "sol": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+        },
+        "django.utils.autoreload": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}

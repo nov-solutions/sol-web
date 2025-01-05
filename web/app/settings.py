@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.messages",
     "corsheaders",
-    # app
-    "app.apps.AppConfig",
+    # core
+    "core.apps.CoreConfig",
     # drf
     "rest_framework",
     "django_extensions",
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # redis queues
     "django_rq",
+    "rq.apps.RQConfig",
+    # user
+    "user.apps.UserConfig",
 ]
 
 MIDDLEWARE = [
