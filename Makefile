@@ -19,7 +19,7 @@ mk-mig:
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text > app.pem
+	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text --profile grav > app.pem
 
 venv:
 	python -m venv .venv

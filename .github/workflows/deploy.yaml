@@ -37,17 +37,17 @@ jobs:
 
       - name: Expose SSH key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app-web.pem
-          chmod 400 app-web.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app.pem
+          chmod 400 app.pem
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app-web.pem -o StrictHostKeyChecking=no" . ubuntu@35.94.11.240:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@35.163.133.53:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app-web.pem ubuntu@35.94.11.240 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
+          ssh -i $(pwd)/app.pem ubuntu@35.163.133.53 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |
-          rm app-web.pem
+          rm app.pem
