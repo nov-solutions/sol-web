@@ -42,11 +42,11 @@ jobs:
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@35.163.133.53:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@52.38.15.163:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app.pem ubuntu@35.163.133.53 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
+          ssh -i $(pwd)/app.pem ubuntu@52.38.15.163 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |

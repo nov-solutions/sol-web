@@ -11,7 +11,7 @@ drop-db:
 	docker volume rm newsolwebapp-web_pgdata
 
 ssh:
-	ssh -i "app.pem" ubuntu@EC2IPADDRESS
+	ssh -i "app.pem" ubuntu@52.38.15.163
 
 mk-mig:
 	sudo rm ./django/*.log*
