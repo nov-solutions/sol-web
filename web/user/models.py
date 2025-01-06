@@ -12,3 +12,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     # password only applicable to admin users
     password = models.CharField(max_length=255, null=True, blank=True)
+    groups = None
+    user_permissions = None

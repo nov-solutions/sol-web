@@ -1,37 +1,34 @@
 from django.contrib import admin
+from django.http import HttpResponse, JsonResponse
 from django.urls import include, path
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView,
-)
+from rest_framework import status
+from swagger import urls as swagger_urls
 
-swagger_patterns = [
-    path(
-        "swagger.json",  # This explicitly handles the JSON schema
-        SpectacularAPIView.as_view(),
-        name="schema-json",
-    ),
-    path(
-        "swagger.yaml",  # This explicitly handles the YAML schema
-        SpectacularAPIView.as_view(),
-        name="schema-yaml",
-    ),
-    path(
-        "swagger/",
-        SpectacularSwaggerView.as_view(url_name="schema-json"),
-        name="schema-swagger-ui",
-    ),
-    path(
-        "redoc/",
-        SpectacularRedocView.as_view(url_name="schema-json"),
-        name="schema-redoc",
-    ),
-]
-api_patterns = []
+
+def healthcheck(request):
+    return HttpResponse("OK")
+
+
+def forbidden_error(request, *args, **kwargs):
+    data = {
+        "status_code": 403,
+        "detail": "You do not have permission to perform this action.",
+    }
+    return JsonResponse(data, status=status.HTTP_403_FORBIDDEN)
+
+
+def not_found_error(request, *args, **kwargs):
+    data = {"status_code": 404, "detail": "Not found."}
+    return JsonResponse(data, status=status.HTTP_404_NOT_FOUND)
+
+
+handler400 = "rest_framework.exceptions.bad_request"
+handler403 = "app.urls.forbidden_error"
+handler404 = "app.urls.not_found_error"
+handler500 = "rest_framework.exceptions.server_error"
 
 urlpatterns = [
-    path("api/", include(api_patterns)),
-    path("api/docs/", include(swagger_patterns)),
+    path("api/healthcheck/", healthcheck),
+    path("api/docs/", include(swagger_urls)),
     path("api/admin/", admin.site.urls),
 ]

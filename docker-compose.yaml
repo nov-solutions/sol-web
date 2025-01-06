@@ -47,7 +47,7 @@ services:
     healthcheck:
       test:
         - CMD-SHELL
-        - curl -f http://django:8000/api/admin/ || exit 1
+        - curl -f http://django:8000/api/healthcheck/ || exit 1
       interval: 30s
       retries: 5
       timeout: 5s

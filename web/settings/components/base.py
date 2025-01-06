@@ -1,4 +1,4 @@
-from pathlib import Path
+import os
 
 from decouple import config
 
@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
 POSTGRES_USER = config("POSTGRES_USER")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -19,10 +19,8 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-AUTH_USER_MODEL = "app.User"
-
 STATIC_URL = "/nginx-static/"
-STATIC_ROOT = BASE_DIR / "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 ASGI_APPLICATION = "app.asgi.application"
 
@@ -36,7 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "corsheaders",
     # core
-    "core.apps.CoreConfig",
+    "core",
     # drf
     "rest_framework",
     "django_extensions",
@@ -44,7 +42,10 @@ INSTALLED_APPS = [
     # swagger
     "drf_spectacular",
     # user
-    "user.apps.UserConfig",
+    "user",
+    "celery",
+    "celery_beat",
+    "redis",
 ]
 
 MIDDLEWARE = [
@@ -135,16 +136,6 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "TODO",
     "VERSION": "0.0.1",
     "SERVE_INCLUDE_SCHEMA": False,
-}
-
-RQ_QUEUES = {
-    "default": {
-        "HOST": "redis",
-        "PORT": 6379,
-        "DB": 0,
-        "PASSWORD": config("REDIS_PASSWORD"),
-        "DEFAULT_TIMEOUT": 3600,
-    }
 }
 
 LOGGING = {
