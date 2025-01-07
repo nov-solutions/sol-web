@@ -1,15 +1,12 @@
 services:
   nextjs:
     build:
-      args:
-        - BUILD_ENV=prod
+      target: prod
   django:
     build:
-      args:
-        - BUILD_ENV=prod
+      target: prod
   nginx:
     build:
-      args:
-        - BUILD_ENV=prod
+      target: prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro

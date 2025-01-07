@@ -1,25 +1,12 @@
 services:
   nextjs:
-    depends_on:
-      - django
-    build:
-      args:
-        - BUILD_ENV=dev
     environment:
       - WATCHPACK_POLLING=true
 
   django:
-    build:
-      args:
-        - BUILD_ENV=dev
     volumes:
       - ./web:/app
 
-  celery:
-    volumes:
-      - ./web:/app
-
-  nginx:
-    build:
-      args:
-        - BUILD_ENV=dev
+  # celery:
+  #   volumes:
+  #     - ./web:/app

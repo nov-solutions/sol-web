@@ -1,7 +1,4 @@
-FROM node:21-alpine
-
-ARG BUILD_ENV=dev
-ENV BUILD_ENV=${BUILD_ENV}
+FROM node:21-alpine AS base
 
 WORKDIR /app
 
@@ -9,8 +6,12 @@ COPY . .
 
 RUN npm ci
 
-CMD if [ "$BUILD_ENV" = "dev" ]; then \
-        npm run dev; \
-    else \
-        npm run build && npm run start; \
-    fi
+FROM base AS dev
+
+CMD npm run dev
+
+FROM base AS prod
+
+RUN npm run build
+
+CMD npm run start
