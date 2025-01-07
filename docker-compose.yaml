@@ -35,6 +35,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.django
+    image: newsolwebapp-web-django:dev
     expose:
       - 8000
     volumes:
@@ -114,9 +115,10 @@ services:
     healthcheck:
       test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 30s
-      timeout: 5s
+      timeout: 10s
       retries: 3
       start_period: 10s
+
   # rabbitmq:
   #   container_name: newsolwebapp-web-rabbitmq
   #   restart: always
@@ -138,58 +140,44 @@ services:
   #       max-size: "10m"
   #       max-file: "3"
 
-  # worker:
-  #   container_name: newsolwebapp-web-worker
-  #   restart: always
-  #   build:
-  #     context: ./web
-  #     dockerfile: Dockerfile.django
-  #   command: >
-  #     celery -A your_project_name worker --loglevel=info
-  #   depends_on:
-  #     - django
-  #     - redis
-  #     - rabbitmq
-  #   env_file:
-  #     - .env
-  #   healthcheck:
-  #     test: ["CMD", "celery", "-A", "your_project_name", "status"]
-  #     interval: 30s
-  #     retries: 3
-  #     timeout: 5s
-  #     start_period: 30s
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
+  worker:
+    # wip
+    image: newsolwebapp-web-django:dev
+    command: bash -c "celery -A celery.worker:app worker
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8200:8080"
 
-  # scheduler:
-  #   container_name: newsolwebapp-web-scheduler
-  #   restart: always
-  #   build:
-  #     context: ./web
-  #     dockerfile: Dockerfile.django
-  #   command: >
-  #     celery -A your_project_name beat --loglevel=info
-  #   depends_on:
-  #     - django
-  #     - redis
-  #     - rabbitmq
-  #   env_file:
-  #     - .env
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
+  scheduler:
+    #   wip
+    container_name: newsolwebapp-web-scheduler
+    image: newsolwebapp-web-django:dev
+    restart: always
+    build:
+      context: ./web
+      dockerfile: Dockerfile.django
+    command: >
+      celery -A your_project_name beat --loglevel=info
+    depends_on:
+      - django
+      - redis
+      - rabbitmq
+    env_file:
+      - .env
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
-  # pubsub-emulator:
-  #   image: pubsub-emulator:dev
-  #   ports:
-  #     - "8045:8045"
-  #   profiles: ["findings"]
-  #   healthcheck:
-  #     test: ["CMD", "/usr/bin/test", "-f", "/home/app/pub_sub_configured.txt"]
-  #     interval: 30s
-  #     timeout: 1s
-  #     retries: 1
-  #   restart: unless-stopped
+  pubsub-emulator:
+    image: pubsub-emulator:dev
+    ports:
+      - "8045:8045"
+    profiles: ["findings"]
+    healthcheck:
+      test: ["CMD", "/usr/bin/test", "-f", "/home/app/pub_sub_configured.txt"]
+      interval: 30s
+      timeout: 1s
+      retries: 1
+    restart: unless-stopped

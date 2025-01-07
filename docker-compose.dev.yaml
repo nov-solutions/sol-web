@@ -15,6 +15,10 @@ services:
     volumes:
       - ./web:/app
 
+  celery:
+    volumes:
+      - ./web:/app
+
   nginx:
     build:
       args:
