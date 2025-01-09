@@ -1,23 +1,39 @@
+# misc
 *.env
-*.venv
+*.log
+*key.json
 *.pem
 *.key
 *.crt
+
+# py
+*.venv
 __pycache__
 *.pyc
 *.cache
 web/static
+staticfile
+
+# next
 node_modules
 *.next
 next-env.d.ts
-cdk.out
-staticfiles
-cdk/cdk.context.json
 **/sw.js
 **/workbox-*.js
-*.log
-*key.json
+
+
+
+# tf
 .terraform
 *.tfstate*
 *.lock*
+
+
+# cdk
+cdk.out
+cdk/cdk.context.json
 *.out
+
+# celery
+celerybeat-schedule
+redbeat.ReadBeatScheduler

@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # user
     "user",
-    "celery",
-    "celery_beat",
-    "redis",
+    # infra
+    "celeryapp",
+    "redisinf",
 ]
 
 MIDDLEWARE = [

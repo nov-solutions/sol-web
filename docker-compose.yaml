@@ -105,10 +105,46 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  worker:
+    container_name: newsolwebapp-web-worker
+    image: newsolwebapp-web-django:dev
+    restart: always
+    command: celery -A celeryapp.app:app worker --loglevel=info
+    depends_on:
+      - django
+      - redis
+    env_file:
+      - .env
+    volumes:
+      - ./web:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  scheduler:
+    container_name: newsolwebapp-web-scheduler
+    image: newsolwebapp-web-django:dev
+    restart: always
+    command: celery -A celeryapp.app:app beat --loglevel=info
+    depends_on:
+      - django
+      - redis
+    env_file:
+      - .env
+    volumes:
+      - ./web:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   redis:
     container_name: newsolwebapp-web-redis
     restart: always
     image: redis:6
+    env_file:
+      - .env
     command: >
       --requirepass ${REDIS_PASSWORD}
     expose:
@@ -121,57 +157,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-
-  # rabbitmq:
-  #   container_name: newsolwebapp-web-rabbitmq
-  #   restart: always
-  #   image: rabbitmq:3-management
-  #   ports:
-  #     - 15672:15672 # Management console
-  #     - 5672:5672 # AMQP port for RabbitMQ
-  #   environment:
-  #     RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
-  #     RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
-  #   healthcheck:
-  #     test: [ "CMD", "rabbitmqctl", "status" ]
-  #     interval: 30s
-  #     timeout: 5s
-  #     retries: 3
-  #     start_period: 10s
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
-
-  # worker:
-  #   # wip
-  #   image: newsolwebapp-web-django:dev
-  #   command: bash -c "celery -A celery.worker:app worker
-  #   volumes:
-  #     - .:/usr/src/app
-  #   ports:
-  #     - "8200:8080"
-
-  # scheduler:
-  #   #   wip
-  #   container_name: newsolwebapp-web-scheduler
-  #   image: newsolwebapp-web-django:dev
-  #   restart: always
-  #   build:
-  #     context: ./web
-  #     dockerfile: Dockerfile.django
-  #   command: >
-  #     celery -A your_project_name beat --loglevel=info
-  #   depends_on:
-  #     - django
-  #     - redis
-  #     - rabbitmq
-  #   env_file:
-  #     - .env
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
 
   pubsub-emulator:
     image: pubsub-emulator:dev
