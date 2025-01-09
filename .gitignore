@@ -6,28 +6,25 @@
 *.key
 *.crt
 
-# py
+# django
 *.venv
 __pycache__
 *.pyc
 *.cache
-web/static
+static
 staticfile
 
-# next
+# next.js
 node_modules
 *.next
 next-env.d.ts
 **/sw.js
 **/workbox-*.js
 
-
-
-# tf
+# terraform
 .terraform
 *.tfstate*
 *.lock*
-
 
 # cdk
 cdk.out
