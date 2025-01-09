@@ -2,8 +2,6 @@ import sys
 
 # base settings
 import settings.components.base  # noqa
-import settings.components.celery  # noqa
-import settings.components.celery_beat  # noqa
 import settings.components.email  # noqa
 import settings.components.pubsub  # noqa
 import settings.components.redis  # noqa

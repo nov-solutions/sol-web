@@ -4,7 +4,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 from django.urls import re_path
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 django_asgi_application = get_asgi_application()
 
