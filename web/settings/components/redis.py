@@ -1,4 +1,4 @@
-from decouple import config
+import os
 
-REDIS_PASSWORD = config("REDIS_PASSWORD")
-REDIS_HOST = config("REDIS_HOST")
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
+REDIS_HOST = os.environ.get("REDIS_HOST")
