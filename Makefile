@@ -1,4 +1,4 @@
-.PHONY: dev prod drop-db ssh init-mig mk-mig key-pair venv apply secret-init secret-update logs restart start-cluster
+.PHONY: dev prod drop-db ssh init-mig mk-mig key-pair venv
 
 dev:
 	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build
@@ -29,35 +29,3 @@ venv:
 	python -m venv .venv
 	source .venv/bin/activate
 	pip install -r requirements.txt
-
-apply:
-	kubectl apply -k k8s/overlays/dev
-
-secret-init:
-	kubectl create secret generic event-web-secret --from-env-file=.env
-
-secret-update:
-	kubectl create secret generic event-web-secret --from-env-file=.env --dry-run=client -o yaml | kubectl apply -f -
-
-logs:
-	kubectl logs -f -l app=web --all-containers=true --max-log-requests=7
-
-restart:
-	kubectl rollout restart deployment newsolwebapp-web
-
-start-cluster:
-	echo "Starting Minikube..."
-	minikube start --cpus=4 --memory=8192
-	echo "Configuring Docker to use Minikube's Docker daemon..."
-	eval $$(minikube -p minikube docker-env)
-	kubectl config set-context --current --namespace=dev
-	echo "Building local Docker images..."
-	docker build -t newsolwebapp-web-django:dev -f ./web/Dockerfile.django --build-arg BUILD_ENV=dev ./web
-	docker build -t newsolwebapp-web-nextjs:dev -f ./nextjs/Dockerfile.nextjs --build-arg BUILD_ENV=dev ./nextjs
-	docker build -t newsolwebapp-web-nginx:dev -f ./Dockerfile.nginx --build-arg BUILD_ENV=dev .
-	echo "Applying the development configuration using Kustomize..."
-	kubectl apply -k k8s/overlays/dev
-	@echo "Mounting local directories into Minikube..."
-	nohup minikube mount ./django:/mnt/django &
-	nohup minikube mount ./nextjs/src:/mnt/nextjs/src &
-	nohup minikube mount ./nextjs/public:/mnt/nextjs/public &

@@ -21,11 +21,6 @@ next-env.d.ts
 **/sw.js
 **/workbox-*.js
 
-# terraform
-.terraform
-*.tfstate*
-*.lock*
-
 # cdk
 cdk.out
 cdk/cdk.context.json

@@ -24,7 +24,6 @@ def find_replace():
                 "find_replace.py",
                 ".git/",
                 ".pyc",
-                ".terraform",
                 ".eot",
                 ".ttf",
                 ".woff",
