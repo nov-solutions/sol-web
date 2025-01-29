@@ -11,14 +11,18 @@ export default function FullHeightSplash() {
             className="w-1/6 lg:w-1/12"
           />
           <h1 className="!mt-2 text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">
-            Hello, world
+            TODO
           </h1>
           <h2 className="font-medium lg:text-lg text-gray">TODO</h2>
           <a href="TODO" className="text-left text-white w-fit btn btn-primary">
             TODO
           </a>
         </div>
-        <img src="/static/assets/img/TODO" alt="TODO" className="lg:mx-auto" />
+        <img
+          src="/static/assets/img/logos/wordmark.png"
+          alt="TODO"
+          className="lg:mx-auto"
+        />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ __pycache__
 static
 staticfile
 
-# next.js
+# nextjs
 node_modules
 *.next
 next-env.d.ts

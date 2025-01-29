@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponse, JsonResponse
 from django.urls import include, path
 from rest_framework import status
-from swagger import urls as swagger_urls
+from spectacular import urls as spectacular_urls
 
 
 def healthcheck(request):
@@ -29,6 +29,6 @@ handler500 = "rest_framework.exceptions.server_error"
 
 urlpatterns = [
     path("api/healthcheck/", healthcheck),
-    path("api/docs/", include(swagger_urls)),
     path("api/admin/", admin.site.urls),
+    path("api/", include(spectacular_urls)),
 ]

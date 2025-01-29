@@ -10,4 +10,3 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 app = Celery("web")
 
 app.config_from_object(celery_config)
-# app.autodiscover_tasks(["pubsub"])

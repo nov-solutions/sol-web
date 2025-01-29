@@ -2,11 +2,6 @@ services:
   nextjs:
     environment:
       - WATCHPACK_POLLING=true
-
   django:
     volumes:
       - ./web:/app
-
-  # celery:
-  #   volumes:
-  #     - ./web:/app
