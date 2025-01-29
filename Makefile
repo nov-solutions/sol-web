@@ -1,4 +1,4 @@
-.PHONY: dev prod drop-db ssh mk-mig key-pair venv logs
+.PHONY: dev prod drop-db ssh init-mig mk-mig key-pair venv apply secret-init secret-update logs restart start-cluster
 
 dev:
 	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build
@@ -23,7 +23,7 @@ mk-mig:
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:
-	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text --profile grav > app.pem
+	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text > app.pem
 
 venv:
 	python -m venv .venv

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+
 import aws_cdk as cdk
 from decouple import config
 
 from cdk.web_stack import WebStack
 
-SITE_NAME = "Sol"
+SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
 account = config("CDK_ACCOUNT")
 region = config("CDK_REGION")
 

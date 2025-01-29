@@ -1,11 +1,9 @@
+Copyright 2025, grav LLC
 
-Sol License
-Copyright (c) 2023-2024, GRAV LLC
+Permission is hereby granted to use, integrate, and distribute proprietary components of this software, which are the intellectual property of grav LLC ("Licensor"), under the following conditions:
 
-Permission is hereby granted to use, integrate, and distribute proprietary components of this software, which are the intellectual property of GRAV LLC ("Licensor"), under the following conditions:
-
-The use, integration, and distribution of these components are granted solely under a revocable, non-exclusive, non-transferable, and limited license provided by GRAV LLC.
-This license may be revoked by GRAV LLC at its sole discretion, with or without cause, upon written notice to the licensee.
+The use, integration, and distribution of these components are granted solely under a revocable, non-exclusive, non-transferable, and limited license provided by grav LLC.
+This license may be revoked by grav LLC at its sole discretion, with or without cause, upon written notice to the licensee.
 Unauthorized use, reproduction, or distribution of these components, in whole or in part, is strictly prohibited and may result in legal action.
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 

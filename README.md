@@ -36,16 +36,6 @@ Data is interacted with through Django's ORM in the application layer.
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **daisyUI**, a component library for Tailwind CSS, provides several pre-built, customizable components for typical UI elements.
 
-### CDK Deployment
-
-1. Sub out SITE_NAME in `app.py`
-2. `make key-pair`
-3. `cd ./cdk && cdk deploy`
-
-Resources are in us-west-2.
-SSH into instance and install docker
-Update GH pipeline variables and push to master. Also, update the IP address in deploy pipeline.
-
 ### Web Server
 
 **Nginx**, an open-source web server, acts as a reverse proxy that routes both external and internal traffic to the appropriate layer of the web app.
@@ -56,19 +46,19 @@ Update GH pipeline variables and push to master. Also, update the IP address in 
 
 1. Install [Docker Engine](https://docs.docker.com/engine/install/) if you haven't already
 
-2. Replace the values in ".env" with appropriate values for the local build of the project
+2. Replace the values in `.env` with appropriate values for the local build of the project
 
 3. Run `python find_replace.py` in the root directory
 
-4. Delete "find_replace.py"
+4. Delete `find_replace.py`
 
 5. Address all of the repository-wide `TODO`s
 
-6. Update the web app manifest at "/nextjs/public/manifest.json" with appropriate values for the project
+6. Update the web app manifest at `/nextjs/public/manifest.json` with appropriate values for the project
 
-7. Replace the placeholder "logo.png" and "wordmark.png" in "nextjs/public/static/assets/img/logos" with the appropriate assets for the project
+7. Replace the placeholder `logo.png` and `wordmark.png` in `nextjs/public/static/assets/img/logos` with the appropriate assets for the project
 
-8. Replace the placeholder "social.png," "favicon.png", and "apple_touch_icon.png" in "nextjs/public/static/assets/img" with the appropriate assets for the project
+8. Replace the placeholder `social.png,` `favicon.png`, and `apple_touch_icon.png` in `nextjs/public/static/assets/img` with the appropriate assets for the project
 
 9. Run `pre-commit install` in the root directory
 
@@ -78,21 +68,21 @@ Update GH pipeline variables and push to master. Also, update the IP address in 
 
 0. Run `make` to build the project's Docker images and start the project's Docker containers
 
-1. Access the web app via "localhost"
+1. Access the web app via localhost
 
 ### Production Deployment
 
 #### One-Time Setup
 
-0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in ".env" with the appropriate values for the AWS account and region in which the project will be deployed
+0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
 
-1. Replace the values in ".github/workflows/deploy.yaml" and ".github/workflows/test.yaml" with appropriate values for the production build of the project
+1. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
 
-2. Upload the production secrets referenced in ".github/workflows/deploy.yaml" and ".github/workflows/test.yaml" (except for `SECRET_KEY`) to the GitHub repository
+2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` (except for `SECRET_KEY`) to the GitHub repository
 
 3. Run `python app.py` in `/cdk` to provision AWS resources for the project
 
-4. Replace `@EC2IPADDRESS` across the repository with the IP address of the project's AWS EC2 instance
+4. Replace `52.38.15.163` (sol's IP address) across the repository with the IP address of the project's AWS EC2 instance
 
 5. Acquire a domain name
 
@@ -102,10 +92,6 @@ Update GH pipeline variables and push to master. Also, update the IP address in 
 
 8. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
 
-9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to "/app" to access the project's files
+9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
 
-10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in "/django" to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
-
-11. Update manifest.json with the appropriate values for the project
-
-12. Remove Redis, workers, scheduler, if you don't want it
+10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
