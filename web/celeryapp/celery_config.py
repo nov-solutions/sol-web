@@ -19,12 +19,8 @@ default_exchange = Exchange("default", type="topic")
 
 task_queues = (
     Queue("default", exchange=default_exchange, routing_key="default"),
-    Queue("core_highmem", exchange=default_exchange, routing_key="core.highmem.#"),
-    Queue("core_longrun", exchange=default_exchange, routing_key="core.longrun.#"),
-    Queue(
-        "core_spot_routine",
-        exchange=default_exchange,
-        routing_key="core.spot.routine.#",
-    ),
-    Queue("core_quick", exchange=default_exchange, routing_key="core.quick.#"),
+    Queue("page_visits", exchange=default_exchange, routing_key="page_visits"),
+    Queue("duration", exchange=default_exchange, routing_key="duration"),
+    Queue("data_ingress", exchange=default_exchange, routing_key="data_ingress"),
+    Queue("data_egress", exchange=default_exchange, routing_key="data_egress"),
 )
