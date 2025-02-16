@@ -38,12 +38,10 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
-    # core
-    "core",
     # user
     "user",
-    # infra
-    "celeryapp",
+    # modules
+    # "celeryapp",
 ]
 
 MIDDLEWARE = [

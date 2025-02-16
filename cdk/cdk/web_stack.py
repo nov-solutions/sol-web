@@ -51,7 +51,7 @@ class WebStack(Stack):
         instance = ec2.Instance(
             self,
             SITE_NAME + "-web",
-            instance_type=ec2.InstanceType("t2.medium"),
+            instance_type=ec2.InstanceType("t2.micro"),
             machine_image=ec2.MachineImage.generic_linux(
                 {"us-west-2": "ami-0e4a0595b254f1a4f"}
             ),

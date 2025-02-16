@@ -35,26 +35,5 @@ module.exports = {
       },
     },
   },
-  daisyui: {
-    themes: [
-      {
-        [process.env.NEXT_PUBLIC_SITE_NAME]: {
-          // TODO: update the project colors
-          primary: "#FFFFFF",
-          secondary: "#4B5563",
-          accent: "#F5F5F7",
-          neutral: "#4B5563",
-          "base-100": "#FFFFFF",
-          success: "#22C55E",
-          warning: "#EAB308",
-          error: "#EF4444",
-        },
-      },
-    ],
-  },
-  plugins: [
-    require("daisyui"),
-    require("@headlessui/tailwindcss"),
-    require("@tailwindcss/forms"),
-  ],
+  plugins: [require("@headlessui/tailwindcss"), require("@tailwindcss/forms")],
 };
