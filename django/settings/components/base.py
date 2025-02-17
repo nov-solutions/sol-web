@@ -19,7 +19,7 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-STATIC_URL = "/nginx-static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 ASGI_APPLICATION = "app.asgi.application"
