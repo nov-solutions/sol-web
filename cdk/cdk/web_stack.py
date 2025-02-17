@@ -75,10 +75,10 @@ class WebStack(Stack):
                 )
             ],
         )
-        # Allocate an Elastic IP
+        # allocate an elastic ip
         elastic_ip = ec2.CfnEIP(self, SITE_NAME + "-web-eip")
 
-        # Associate the Elastic IP with the EC2 instance
+        # sssociate the elastic ip with the ec2 instance
         ec2.CfnEIPAssociation(
             self,
             SITE_NAME + "-web-eip-association",

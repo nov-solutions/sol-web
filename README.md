@@ -27,6 +27,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 **Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app.\
 **Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.
+**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.\
 
 ### Presentation Layer
 
@@ -86,7 +87,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 5. Acquire a domain name
 
-6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key` and place it in the root directory
+6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key.pem` and place it in the root directory
 
 7. Run `make key-pair` in the root directory to generate an SSH key pair
 
@@ -94,4 +95,4 @@ Data is interacted with through Django's ORM in the application layer.
 
 9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
 
-10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository
+10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository and name it `SECRET_KEY`

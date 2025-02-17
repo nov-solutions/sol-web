@@ -33,14 +33,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.messages",
     "corsheaders",
-    # core
-    "core",
     # drf
     "rest_framework",
     "django_extensions",
     "django_filters",
-    # swagger
     "drf_spectacular",
+    # core
+    "core",
     # user
     "user",
     # infra
@@ -107,9 +106,6 @@ CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = "app.urls"
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        # "rest_framework.authentication.SessionAuthentication",
-    ),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
@@ -131,9 +127,9 @@ TEMPLATES = [
 ]
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "sol API",
+    "TITLE": "TODO",
     "DESCRIPTION": "TODO",
-    "VERSION": "0.0.1",
+    "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
