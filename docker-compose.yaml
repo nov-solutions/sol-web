@@ -92,8 +92,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./static:/app/static
     healthcheck:
       test: ["CMD", "curl", "-f", "http://nginx"]
       interval: 30s
