@@ -14,12 +14,13 @@ ssh:
 	ssh -i "app.pem" ubuntu@IP_ADDRESS
 
 init-mig:
-	cd django && python manage.py makemigrations user
-	cd django && python manage.py makemigrations admin
+	docker exec -it newsolwebapp-web-django manage.py makemigrations user
+	docker exec -it newsolwebapp-web-django manage.py makemigrations admin
+	docker exec -it newsolwebapp-web-django manage.py migrate
 
 mk-mig:
 	sudo rm ./django/*.log*
-	cd django && python manage.py makemigrations
+	docker exec -it newsolwebapp-web-django python manage.py makemigrations
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:
