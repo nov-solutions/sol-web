@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # user
     "user",
     # infra
-    "celeryapp",
+    # "celeryapp",
 ]
 
 MIDDLEWARE = [
