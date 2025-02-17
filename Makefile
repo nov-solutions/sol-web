@@ -14,9 +14,9 @@ ssh:
 	ssh -i "app.pem" ubuntu@IP_ADDRESS
 
 init-mig:
-	docker exec -it newsolwebapp-web-django manage.py makemigrations user
-	docker exec -it newsolwebapp-web-django manage.py makemigrations admin
-	docker exec -it newsolwebapp-web-django manage.py migrate
+	docker exec -it newsolwebapp-web-django python manage.py makemigrations user
+	docker exec -it newsolwebapp-web-django python manage.py makemigrations admin
+	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 mk-mig:
 	sudo rm ./django/*.log*
