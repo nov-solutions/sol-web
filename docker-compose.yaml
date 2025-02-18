@@ -12,8 +12,7 @@ services:
     expose:
       - 3000
     volumes:
-      - ./nextjs/public:/app/public
-      - ./nextjs/src:/app/src
+      - ./nextjs:/app
     env_file:
       - .env
     depends_on:
