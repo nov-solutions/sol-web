@@ -7,7 +7,7 @@ prod:
 	docker compose up --build
 
 drop-db:
-	docker compose -f docker-compose.dev.yaml down
+	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down
 	docker volume rm newsolwebapp-web_pgdata
 
 ssh:
