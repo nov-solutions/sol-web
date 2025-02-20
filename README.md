@@ -75,24 +75,24 @@ Data is interacted with through Django's ORM in the application layer.
 
 #### One-Time Setup
 
-0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
+0. Acquire a domain name
 
-1. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
+1. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
 
-2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` (except for `SECRET_KEY`) to the GitHub repository
+2. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
 
-3. Run `python app.py` in `/cdk` to provision AWS resources for the project
+3. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` (except for `SECRET_KEY`) to the GitHub repository
 
-4. Replace all project-wide instances of `IP_ADDRESS` with the IP address of the project's AWS EC2 instance
+4. Run `python app.py` in `/cdk` to provision AWS resources for the project
 
-5. Acquire a domain name
+5. Replace all project-wide instances of `IP_ADDRESS` with the IP address of the project's AWS EC2 instance
 
-6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key.pem` and place it in the root directory
+6. Run `make key-pair` in the root directory to generate an SSH key pair
 
-7. Run `make key-pair` in the root directory to generate an SSH key pair
+7. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
 
-8. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
+8. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
 
-9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
+9. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key.pem` and place it in the root directory
 
 10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository and name it `SECRET_KEY`
