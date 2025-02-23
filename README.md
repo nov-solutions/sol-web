@@ -89,6 +89,4 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. while ssh on the server, Execute `cert.sh` in the root directory to generate a TLS certificate for the domain.
 
-7. install docker on the server
-
-8. if the pipelines are setup correctly as in the earlier step, pushing to master will trigger the deployment of the files to the server and will start the containers
+7. if the pipelines are setup correctly as in the earlier step, pushing to master will trigger the deployment of the files to the server and will start the containers
