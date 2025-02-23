@@ -79,20 +79,16 @@ Data is interacted with through Django's ORM in the application layer.
 
 1. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
 
-2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` (except for `SECRET_KEY`) to the GitHub repository
+2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` to generate a Django secret key that can be used in production.
 
-3. Run `python app.py` in `/cdk` to provision AWS resources for the project
+3. Run `make key-pair` in the root directory to generate an SSH key pair. change the permission `sudo chmod 400 app.pem`. Run `make cdk-deploy` in the root directory to provision AWS resources for the project
 
-4. Replace `52.38.15.163` (sol's IP address) across the repository with the IP address of the project's AWS EC2 instance
+4. Replace `52.38.15.163` (sol's IP address) across the repository with the IP address of the project's AWS EC2 instance, it can be found in `cdk/outputs.json`
 
-5. Acquire a domain name
+5. Acquire a domain name, setup dns
 
-6. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key.pem` and place it in the root directory
+6. while ssh on the server, Execute `cert.sh` in the root directory to generate a TLS certificate for the domain.
 
-7. Run `make key-pair` in the root directory to generate an SSH key pair
+7. install docker on the server
 
-8. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
-
-9. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
-
-10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository and name it `SECRET_KEY`
+8. if the pipelines are setup correctly as in the earlier step, pushing to master will trigger the deployment of the files to the server and will start the containers
