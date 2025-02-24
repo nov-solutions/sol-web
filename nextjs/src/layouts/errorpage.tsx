@@ -14,7 +14,7 @@ export default function ErrorPage({
       <div className="flex flex-col items-center space-y-4 lg:w-1/5">
         <img
           className="w-10 aspect-square"
-          src="/assets/img/logos/logo.png"
+          src="/static/assets/img/logos/logo.png"
           alt={SITE_NAME + " logo"}
         />
         <div className="!mt-2 flex items-center space-x-2 divide-x divide-gray-light divide-opacity-25">

@@ -12,8 +12,8 @@ services:
     expose:
       - 3000
     volumes:
-      - ./nextjs:/app
-      - /app/node_modules
+      - ./nextjs/public:/app/public
+      - ./nextjs/src:/app/src
     env_file:
       - .env
     depends_on:
@@ -33,19 +33,19 @@ services:
     container_name: newsolwebapp-web-django
     restart: always
     build:
-      context: ./django
+      context: ./web
       dockerfile: Dockerfile.django
       target: dev
     image: newsolwebapp-django:dev
     expose:
       - 8000
     volumes:
-      - ./django/logs:/app/logs
-      - ./django/static:/app/static
+      - ./logs:/app/logs
     env_file:
       - .env
     depends_on:
       - postgres
+
     healthcheck:
       test:
         - CMD-SHELL
@@ -58,25 +58,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
-  # scheduler:
-  #   container_name: newsolwebapp-scheduler
-  #   image: newsolwebapp-django:dev
-  #   restart: always
-  #   command: celery -A celeryapp.celery:app beat -S redbeat.RedBeatScheduler --loglevel=info
-  #   depends_on:
-  #     django:
-  #       condition: service_healthy
-  #     redis:
-  #       condition: service_healthy
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - ./django:/app
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
 
   nginx:
     container_name: newsolwebapp-web-nginx
@@ -91,8 +72,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./django/static:/app/static
     healthcheck:
       test: ["CMD", "curl", "-f", "http://nginx"]
       interval: 30s
@@ -125,19 +104,38 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # redis:
-  #   container_name: newsolwebapp-redis
-  #   restart: always
-  #   image: redis:6
-  #   env_file:
-  #     - .env
-  #   command: >
-  #     --requirepass ${REDIS_PASSWORD}
-  #   expose:
-  #     - 6379
-  #   healthcheck:
-  #     test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
-  #     interval: 10s
-  #     timeout: 10s
-  #     retries: 3
-  #     start_period: 10s
+  scheduler:
+    container_name: newsolwebapp-scheduler
+    image: newsolwebapp-django:dev
+    restart: always
+    command: celery -A celeryapp.celery:app beat -S redbeat.RedBeatScheduler --loglevel=info
+    depends_on:
+      django:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./web:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    container_name: newsolwebapp-redis
+    restart: always
+    image: redis:6
+    env_file:
+      - .env
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

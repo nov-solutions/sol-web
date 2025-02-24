@@ -17,7 +17,7 @@ export default function Team() {
             className="flex flex-col items-center justify-center w-full h-full p-4 text-center border rounded-lg shadow-lg lg:p-8 border-gray-light"
           >
             <img
-              src={`/assets/img/headshots/${teammate.headshotLoc}`}
+              src={`/static/assets/img/headshots/${teammate.headshotLoc}`}
               alt={`${teammate.name}'s headshot`}
               className="w-1/2 mx-auto rounded-full filter grayscale"
             />

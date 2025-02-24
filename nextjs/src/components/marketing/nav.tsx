@@ -36,7 +36,7 @@ export default function Nav() {
       <div className="items-center justify-between hidden w-1/2 h-full p-4 mx-auto mt-2 text-sm rounded-lg shadow-lg lg:flex backdrop-blur-lg bg-white/75">
         <Link href="/" className="flex items-center">
           <img
-            src="/assets/img/logos/wordmark.png"
+            src="/static/assets/img/logos/wordmark.png"
             alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
           />
@@ -63,7 +63,7 @@ export default function Nav() {
       >
         <Link href="/" className="flex items-center">
           <img
-            src="/assets/img/logos/wordmark.png"
+            src="/static/assets/img/logos/wordmark.png"
             alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
           />

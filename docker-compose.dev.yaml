@@ -4,4 +4,4 @@ services:
       - WATCHPACK_POLLING=true
   django:
     volumes:
-      - ./django:/app
+      - ./web:/app
