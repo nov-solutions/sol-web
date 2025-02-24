@@ -87,13 +87,13 @@ Data is interacted with through Django's ORM in the application layer.
 
 5. Run `make deploy-cdk` in the root directory to provision AWS resources for the project
 
-6. Replace all project-wide instances of `52.38.15.163` (sol's IP address) with the IP address of the project's AWS EC2 instance. The project's IP address can be found in `cdk/outputs.json`
+6. Replace all project-wide instances of `IP_ADDRESS` with the IP address of the project's AWS EC2 instance. The project's IP address can be found in `cdk/outputs.json`
 
 7. Acquire a domain name
 
 8. Add the IP address of the project's AWS EC2 instance to the domain's DNS records
 
-9. Replace all instances of `sol.grav.solutions` in `nginx/prod/site.conf` with the domain name of the project
+9. Replace all instances of `SITE_DOMAIN` in `nginx/prod/site.conf` with the domain name of the project
 
 10. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
 
