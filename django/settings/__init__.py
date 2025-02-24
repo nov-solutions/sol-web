@@ -1,6 +1,5 @@
 import sys
 
-# base settings
 import settings.components.base  # noqa
 import settings.components.email  # noqa
 import settings.components.redis  # noqa
