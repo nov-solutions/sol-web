@@ -35,7 +35,7 @@ Data is interacted with through Django's ORM in the application layer.
 **React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it.\
 **Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
-**daisyUI**, a component library for Tailwind CSS, provides several pre-built, customizable components for typical UI elements.
+**shadcn/ui**, a component library for Tailwind CSS, provides several pre-built, customizable UI components.
 
 ### Web Server
 
@@ -57,9 +57,9 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. Update the web app manifest at `/nextjs/public/manifest.json` with appropriate values for the project
 
-7. Replace the placeholder `logo.png` and `wordmark.png` in `nextjs/public/static/assets/img/logos` with the appropriate assets for the project
+7. Replace the placeholder `logo.png` and `wordmark.png` in `nextjs/public/assets/img/logos` with the appropriate assets for the project
 
-8. Replace the placeholder `social.png,` `favicon.png`, and `apple_touch_icon.png` in `nextjs/public/static/assets/img` with the appropriate assets for the project
+8. Replace the placeholder `social.png,` `favicon.png`, and `apple_touch_icon.png` in `nextjs/public/assets/img` with the appropriate assets for the project
 
 9. Run `pre-commit install` in the root directory
 
@@ -77,16 +77,24 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
 
-1. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
+1. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Replace the `SECRET_KEY` value in `.env` with the generated key
 
-2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` to generate a Django secret key that can be used in production.
+2. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
 
-3. Run `make key-pair` in the root directory to generate an SSH key pair. change the permission `sudo chmod 400 app.pem`. Run `make cdk-deploy` in the root directory to provision AWS resources for the project
+3. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository
 
-4. Replace `52.38.15.163` (sol's IP address) across the repository with the IP address of the project's AWS EC2 instance, it can be found in `cdk/outputs.json`
+4. Run `make key-pair` in the root directory to generate an SSH key pair. Update the permissions of the `app.pem` file by running `sudo chmod 400 app.pem`
 
-5. Acquire a domain name, setup dns
+5. Run `make deploy-cdk` in the root directory to provision AWS resources for the project
 
-6. while ssh on the server, Execute `cert.sh` in the root directory to generate a TLS certificate for the domain.
+6. Replace all project-wide instances of `IP_ADDRESS` with the IP address of the project's AWS EC2 instance. The project's IP address can be found in `cdk/outputs.json`
 
-7. if the pipelines are setup correctly as in the earlier step, pushing to master will trigger the deployment of the files to the server and will start the containers
+7. Acquire a domain name
+
+8. Add the IP address of the project's AWS EC2 instance to the domain's DNS records
+
+9. Replace all instances of `SITE_DOMAIN` in `nginx/prod/site.conf` with the domain name of the project
+
+10. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
+
+11. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
