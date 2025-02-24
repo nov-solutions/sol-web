@@ -9,11 +9,6 @@ RUN if [ -d "./django/static" ]; then \
         mkdir -p /app/static; \
     fi
 
-RUN export $(grep -v "^#" /etc/nginx/.env | xargs) && \
-    for file in /etc/nginx/nginx.conf; do \
-    sed -i "s/\$SITE_DOMAIN/$SITE_DOMAIN/g" $file; \
-    done
-
 FROM base AS dev
 
 COPY ./nginx/dev /etc/nginx/conf.d/

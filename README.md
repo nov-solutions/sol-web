@@ -57,9 +57,9 @@ Data is interacted with through Django's ORM in the application layer.
 
 6. Update the web app manifest at `/nextjs/public/manifest.json` with appropriate values for the project
 
-7. Replace the placeholder `logo.png` and `wordmark.png` in `nextjs/public/static/assets/img/logos` with the appropriate assets for the project
+7. Replace the placeholder `logo.png` and `wordmark.png` in `nextjs/public/assets/img/logos` with the appropriate assets for the project
 
-8. Replace the placeholder `social.png,` `favicon.png`, and `apple_touch_icon.png` in `nextjs/public/static/assets/img` with the appropriate assets for the project
+8. Replace the placeholder `social.png,` `favicon.png`, and `apple_touch_icon.png` in `nextjs/public/assets/img` with the appropriate assets for the project
 
 9. Run `pre-commit install` in the root directory
 
@@ -93,6 +93,8 @@ Data is interacted with through Django's ORM in the application layer.
 
 8. Add the IP address of the project's AWS EC2 instance to the domain's DNS records
 
-9. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
+9. Replace all instances of `sol.grav.solutions` in `nginx/prod/site.conf` with the domain name of the project
 
-10. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
+10. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
+
+11. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
