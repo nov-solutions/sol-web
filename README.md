@@ -26,14 +26,14 @@ Data is interacted with through Django's ORM in the application layer.
 ### Application Layer
 
 **Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app.\
-**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.\
-**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.
+**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.
+**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.\
 
 ### Presentation Layer
 
 **Typescript**, a superset of Javascript, the core programming language of the Internet, handles the frontend logic of the web app.\
 **React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it.\
-**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.\
+**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **shadcn/ui**, a component library for Tailwind CSS, provides several pre-built, customizable UI components.
 
@@ -75,24 +75,24 @@ Data is interacted with through Django's ORM in the application layer.
 
 #### One-Time Setup
 
-0. Acquire a domain name
+0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
 
-1. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
+1. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Replace the `SECRET_KEY` value in `.env` with the generated key
 
 2. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project
 
-3. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` (except for `SECRET_KEY`) to the GitHub repository
+3. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository
 
-4. Run `python app.py` in `/cdk` to provision AWS resources for the project
+4. Run `make key-pair` in the root directory to generate an SSH key pair. Update the permissions of the `app.pem` file by running `sudo chmod 400 app.pem`
 
-5. Replace all project-wide instances of `IP_ADDRESS` with the IP address of the project's AWS EC2 instance
+5. Run `make deploy-cdk` in the root directory to provision AWS resources for the project
 
-6. Run `make key-pair` in the root directory to generate an SSH key pair
+6. Replace all project-wide instances of `52.38.15.163` (sol's IP address) with the IP address of the project's AWS EC2 instance. The project's IP address can be found in `cdk/outputs.json`
 
-7. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
+7. Acquire a domain name
 
-8. Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance. Change directories to `/app` to access the project's files
+8. Add the IP address of the project's AWS EC2 instance to the domain's DNS records
 
-9. Execute `cert.sh` in the root directory to generate a TLS certificate for the domain. Rename the output private key to `app-key.pem` and place it in the root directory
+9. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
 
-10. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Upload the secret key to the GitHub repository and name it `SECRET_KEY`
+10. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
