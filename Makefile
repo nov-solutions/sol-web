@@ -20,7 +20,7 @@ init-mig:
 
 mk-mig:
 	sudo rm ./django/*.log*
-	docker exec -it newsolwebapp-web-django python manage.py makemigrations
+	cd django && python manage.py makemigrations
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:
