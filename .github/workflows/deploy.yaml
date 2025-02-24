@@ -21,8 +21,8 @@ jobs:
         run: |
           echo "ENVIRONMENT=prod" >> .env
           echo "NEXT_PUBLIC_SITE_NAME=sol" >> .env
-          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://example.com" >> .env
-          echo "SITE_DOMAIN=example.com" >> .env
+          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://sol.grav.solutions" >> .env
+          echo "SITE_DOMAIN=sol.grav.solutions" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "DJANGO_SETTINGS_MODULE=settings" >> .env
           echo "POSTGRES_DB=soldb" >> .env
@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Python dependencies; create Django static directory
         run: |
-          cd ./django
+          cd ./web
           pip install -r requirements.txt
           python manage.py collectstatic --noinput
 
@@ -44,11 +44,11 @@ jobs:
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@IP_ADDRESS:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@52.38.15.163:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
+          ssh -i $(pwd)/app.pem ubuntu@52.38.15.163 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |

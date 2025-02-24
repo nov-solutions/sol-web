@@ -67,7 +67,7 @@ class WebStack(Stack):
         instance = ec2.Instance(
             self,
             SITE_NAME + "-web",
-            instance_type=ec2.InstanceType("t2.micro"),
+            instance_type=ec2.InstanceType("t2.medium"),
             machine_image=ec2.MachineImage.generic_linux(
                 {"us-west-2": "ami-0e4a0595b254f1a4f"}
             ),
@@ -95,7 +95,7 @@ class WebStack(Stack):
         # allocate an elastic ip
         elastic_ip = ec2.CfnEIP(self, SITE_NAME + "-web-eip")
 
-        # associate the elastic ip with the ec2 instance
+        # sssociate the elastic ip with the ec2 instance
         ec2.CfnEIPAssociation(
             self,
             SITE_NAME + "-web-eip-association",

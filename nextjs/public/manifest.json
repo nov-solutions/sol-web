@@ -10,13 +10,13 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "/assets/img/logos/logo.png",
+      "src": "/static/assets/img/logos/logo.png",
       "sizes": "1000x1000"
     }
   ],
   "icons_apple": [
     {
-      "src": "/assets/img/apple_touch_icon.png",
+      "src": "/static/assets/img/apple_touch_icon.png",
       "sizes": "180x180"
     }
   ]

@@ -11,7 +11,11 @@ export default function FinalCTA() {
             TODO
           </a>
         </div>
-        <img src="/assets/img/TODO" alt="TODO" className="mx-auto rounded-lg" />
+        <img
+          src="/static/assets/img/TODO"
+          alt="TODO"
+          className="mx-auto rounded-lg"
+        />
       </div>
     </div>
   );

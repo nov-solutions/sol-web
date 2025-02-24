@@ -1,5 +1,4 @@
 import structlog
-
 from django.apps import AppConfig
 
 LOGGER = structlog.get_logger(__name__)

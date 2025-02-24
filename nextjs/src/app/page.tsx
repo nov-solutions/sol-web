@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_BASE_DOMAIN}/assets/img/social.png`,
+        url: `${SITE_BASE_DOMAIN}/static/assets/img/social.png`,
         width: 1200,
         height: 630,
       },
