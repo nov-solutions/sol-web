@@ -19,7 +19,7 @@ if ENVIRONMENT == "dev":
 elif ENVIRONMENT == "prod":
     DEBUG = False
 
-STATIC_URL = "/nginx-static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 ASGI_APPLICATION = "app.asgi.application"
@@ -38,11 +38,9 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
-    # core
-    "core",
     # user
     "user",
-    # infra
+    # modules
     # "celeryapp",
 ]
 
@@ -129,7 +127,7 @@ TEMPLATES = [
 SPECTACULAR_SETTINGS = {
     "TITLE": "TODO",
     "DESCRIPTION": "TODO",
-    "VERSION": "1.0.0",
+    "VERSION": "0.0.1",
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
