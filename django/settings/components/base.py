@@ -127,7 +127,7 @@ TEMPLATES = [
 SPECTACULAR_SETTINGS = {
     "TITLE": "TODO",
     "DESCRIPTION": "TODO",
-    "VERSION": "1.0.0",
+    "VERSION": "0.0.1",
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
