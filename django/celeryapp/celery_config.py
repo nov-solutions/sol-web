@@ -1,5 +1,6 @@
-from django.conf import settings
 from kombu import Exchange
+
+from django.conf import settings
 
 broker_url = f"redis://:{settings.REDIS_PASSWORD}@redis:6379/0"
 result_backend = f"redis://:{settings.REDIS_PASSWORD}@redis:6379/0"

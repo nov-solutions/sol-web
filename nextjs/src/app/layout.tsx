@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/static/assets/img/favicon.png",
-    shortcut: "/static/assets/img/favicon.png",
-    apple: "/static/assets/img/apple_touch_icon.png",
+    icon: "/assets/img/favicon.png",
+    shortcut: "/assets/img/favicon.png",
+    apple: "/assets/img/apple_touch_icon.png",
   },
   appleWebApp: {
     title: SITE_NAME,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} • ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     images: {
-      url: `${SITE_BASE_DOMAIN}/static/assets/img/social.png`,
+      url: `${SITE_BASE_DOMAIN}/assets/img/social.png`,
     },
   },
 };
@@ -82,7 +82,7 @@ export default function RootLayout({
               name: SITE_NAME,
               description: SITE_DESCRIPTION,
               foundingDate: "2024",
-              logo: "/public/static/assets/img/logos/logo.png",
+              logo: "/public/assets/img/logos/logo.png",
               sameAs: ["https://www.linkedin.com/company/TODO"],
             }),
           }}
