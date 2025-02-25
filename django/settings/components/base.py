@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
-    # core
-    "core",
-    # user
-    "user",
-    # modules
-    "spectacular",
-    # "celeryapp",
+    # core logic
+    "core.apps.CoreConfig",
+    # users and auth
+    "user.apps.UserConfig",
+    # automated api docs
+    "spectacular.apps.SpectacularSwaggerConfig",
+    # async task queueing
+    "celeryapp.apps.CeleryAppConfig",
 ]
 
 MIDDLEWARE = [
