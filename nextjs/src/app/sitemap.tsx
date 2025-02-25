@@ -9,7 +9,7 @@ export default function Sitemap(): MetadataRoute.Sitemap {
         ? SITE_BASE_DOMAIN
         : `${SITE_BASE_DOMAIN}${page.relativePath}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as "monthly",
+    changeFrequency: "monthly" as const,
     priority: page.relativePath == "/" ? 1 : 0.8,
   }));
 
