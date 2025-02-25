@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
+    # core
+    "core",
     # user
     "user",
     # modules
+    "spectacular",
     # "celeryapp",
 ]
 
@@ -123,13 +126,6 @@ TEMPLATES = [
         },
     },
 ]
-
-SPECTACULAR_SETTINGS = {
-    "TITLE": "TODO",
-    "DESCRIPTION": "TODO",
-    "VERSION": "0.0.1",
-    "SERVE_INCLUDE_SCHEMA": False,
-}
 
 LOGGING = {
     "version": 1,

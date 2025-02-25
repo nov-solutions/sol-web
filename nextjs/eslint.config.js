@@ -12,5 +12,8 @@ module.exports = tseslint.config(
       "**/*.config.js",
       "**/.cache/**",
     ],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
   },
 );
