@@ -1,7 +1,6 @@
 import structlog
 from core import views
 from decouple import config
-from spectacular import urls as spectacular_urls
 
 from django.contrib import admin
 from django.urls import include, path
@@ -22,9 +21,12 @@ urlpatterns = [
 if config("ENVIRONMENT") == "prod" and not config(
     "PUBLIC_API", default=False, cast=bool
 ):
-    logger.info("Public API is disabled. Enabling API docs...")
+    logger.info("Public API is disabled. Disabling API docs...")
 else:
+    from spectacular import urls as spectacular_urls
+
     logger.info("Public API is enabled. Enabling API docs...")
+
     urlpatterns += [
         path("api/docs/", include(spectacular_urls)),
     ]
