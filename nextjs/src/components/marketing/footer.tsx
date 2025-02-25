@@ -29,7 +29,7 @@ export default function Footer() {
             </Link>
             <p className="!mt-2 font-medium">TODO</p>
             <div className="flex items-center space-x-2">
-              {socials.map((social, i) => (
+              {socials.map((social) => (
                 <a
                   key={social.name}
                   href={social.loc}
