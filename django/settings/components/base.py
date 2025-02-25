@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
+    # e-mail
+    "mail.apps.MailConfig",
     # core
     "core",
     # user
