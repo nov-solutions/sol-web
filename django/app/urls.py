@@ -12,11 +12,9 @@ from django.views.defaults import (
 
 urlpatterns = [
     path("api/admin/", admin.site.urls),
-    path("docs/", include(spectacular_urls)),
     path("api/healthcheck/", views.healthcheck),
+    path("docs/", include(spectacular_urls)),
 ]
-
-urlpatterns += spectacular_urls
 
 handler400 = bad_request
 handler403 = permission_denied
