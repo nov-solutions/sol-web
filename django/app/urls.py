@@ -1,7 +1,8 @@
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
+from core import views
+from spectacular import urls as spectacular_urls
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.views.defaults import (
     bad_request,
     page_not_found,
@@ -9,16 +10,10 @@ from django.views.defaults import (
     server_error,
 )
 
-from . import views
-
 urlpatterns = [
     path("api/admin/", admin.site.urls),
+    path("docs/", include(spectacular_urls)),
     path("api/healthcheck/", views.healthcheck),
-]
-
-spectacular_urls = [
-    path("docs/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
-    path("schema/", SpectacularAPIView.as_view(), name="schema"),
 ]
 
 urlpatterns += spectacular_urls

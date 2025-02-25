@@ -91,10 +91,12 @@ Data is interacted with through Django's ORM in the application layer.
 
 7. Acquire a domain name
 
-8. Add the IP address of the project's AWS EC2 instance to the domain's DNS records
+8. Add an "A" record with a "Host" value of `@` and "Value" value of the IP address of the project's AWS EC2 instance to the domain's DNS settings
 
-9. Replace all instances of `SITE_DOMAIN` in `nginx/prod/site.conf` with the domain name of the project
+9. Add a "CNAME" record with a "Host" value of `www` and "Value" value of the domain name to the domain's DNS settings
 
-10. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in the root directory of the AWS EC2 instance to generate a TLS certificate for the domain
+10. Replace all instances of `SITE_DOMAIN` in `nginx/prod/site.conf` with the domain name of the project
 
-11. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
+11. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in `app/` to generate a TLS certificate for the domain
+
+12. Push code to the master branch of the repository to initialize the project's files on the AWS EC2 instance
