@@ -19,6 +19,30 @@ repos:
         types: [file]
         files: '\.(js|jsx|ts|tsx|json|yaml|md|css|html)$'
 
+  - repo: local
+    hooks:
+      - id: pipdeptree-pinning
+        name: pipdeptree pinning
+        language: python
+        pass_filenames: false
+        additional_dependencies:
+          - pipdeptree
+          - pip
+        entry: bash
+        args:
+          - -c
+          - |
+            # 1) Install your project's dependencies
+            pip install -r django/requirements.txt
+
+            # 2) Generate top-level dependencies in ephemeral env
+            cd django
+            # and exclude known ephemeral packages from the output
+            pipdeptree --warn silence |
+              grep -E '^\w+' |
+              grep -Ev '^(pipdeptree|pre-commit-placeholder-package|wheel)=' \
+              | tee requirements.txt
+
   # python linter and formatter
   - repo: https://github.com/psf/black
     rev: 24.3.0
