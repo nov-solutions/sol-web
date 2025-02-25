@@ -33,7 +33,7 @@ services:
     container_name: newsolwebapp-web-django
     restart: always
     build:
-      context: ./django
+      context: ./web
       dockerfile: Dockerfile.django
       target: dev
     image: newsolwebapp-django:dev
@@ -69,7 +69,7 @@ services:
   #   env_file:
   #     - .env
   #   volumes:
-  #     - ./django:/app
+  #     - ./web:/app
   #   logging:
   #     options:
   #       max-size: "10m"
@@ -89,7 +89,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./django/static:/app/static
+      - ./web/static:/app/static
     healthcheck:
       test: ["CMD", "curl", "-f", "http://nginx"]
       interval: 30s

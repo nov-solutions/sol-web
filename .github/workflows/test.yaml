@@ -33,8 +33,8 @@ jobs:
 
       - name: Install Python dependencies; create Django static directory
         run: |
-          cd ./django
-          pip install -r requirements.txt
+          cd ./web
+          pip web -r requirements.txt
           python manage.py collectstatic --noinput
 
       - name: Build Docker containers

@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Python dependencies; create Django static directory
         run: |
-          cd ./django
+          cd ./web
           pip install -r requirements.txt
           python manage.py collectstatic --noinput
 
