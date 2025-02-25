@@ -1,25 +1,27 @@
 .PHONY: dev prod drop-db ssh init-mig mk-mig key-pair venv
 
 dev:
+	mkdir -p ./django/static
 	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build
 
 prod:
 	docker compose up --build
 
 drop-db:
-	docker compose -f docker-compose.dev.yaml down
+	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down
 	docker volume rm newsolwebapp-web_pgdata
 
 ssh:
-	ssh -i "app.pem" ubuntu@52.38.15.163
+	ssh -i "app.pem" ubuntu@IP_ADDRESS
 
 init-mig:
-	cd web && python manage.py makemigrations user
-	cd web && python manage.py makemigrations admin
+	cd django && python manage.py makemigrations user
+	cd django && python manage.py makemigrations admin
+	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 mk-mig:
-	sudo rm ./web/*.log*
-	cd web && python manage.py makemigrations
+	sudo rm ./django/*.log*
+	cd django && python manage.py makemigrations
 	docker exec -it newsolwebapp-web-django python manage.py migrate
 
 key-pair:

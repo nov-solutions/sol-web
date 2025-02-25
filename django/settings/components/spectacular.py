@@ -1,0 +1,6 @@
+SPECTACULAR_SETTINGS = {
+    "TITLE": "TODO",
+    "DESCRIPTION": "TODO",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
