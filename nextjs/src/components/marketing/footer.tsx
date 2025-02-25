@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <Link href="/">
               <img
-                src="/static/assets/img/logos/wordmark.png"
+                src="/assets/img/logos/wordmark.png"
                 alt={SITE_NAME + " wordmark"}
                 className="h-5 my-auto"
               />
