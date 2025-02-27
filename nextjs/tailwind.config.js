@@ -13,6 +13,15 @@ module.exports = {
           DEFAULT: "#4B5563",
           light: "#F5F5F7",
         },
+        success: {
+          DEFAULT: "#22C55E",
+        },
+        warning: {
+          DEFAULT: "#EAB308",
+        },
+        error: {
+          DEFAULT: "#EF4444",
+        },
       },
       fontFamily: {
         body: [
