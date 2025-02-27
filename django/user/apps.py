@@ -10,6 +10,6 @@ class UserConfig(AppConfig):
             pass
         except ImportError:
             raise ImportError(
-                "UserConfig.ready() failed to import mail. "
-                "The Sol mail module is required for the user module to function."
+                "UserConfig.ready() failed to import mail."
+                "The sol mail module is required for the user module to function."
             )
