@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
+    # e-mail
+    "mail.apps.MailConfig",
     # core
     "core",
     # user
@@ -126,49 +128,3 @@ TEMPLATES = [
         },
     },
 ]
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{levelname} {asctime} {module} {message}",
-            "style": "{",
-        },
-        "simple": {
-            "format": "{levelname} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "django_debug.log",
-            "maxBytes": 1024 * 1024 * 25,  # 25 MB
-            "backupCount": 5,
-            "formatter": "verbose",
-        },
-        "console": {
-            "level": "WARN",
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file", "console"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "sol": {
-            "handlers": ["file", "console"],
-            "level": "DEBUG",
-        },
-        "django.utils.autoreload": {
-            "handlers": ["console"],
-            "level": "ERROR",
-            "propagate": False,
-        },
-    },
-}

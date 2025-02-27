@@ -1,12 +1,21 @@
 services:
   nextjs:
+    env_file:
+      - .env
     build:
       target: prod
   django:
+    env_file:
+      - .env
     build:
       target: prod
   nginx:
+    env_file:
+      - .env
     build:
       target: prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
+  postgres:
+    env_file:
+      - .env

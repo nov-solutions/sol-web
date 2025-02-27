@@ -75,7 +75,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 #### One-Time Setup
 
-0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
+0. Replace the `CDK_ACCOUNT` and `CDK_REGION` and `SITE_NAME` values in `cdk/app.py` with the appropriate values for the AWS account and region in which the project will be deployed
 
 1. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Replace the `SECRET_KEY` value in `.env` with the generated key
 

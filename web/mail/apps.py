@@ -1,0 +1,27 @@
+import structlog
+from decouple import config
+from django.apps import AppConfig
+
+logger = structlog.get_logger(__name__)
+
+
+class MailConfig(AppConfig):
+    name = "mail"
+    verbose_name = "e-mail functionality"
+
+    def ready(self):
+        if config("ENVIRONMENT") == "prod":
+            required_env_vars = [
+                config("EMAIL_HOST"),
+                config("EMAIL_HOST_USER"),
+                config("EMAIL_HOST_PASSWORD"),
+            ]
+            if not all(required_env_vars):
+                raise EnvironmentError(
+                    f"MailConfig.ready() failed. The required environment variables are not set."
+                    f"EMAIL_HOST: {config('EMAIL_HOST')}"
+                    f"EMAIL_HOST_USER: {config('EMAIL_HOST_USER')}"
+                    f"EMAIL_HOST_PASSWORD: {config('EMAIL_HOST_PASSWORD')}"
+                )
+        else:
+            logger.warning("MailConfig.ready() running in development mode.")

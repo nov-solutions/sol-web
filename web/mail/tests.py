@@ -1,9 +1,12 @@
 import os
 
 from django.conf import settings
-from django.core import mail
 from django.test import TestCase, override_settings
 from mail.utils import send_verification_email
+
+from django.core import mail
+
+DEFAULT_FROM_EMAIL = "Django Test <automated@django.test.net>"
 
 
 class DummyUser:
@@ -14,7 +17,7 @@ class DummyUser:
 
 @override_settings(
     EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
-    DEFAULT_FROM_EMAIL="Django Test <automated@django.test.net>",
+    DEFAULT_FROM_EMAIL=DEFAULT_FROM_EMAIL,
 )
 class LocmemEmailBackendTest(TestCase):
     def test_send_verification_email(self):
@@ -26,10 +29,7 @@ class LocmemEmailBackendTest(TestCase):
 
         # Check contents of the email
         self.assertEqual(email.subject, "Verify your account")
-        self.assertEqual(
-            email.from_email,
-            "Test Dummy <noreply@django.test.net>",
-        )
+        self.assertEqual(email.from_email, DEFAULT_FROM_EMAIL)
         self.assertEqual(email.to, [user.email])
         self.assertIn(user.magic_link_url, email.body)
 
@@ -37,7 +37,7 @@ class LocmemEmailBackendTest(TestCase):
 @override_settings(
     EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend",
     EMAIL_FILE_PATH="/tmp/dummy-mail",
-    DEFAULT_FROM_EMAIL="Django Test <automated@django.test.net>",
+    DEFAULT_FROM_EMAIL=DEFAULT_FROM_EMAIL,
 )
 class FileBasedEmailBackendTest(TestCase):
     def setUp(self):
@@ -63,3 +63,4 @@ class FileBasedEmailBackendTest(TestCase):
         self.assertIn("Verify your account", email_content)
         self.assertIn(user.email, email_content)
         self.assertIn(user.magic_link_url, email_content)
+        self.assertIn(DEFAULT_FROM_EMAIL, email_content)
