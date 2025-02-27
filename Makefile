@@ -4,6 +4,9 @@ dev:
 	mkdir -p ./django/static
 	docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build
 
+test:
+	docker exec -it newsolwebapp-web-django python manage.py test
+
 prod:
 	docker compose up --build
 
