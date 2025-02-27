@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "spectacular.apps.SpectacularSwaggerConfig",
     # async task queueing
     "celeryapp.apps.CeleryAppConfig",
+    # e-mail
+    "mail.apps.MailConfig",
 ]
 
 MIDDLEWARE = [

@@ -26,14 +26,14 @@ Data is interacted with through Django's ORM in the application layer.
 ### Application Layer
 
 **Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app.\
-**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.
-**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.\
+**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.\
+**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.
 
 ### Presentation Layer
 
 **Typescript**, a superset of Javascript, the core programming language of the Internet, handles the frontend logic of the web app.\
 **React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it.\
-**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.
+**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.\
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **shadcn/ui**, a component library for Tailwind CSS, provides several pre-built, customizable UI components.
 
@@ -75,7 +75,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 #### One-Time Setup
 
-0. Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `.env` with the appropriate values for the AWS account and region in which the project will be deployed
+0. Replace the `CDK_ACCOUNT` and `CDK_REGION` and `SITE_NAME` values in `cdk/app.py` with the appropriate values for the AWS account and region in which the project will be deployed
 
 1. Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key that can be used in production. Replace the `SECRET_KEY` value in `.env` with the generated key
 
