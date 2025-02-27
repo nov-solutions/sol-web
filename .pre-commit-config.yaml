@@ -19,28 +19,33 @@ repos:
         types: [file]
         files: '\.(js|jsx|ts|tsx|json|yaml|md|css|html)$'
 
+  # filters requirements.txt to only include top level dependencies
+  - repo: local
+    hooks:
+      - id: pipdeptree-pinning
+        name: pipdeptree pinning
+        language: python
+        pass_filenames: false
+        additional_dependencies:
+          - pipdeptree
+          - pip
+        entry: bash
+        args:
+          - -c
+          - |
+            # Install dependencies
+            pip install -r django/requirements.txt
+            # exclude known ephemeral packages from the output
+            pipdeptree --warn silence |
+              grep -E '^\w+' |
+              grep -Ev '^(pipdeptree|pre-commit-placeholder-package|wheel)=' \
+              | tee requirements.txt
+
   # python linter and formatter
   - repo: https://github.com/psf/black
     rev: 24.3.0
     hooks:
       - id: black
-
-  # # dockerfile linter and formatter
-  # - repo: https://github.com/AleksaC/hadolint-py
-  #   rev: v2.12.1b3
-  #   hooks:
-  #     - id: hadolint
-  #       args:
-  #         [
-  #           --ignore,
-  #           DL3025,
-  #           --ignore,
-  #           DL3018,
-  #           --ignore,
-  #           DL4006,
-  #           --ignore,
-  #           SC2086,
-  #         ]
 
   # python dependency sorter
   - repo: https://github.com/pycqa/isort

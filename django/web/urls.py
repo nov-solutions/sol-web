@@ -1,6 +1,7 @@
 import structlog
 from core import views
 from decouple import config
+from spectacular import urls as spectacular_urls
 
 from django.contrib import admin
 from django.urls import include, path
