@@ -47,23 +47,6 @@ repos:
     hooks:
       - id: black
 
-  # # dockerfile linter and formatter
-  # - repo: https://github.com/AleksaC/hadolint-py
-  #   rev: v2.12.1b3
-  #   hooks:
-  #     - id: hadolint
-  #       args:
-  #         [
-  #           --ignore,
-  #           DL3025,
-  #           --ignore,
-  #           DL3018,
-  #           --ignore,
-  #           DL4006,
-  #           --ignore,
-  #           SC2086,
-  #         ]
-
   # python dependency sorter
   - repo: https://github.com/pycqa/isort
     rev: 5.13.2
