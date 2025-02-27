@@ -14,8 +14,10 @@ services:
     volumes:
       - ./nextjs:/app
       - /app/node_modules
-    env_file:
-      - .env
+    environment:
+      ENVIRONMENT: dev
+      NEXT_PUBLIC_SITE_NAME: sol
+      NEXT_PUBLIC_SITE_BASE_DOMAIN: http://localhost
     depends_on:
       - django
     logging:
@@ -39,18 +41,24 @@ services:
     image: newsolwebapp-django:dev
     expose:
       - 8000
-    env_file:
-      - .env
+    environment:
+      ENVIRONMENT: dev
+      SITE_DOMAIN: localhost
+      SECRET_KEY: sfsado947u234hhjsdlfqsadf
+      NEXT_PUBLIC_SITE_BASE_DOMAIN: http://localhost
+      DJANGO_SETTINGS_MODULE: settings
+      POSTGRES_DB: soldb
+      POSTGRES_USER: soluser
+      POSTGRES_PASSWORD: solsecretpass
+      REDIS_PASSWORD: solsecretpassredis
+      REDIS_HOST: redis
+      EMAIL_HOST:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      SENTRY_DSN: https://41ef1b7c8933eff59d081bbb720fb5b8@o4508878567440389.ingest.us.sentry.io/4508878589657088
     depends_on:
       - postgres
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - curl -f http://django:8000/api/healthcheck/ || exit 1
-      interval: 30s
-      retries: 5
-      timeout: 5s
-      start_period: 30s
+
     logging:
       options:
         max-size: "10m"
@@ -71,12 +79,6 @@ services:
       - 443:443
     volumes:
       - ./django/static:/app/static
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://nginx"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
     logging:
       options:
         max-size: "10m"
@@ -87,7 +89,7 @@ services:
     restart: always
     image: postgres:17-alpine
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      test: ["CMD-SHELL", "pg_isready -U soluser -d soldb"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -96,18 +98,19 @@ services:
       - 5432
     volumes:
       - pgdata:/var/lib/postgresql/data
-    env_file:
-      - .env
+    environment:
+      POSTGRES_DB: soldb
+      POSTGRES_USER: soluser
+      POSTGRES_PASSWORD: solsecretpass
     logging:
       options:
         max-size: "10m"
         max-file: "3"
+
   redis:
     container_name: newsolwebapp-redis
     restart: always
     image: redis:7-alpine
-    env_file:
-      - .env
     command: >
       --requirepass ${REDIS_PASSWORD}
     expose:
@@ -118,7 +121,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-
+    environment:
+      REDIS_PASSWORD: solsecretpassredis
+      REDIS_HOST: redis
   scheduler:
     container_name: newsolwebapp-scheduler
     image: newsolwebapp-django:dev
