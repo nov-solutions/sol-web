@@ -26,14 +26,14 @@ Data is interacted with through Django's ORM in the application layer.
 ### Application Layer
 
 **Python**, a general-purpose, object-oriented programming language, handles the backend logic of the web app.\
-**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.
-**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.\
+**Django**, a Python web framework, expresses this logic and serves as the interface between the presentation and data layers via the Model-View-Template design pattern.\
+**Celery**, a Python task queue, handles asynchronous tasks in the web app. Celery is configured to use Redis as its message broker.
 
 ### Presentation Layer
 
 **Typescript**, a superset of Javascript, the core programming language of the Internet, handles the frontend logic of the web app.\
 **React**, a Javascript and Typescript library, bundles this logic and provides a component-based framework for expressing it.\
-**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.
+**Next.js**, a React web framework, enables server-side rendering of React components and serves as the interface between the presentation and application layers via file system-based routing.\
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **shadcn/ui**, a component library for Tailwind CSS, provides several pre-built, customizable UI components.
 
