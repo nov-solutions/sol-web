@@ -7,7 +7,7 @@ class UserConfig(AppConfig):
 
     def ready(self):
         try:
-            pass
+            import mail  # noqa: F401
         except ImportError:
             raise ImportError(
                 "UserConfig.ready() failed to import mail."
