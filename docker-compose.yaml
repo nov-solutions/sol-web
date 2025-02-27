@@ -87,7 +87,7 @@ services:
   postgres:
     container_name: newsolwebapp-web-postgres
     restart: always
-    image: postgres:12.0-alpine
+    image: postgres:17-alpine
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U soluser -d soldb"]
       interval: 30s
@@ -106,3 +106,48 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  redis:
+    container_name: newsolwebapp-redis
+    restart: always
+    image: redis:7-alpine
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    environment:
+      REDIS_PASSWORD: solsecretpassredis
+      REDIS_HOST: redis
+  scheduler:
+    container_name: newsolwebapp-scheduler
+    image: newsolwebapp-django:dev
+    restart: always
+    command: celery -A celeryapp.celery:app beat -S redbeat.RedBeatScheduler --loglevel=info
+    depends_on:
+      django:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./django:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  worker:
+    container_name: newsolwebapp-worker
+    image: newsolwebapp-django:dev
+    restart: always
+    command: celery -A celeryapp.celery:app worker --loglevel=info
+    depends_on:
+      django:
+        condition: service_healthy
