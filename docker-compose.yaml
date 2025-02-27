@@ -58,14 +58,7 @@ services:
       SENTRY_DSN: https://41ef1b7c8933eff59d081bbb720fb5b8@o4508878567440389.ingest.us.sentry.io/4508878589657088
     depends_on:
       - postgres
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - curl -f http://django:8000/api/healthcheck/ || exit 1
-      interval: 30s
-      retries: 5
-      timeout: 5s
-      start_period: 30s
+
     logging:
       options:
         max-size: "10m"
@@ -86,12 +79,6 @@ services:
       - 443:443
     volumes:
       - ./django/static:/app/static
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://nginx"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
     logging:
       options:
         max-size: "10m"
