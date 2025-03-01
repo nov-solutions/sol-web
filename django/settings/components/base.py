@@ -92,6 +92,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ALLOWED_HOSTS = [
     "django",
+    "localhost",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
 ]
