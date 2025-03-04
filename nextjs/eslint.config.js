@@ -6,7 +6,7 @@ module.exports = tseslint.config(
   ...tseslint.configs.recommended,
   {
     ignores: [
-      "django/**",
+      "web/**",
       "nextjs/.next/**",
       "package.json",
       "**/*.config.js",

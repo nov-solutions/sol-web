@@ -34,7 +34,7 @@ repos:
           - -c
           - |
             # Install dependencies
-            pip install -r django/requirements.txt
+            pip install -r web/requirements.txt
             # exclude known ephemeral packages from the output
             pipdeptree --warn silence |
               grep -E '^\w+' |
