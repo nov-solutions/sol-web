@@ -34,7 +34,7 @@ jobs:
       - name: Install Python dependencies; create Django static directory
         run: |
           cd ./web
-          pip web -r requirements.txt
+          pip install -r requirements.txt
           python manage.py collectstatic --noinput
 
       - name: Build Docker containers
