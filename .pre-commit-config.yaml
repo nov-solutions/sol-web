@@ -34,7 +34,8 @@ repos:
           - -c
           - |
             # Install dependencies
-            pip install -r web/requirements.txt
+            cd web
+            pip install -r requirements.txt
             # exclude known ephemeral packages from the output
             pipdeptree --warn silence |
               grep -E '^\w+' |
@@ -43,7 +44,7 @@ repos:
 
   # python linter and formatter
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 25.1.0
     hooks:
       - id: black
 
