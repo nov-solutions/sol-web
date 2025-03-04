@@ -1,8 +1,6 @@
 import structlog
 from core import views
 from decouple import config
-from spectacular import urls as spectacular_urls
-
 from django.contrib import admin
 from django.urls import include, path
 from django.views.defaults import (
@@ -11,6 +9,7 @@ from django.views.defaults import (
     permission_denied,
     server_error,
 )
+from spectacular import urls as spectacular_urls
 
 logger = structlog.get_logger(__name__)
 

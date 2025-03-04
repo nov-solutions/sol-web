@@ -7,7 +7,7 @@ class SpectacularSwaggerConfig(AppConfig):
 
     def ready(self):
         try:
-            pass
+            import drf_spectacular  # noqa: F401
         except ImportError:
             raise ImportError(
                 "SpectacularSwaggerConfig.ready() failed to import drf_spectacular. "
