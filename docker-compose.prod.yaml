@@ -1,21 +1,17 @@
 services:
   nextjs:
-    env_file:
-      - .env
     build:
       target: prod
   django:
     env_file:
       - .env
+    environment:
+      EMAIL_HOST: smtp.sendgrid.net
+      EMAIL_HOST_USER: thatcher@grav.solutions
     build:
       target: prod
   nginx:
-    env_file:
-      - .env
     build:
       target: prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-  postgres:
-    env_file:
-      - .env
