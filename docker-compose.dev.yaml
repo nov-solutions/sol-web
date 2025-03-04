@@ -2,6 +2,9 @@ services:
   nextjs:
     environment:
       - WATCHPACK_POLLING=true
+    volumes:
+      - ./nextjs:/app
+      - /app/node_modules
   django:
     volumes:
       - ./web:/app
