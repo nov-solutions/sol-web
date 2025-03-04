@@ -7,13 +7,10 @@ django-extensions==3.2.3
 django-filter==24.3
 django-redis==5.4.0
 drf-spectacular==0.27.2
+pillow==11.1.0
 psycopg2-binary==2.9.10
 pyOpenSSL==24.3.0
 python-decouple==3.8
-PyYAML==6.0.2
-redis==5.2.1
-referencing==0.35.1
-rpds-py==0.22.3
 sentry-sdk==2.22.0
 service-identity==24.2.0
 structlog==24.4.0

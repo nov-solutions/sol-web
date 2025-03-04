@@ -1,10 +1,9 @@
 import os
 
-from mail.utils import send_verification_email
-
 from django.conf import settings
 from django.core import mail
 from django.test import TestCase, override_settings
+from mail.utils import send_verification_email
 
 DEFAULT_FROM_EMAIL = "Django Test <automated@django.test.net>"
 
