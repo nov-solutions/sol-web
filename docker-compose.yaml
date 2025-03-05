@@ -20,8 +20,8 @@ services:
         condition: service_healthy
     logging:
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
   django:
     container_name: newsolwebapp-web-django
     restart: always
@@ -56,8 +56,8 @@ services:
 
     logging:
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 
   nginx:
     container_name: newsolwebapp-web-nginx
@@ -74,15 +74,15 @@ services:
       - 443:443
     logging:
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 
   postgres:
     container_name: newsolwebapp-web-postgres
     restart: always
     image: postgres:17-alpine
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U soluser -d soldb"]
+      test: ['CMD-SHELL', 'pg_isready -U soluser -d soldb']
       interval: 30s
       timeout: 5s
       retries: 3
@@ -97,8 +97,8 @@ services:
       POSTGRES_PASSWORD: solsecretpass
     logging:
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 
   redis:
     container_name: newsolwebapp-redis
@@ -109,7 +109,7 @@ services:
     expose:
       - 6379
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "solsecretpassredis", "ping"]
+      test: ['CMD', 'redis-cli', '-a', 'solsecretpassredis', 'ping']
       interval: 10s
       timeout: 10s
       retries: 3
@@ -134,8 +134,8 @@ services:
       - .env
     logging:
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 
   worker:
     container_name: newsolwebapp-worker
