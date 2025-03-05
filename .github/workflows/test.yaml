@@ -49,24 +49,76 @@ jobs:
       - name: Wait for Django container to be healthy
         timeout-minutes: 2
         run: |
+          set -e
+
+          docker logs -f newsolwebapp-web-django &
+          LOG_PID=$!
+
+          trap "echo 'Stop'; kill $LOG_PID" EXIT
+
           end=$((SECONDS+300))
           while [ $SECONDS -lt $end ]; do
-            if [ $(docker inspect --format='{{.State.Health.Status}}' newsolwebapp-web-django) == "healthy" ]; then
-              echo "Django container is healthy."
+            STATUS="$(docker inspect --format='{{.State.Health.Status}}' newsolwebapp-web-django || echo 'none')"
+            if [ "$STATUS" = "healthy" ]; then
+              echo "Django container is healthy!"
+              echo "-------------------------------------------------"
+              docker ps -a
+              echo "-------------------------------------------------"
+              kill $LOG_PID
               exit 0
             fi
+
+            echo "-------------------------------------------------"
             echo "Waiting for Django container to be healthy..."
-            echo $(docker inspect --format='{{.State.Health.Status}}' newsolwebapp-web-django)
-            echo $(docker ps -a)
-            echo $(docker logs newsolwebapp-web-django)
+            echo "Status: $STATUS"
+            echo "-------------------------------------------------"
             sleep 5
           done
           echo "Timed out waiting for Django container to be healthy."
+          echo "-------------------------------------------------"
+          docker ps -a
+          echo "-------------------------------------------------"
+          kill $LOG_PID
           exit 1
 
       - name: Run Django tests
         run: |
           docker exec newsolwebapp-web-django python manage.py test
+
+      - name: Wait for Next.js container to be healthy
+        timeout-minutes: 2
+        run: |
+          set -e
+
+          docker logs -f newsolwebapp-web-nextjs &
+          LOG_PID=$!
+
+          trap "echo 'Stop'; kill $LOG_PID" EXIT
+
+          end=$((SECONDS+300))
+          while [ $SECONDS -lt $end ]; do
+            STATUS="$(docker inspect --format='{{.State.Health.Status}}' newsolwebapp-web-nextjs || echo 'none')"
+            if [ "$STATUS" = "healthy" ]; then
+              echo "Next.js container is healthy!"
+              echo "-------------------------------------------------"
+              docker ps -a
+              echo "-------------------------------------------------"
+              kill $LOG_PID
+              exit 0
+            fi
+
+            echo "-------------------------------------------------"
+            echo "Waiting for Next.js container to be healthy..."
+            echo "Status: $STATUS"
+            echo "-------------------------------------------------"
+            sleep 5
+          done
+          echo "Timed out waiting for Next.js container to be healthy."
+          echo "-------------------------------------------------"
+          docker ps -a
+          echo "-------------------------------------------------"
+          kill $LOG_PID
+          exit 1
 
       - name: Bring down Docker containers
         run: docker compose down
