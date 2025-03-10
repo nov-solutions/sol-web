@@ -108,7 +108,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 9. Generate a TLS certificate for the domain
 
-- Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance
-- Navigate to `/app`
-- Make the cert script executable by running `chmod +x cert.sh`
-- Execute `./cert.sh`
+   - Run `make ssh` in the root directory to open a terminal connection to the AWS EC2 instance
+   - Navigate to `/app`
+   - Make the cert script executable by running `chmod +x cert.sh`
+   - Execute `./cert.sh`
