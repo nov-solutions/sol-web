@@ -44,6 +44,7 @@ services:
       ENVIRONMENT: dev
       SITE_DOMAIN: localhost
       SECRET_KEY: sfsado947u234hhjsdlfqsadf
+      NEXT_PUBLIC_SITE_NAME: sol
       NEXT_PUBLIC_SITE_BASE_DOMAIN: http://localhost
       DJANGO_SETTINGS_MODULE: settings
       POSTGRES_DB: soldb
