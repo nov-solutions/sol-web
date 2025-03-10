@@ -4,8 +4,8 @@ from decouple import config
 logger = structlog.get_logger(__name__)
 
 EMAIL_PORT = 587
-# TODO
-DEFAULT_FROM_EMAIL = "Sol Web <noreply@sol.grav.solutions>"
+# TODO: set the default from email
+DEFAULT_FROM_EMAIL = "sol <noreply@grav.solutions>"
 
 if config("ENVIRONMENT", default=False) == "prod":
     # SendGrid

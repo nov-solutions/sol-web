@@ -1,4 +1,4 @@
-.PHONY: dev prod drop-db ssh init-mig mk-mig key-pair venv
+.PHONY: dev prod drop-db ssh init-mig mk-mig key-pair deploy-cdk venv
 
 dev:
 	mkdir -p ./web/static

@@ -47,7 +47,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 1. Install [Docker Engine](https://docs.docker.com/engine/install/) if you haven't already
 
-2. Replace the values in `.env` with appropriate values for the local build of the project
+2. Replace the values in the `environment` configurations in `docker-compose.yaml` with appropriate values for the development build of the project
 
 3. Run `python find_replace.py` in the root directory
 
@@ -69,7 +69,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 0. Run `make` to build the project's Docker images and start the project's Docker containers
 
-1. Access the web app via localhost
+1. Access the web app via "localhost"
 
 ### Production Deployment
 
@@ -95,7 +95,7 @@ Data is interacted with through Django's ORM in the application layer.
 
 9. Add a "CNAME" record with a "Host" value of `www` and "Value" value of the domain name to the domain's DNS settings
 
-10. Replace all instances of `SITE_DOMAIN` in `nginx/prod/site.conf` with the domain name of the project
+10. Replace all instances of `sol.grav.solutions` in `nginx/prod/site.conf` with the domain name of the project
 
 11. Run `make ssh` to open a terminal connection to the AWS EC2 instance. Execute `cert.sh` in `app/` to generate a TLS certificate for the domain
 
