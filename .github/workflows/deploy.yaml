@@ -53,7 +53,7 @@ jobs:
 
       - name: Clean up Docker resources
         run: |
-          ssh -i $(pwd)/app.pem ubuntu@52.11.14.62 'cd app &&
+          ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app &&
             echo "Before cleanup stats:" &&
             docker system df &&
             docker system prune -f &&
