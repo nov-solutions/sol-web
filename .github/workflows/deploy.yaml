@@ -51,6 +51,16 @@ jobs:
         run: |
           ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
+      - name: Clean up Docker resources
+        run: |
+          ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app &&
+            echo "Before cleanup stats:" &&
+            docker system df &&
+            docker system prune -f &&
+            docker builder prune -f &&
+            echo "After cleanup stats:" &&
+            docker system df'
+
       - name: Remove SSH key
         run: |
           rm app.pem
