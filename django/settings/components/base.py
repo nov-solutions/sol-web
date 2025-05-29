@@ -99,11 +99,12 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
-    "https://sol.grav.solutions",
+    SITE_BASE_DOMAIN,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://sol.grav.solutions",
+    "http://localhost",
+    SITE_BASE_DOMAIN,
 ]
 
 ROOT_URLCONF = "web.urls"
