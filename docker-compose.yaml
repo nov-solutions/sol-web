@@ -11,40 +11,34 @@ services:
       target: dev
     expose:
       - 3000
-    volumes:
-      - ./nextjs:/app
-      - /app/node_modules
     environment:
       ENVIRONMENT: dev
       NEXT_PUBLIC_SITE_NAME: sol
       NEXT_PUBLIC_SITE_BASE_DOMAIN: http://localhost
     depends_on:
-      - django
+      django:
+        condition: service_healthy
     logging:
       options:
         max-size: "10m"
         max-file: "3"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://nextjs:3000"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
-
   django:
     container_name: newsolwebapp-web-django
     restart: always
     build:
-      context: ./django
+      context: ./web
       dockerfile: Dockerfile.django
       target: dev
     image: newsolwebapp-django:dev
     expose:
       - 8000
+    env_file:
+      - .env
     environment:
       ENVIRONMENT: dev
       SITE_DOMAIN: localhost
       SECRET_KEY: sfsado947u234hhjsdlfqsadf
+      NEXT_PUBLIC_SITE_NAME: sol
       NEXT_PUBLIC_SITE_BASE_DOMAIN: http://localhost
       DJANGO_SETTINGS_MODULE: settings
       POSTGRES_DB: soldb
@@ -52,12 +46,13 @@ services:
       POSTGRES_PASSWORD: solsecretpass
       REDIS_PASSWORD: solsecretpassredis
       REDIS_HOST: redis
-      EMAIL_HOST:
-      EMAIL_HOST_USER:
-      EMAIL_HOST_PASSWORD:
+      EMAIL_HOST: smtp.sendgrid.net
+      EMAIL_HOST_USER: thatcher@grav.solutions
+      PUBLIC_API: False
       SENTRY_DSN: https://41ef1b7c8933eff59d081bbb720fb5b8@o4508878567440389.ingest.us.sentry.io/4508878589657088
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
     logging:
       options:
@@ -77,8 +72,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./django/static:/app/static
     logging:
       options:
         max-size: "10m"
@@ -93,7 +86,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 20s
     expose:
       - 5432
     volumes:
@@ -112,11 +105,11 @@ services:
     restart: always
     image: redis:7-alpine
     command: >
-      --requirepass ${REDIS_PASSWORD}
+      --requirepass solsecretpassredis
     expose:
       - 6379
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      test: ["CMD", "redis-cli", "-a", "solsecretpassredis", "ping"]
       interval: 10s
       timeout: 10s
       retries: 3
@@ -134,10 +127,11 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    environment:
+      REDIS_PASSWORD: solsecretpassredis
+      REDIS_HOST: redis
     env_file:
       - .env
-    volumes:
-      - ./django:/app
     logging:
       options:
         max-size: "10m"
@@ -151,3 +145,6 @@ services:
     depends_on:
       django:
         condition: service_healthy
+    environment:
+      REDIS_PASSWORD: solsecretpassredis
+      REDIS_HOST: redis
