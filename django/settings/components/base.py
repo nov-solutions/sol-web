@@ -97,15 +97,15 @@ ALLOWED_HOSTS = [
     "." + SITE_DOMAIN,
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    SITE_BASE_DOMAIN,
-]
-
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
     SITE_BASE_DOMAIN,
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    SITE_BASE_DOMAIN,
+]
 
 ROOT_URLCONF = "web.urls"
 
