@@ -10,7 +10,7 @@ Sol is an all-in-one template that enables developers to create robust, reliable
 
 0. Run `make dev` to build the project's Docker images and start the project's Docker containers
 
-1. Access the web app `http://localhost`
+1. Access the web app via `localhost`
 
 ## Architecture
 
@@ -45,6 +45,6 @@ Data is interacted with through Django's ORM in the application layer.
 **Tailwind CSS**, a utility-first, class-based CSS framework, simplifies the process of styling markup in the presentation layer.\
 **shadcn/ui**, a component library for Tailwind CSS, provides several pre-built, customizable UI components.
 
-### Load Balancer
+### Web Server
 
 **Nginx**, an open-source web server, acts as a reverse proxy that routes both external and internal traffic to the appropriate layer of the web app.

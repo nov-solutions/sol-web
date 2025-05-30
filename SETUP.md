@@ -20,7 +20,7 @@
 
 9. Run `pre-commit install` in the root directory
 
-## Infra Setup
+## One-Time Infrastructure Setup
 
 0. Configure AWS account values
 
