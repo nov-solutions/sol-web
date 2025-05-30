@@ -48,9 +48,13 @@ INSTALLED_APPS = [
     "celeryapp.apps.CeleryAppConfig",
     # e-mail
     "mail.apps.MailConfig",
+    # metrics and monitoring
+    "metrics.apps.MetricsConfig",
 ]
 
 MIDDLEWARE = [
+    # Metrics middleware should be early to track all requests
+    "metrics.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -59,6 +63,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    # Metrics middleware should be late to capture response metrics
+    "metrics.middleware.PrometheusAfterMiddleware",
+    # Optional: Database metrics middleware
+    "metrics.middleware.DatabaseMetricsMiddleware",
 ]
 
 DATABASES = {
