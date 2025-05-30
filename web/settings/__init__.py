@@ -6,6 +6,7 @@ import settings.components.mail  # noqa
 import settings.components.redis  # noqa
 import settings.components.sentry  # noqa
 import settings.components.spectacular  # noqa
+import settings.components.stripe  # noqa
 import settings.components.user  # noqa
 from settings.utils import flatten_module_attributes
 

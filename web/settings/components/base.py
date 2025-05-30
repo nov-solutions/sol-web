@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "celeryapp.apps.CeleryAppConfig",
     # e-mail
     "mail.apps.MailConfig",
+    # stripe payments
+    "stripe.apps.StripeConfig",
 ]
 
 MIDDLEWARE = [
