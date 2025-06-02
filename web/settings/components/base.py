@@ -26,6 +26,7 @@ ASGI_APPLICATION = "web.asgi.application"
 
 INSTALLED_APPS = [
     "daphne",
+    "django_prometheus",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -53,8 +54,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # Metrics middleware should be early to track all requests
-    "metrics.middleware.PrometheusBeforeMiddleware",
+    # django_prometheus middleware
+    "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -63,10 +64,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    # Metrics middleware should be late to capture response metrics
-    "metrics.middleware.PrometheusAfterMiddleware",
-    # Optional: Database metrics middleware
-    "metrics.middleware.DatabaseMetricsMiddleware",
+    # django_prometheus middleware
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 
 DATABASES = {

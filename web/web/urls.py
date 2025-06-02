@@ -17,7 +17,7 @@ urlpatterns = [
     path("api/admin/", admin.site.urls),
     path("api/healthcheck/", views.healthcheck),
     # Metrics endpoints
-    path("metrics/", include("metrics.urls")),
+    path("api/metrics/", include("metrics.urls")),
 ]
 
 if config("ENVIRONMENT") == "prod" and not config(
