@@ -1,9 +1,11 @@
 import importlib
 import inspect
-import logging
 import sys
 from types import ModuleType
 from typing import Any, Dict, List, Optional, Tuple, Union
+import structlog
+
+logger = structlog.get_logger(__name__)
 
 
 def _extract_attributes(
