@@ -1,7 +1,8 @@
-from django.urls import include, path
+from django.urls import path
+from django_prometheus import exports
 
 app_name = "metrics"
 
 urlpatterns = [
-    path("metrics/", include("django_prometheus.urls")),
+    path("", exports.ExportToDjangoView, name="prometheus-django-metrics"),
 ]
