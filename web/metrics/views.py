@@ -6,7 +6,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from prometheus_client import CONTENT_TYPE_LATEST, REGISTRY, generate_latest
 
-from .collectors import collect_db_metrics, collect_system_metrics
+from .collectors import collect_db_metrics
 
 
 def is_metrics_allowed(request):
@@ -44,7 +44,6 @@ def metrics_view(request):
         return HttpResponse("Unauthorized", status=401)
 
     # Collect latest metrics
-    collect_system_metrics()
     collect_db_metrics()
 
     # Generate metrics output

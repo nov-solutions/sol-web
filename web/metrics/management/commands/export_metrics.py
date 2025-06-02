@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from metrics.collectors import collect_db_metrics, collect_system_metrics
+from metrics.collectors import collect_db_metrics
 from prometheus_client import push_to_gateway
 
 
@@ -33,7 +33,6 @@ class Command(BaseCommand):
         self.stdout.write("Collecting metrics...")
 
         # Collect current metrics
-        collect_system_metrics()
         collect_db_metrics()
 
         if options["print"]:

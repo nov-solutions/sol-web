@@ -2,11 +2,8 @@
 Prometheus metric collectors for Django application monitoring.
 """
 
-import gc
-import os
 import platform
 
-import psutil
 from django.conf import settings
 from django.db import connection
 from prometheus_client import Counter, Gauge, Histogram, Info
@@ -175,32 +172,6 @@ custom_metric_gauge = Gauge(
 )
 
 
-def collect_system_metrics():
-    """Collect system and process metrics."""
-    try:
-        process = psutil.Process(os.getpid())
-
-        # Memory metrics
-        memory_info = process.memory_info()
-        process_memory_bytes.set(memory_info.rss)
-
-        # CPU metrics
-        process_cpu_percent.set(process.cpu_percent(interval=0.1))
-
-        # Thread metrics
-        process_threads_total.set(process.num_threads())
-
-        # File descriptor metrics
-        process_open_files_total.set(len(process.open_files()))
-
-        # Garbage collection metrics
-        for i, count in enumerate(gc.get_count()):
-            python_gc_collections_total.labels(generation=str(i)).inc(count)
-
-    except Exception:
-        pass  # Fail silently to not break the app
-
-
 def collect_db_metrics():
     """Collect database metrics."""
     try:
@@ -261,5 +232,4 @@ def track_custom_metric(metric_type, action, value=1, gauge_value=None):
 # Initialize system metrics collection
 def initialize_metrics():
     """Initialize metrics collection."""
-    collect_system_metrics()
     collect_db_metrics()

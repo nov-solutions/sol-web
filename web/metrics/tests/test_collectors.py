@@ -3,7 +3,6 @@ from unittest.mock import Mock, patch
 from django.test import TestCase
 from metrics.collectors import (
     collect_db_metrics,
-    collect_system_metrics,
     increment_request_metric,
     observe_request_duration,
     track_cache_operation,
@@ -13,29 +12,6 @@ from metrics.collectors import (
 
 
 class CollectorsTestCase(TestCase):
-    @patch("metrics.collectors.psutil.Process")
-    def test_collect_system_metrics(self, mock_process_class):
-        """Test system metrics collection."""
-        mock_process = Mock()
-        mock_process.memory_info.return_value = Mock(rss=1024 * 1024 * 100)  # 100MB
-        mock_process.cpu_percent.return_value = 25.5
-        mock_process.num_threads.return_value = 10
-        mock_process.open_files.return_value = [Mock()] * 5
-        mock_process_class.return_value = mock_process
-
-        with patch("metrics.collectors.process_memory_bytes") as mock_memory:
-            with patch("metrics.collectors.process_cpu_percent") as mock_cpu:
-                with patch("metrics.collectors.process_threads_total") as mock_threads:
-                    with patch(
-                        "metrics.collectors.process_open_files_total"
-                    ) as mock_files:
-                        collect_system_metrics()
-
-                        mock_memory.set.assert_called_with(1024 * 1024 * 100)
-                        mock_cpu.set.assert_called_with(25.5)
-                        mock_threads.set.assert_called_with(10)
-                        mock_files.set.assert_called_with(5)
-
     @patch("django.db.connection")
     def test_collect_db_metrics(self, mock_connection):
         """Test database metrics collection."""
