@@ -1,12 +1,12 @@
 from django.urls import path
 
 from .views import (
+    cancel_subscription,
     create_checkout_session,
     create_portal_session,
-    subscription_status,
-    cancel_subscription,
     reactivate_subscription,
     stripe_webhook,
+    subscription_status,
 )
 
 app_name = "stripe"

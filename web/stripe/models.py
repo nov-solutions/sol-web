@@ -21,16 +21,12 @@ class StripeCustomer(models.Model):
     @property
     def has_active_subscription(self):
         """Check if customer has any active subscription"""
-        return self.subscriptions.filter(
-            status__in=["active", "trialing"]
-        ).exists()
+        return self.subscriptions.filter(status__in=["active", "trialing"]).exists()
 
     @property
     def active_subscription(self):
         """Get the current active subscription (if any)"""
-        return self.subscriptions.filter(
-            status__in=["active", "trialing"]
-        ).first()
+        return self.subscriptions.filter(status__in=["active", "trialing"]).first()
 
 
 class Subscription(models.Model):
@@ -43,9 +39,7 @@ class Subscription(models.Model):
     ]
 
     customer = models.ForeignKey(
-        StripeCustomer,
-        on_delete=models.CASCADE,
-        related_name="subscriptions"
+        StripeCustomer, on_delete=models.CASCADE, related_name="subscriptions"
     )
     stripe_subscription_id = models.CharField(
         max_length=255, unique=True, db_index=True
@@ -73,7 +67,11 @@ class Subscription(models.Model):
     @property
     def is_trialing(self):
         """Check if subscription is in trial period"""
-        return self.status == "trialing" and self.trial_end and self.trial_end > timezone.now()
+        return (
+            self.status == "trialing"
+            and self.trial_end
+            and self.trial_end > timezone.now()
+        )
 
     @property
     def days_until_period_end(self):

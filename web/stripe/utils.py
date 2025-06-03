@@ -1,12 +1,12 @@
 from datetime import datetime
 
 import stripe
+import structlog
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from .models import StripeCustomer, Subscription
-import structlog
 
 logger = structlog.get_logger(__name__)
 
