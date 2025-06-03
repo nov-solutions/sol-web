@@ -19,29 +19,6 @@ repos:
         types: [file]
         files: '\.(js|jsx|ts|tsx|json|yaml|md|css|html)$'
 
-  # filters requirements.txt to only include top level dependencies
-  - repo: local
-    hooks:
-      - id: pipdeptree-pinning
-        name: pipdeptree pinning
-        language: python
-        pass_filenames: false
-        additional_dependencies:
-          - pipdeptree
-          - pip
-        entry: bash
-        args:
-          - -c
-          - |
-            # Install dependencies
-            cd web
-            pip install -r requirements.txt
-            # exclude known ephemeral packages from the output
-            pipdeptree --warn silence |
-              grep -E '^\w+' |
-              grep -Ev '^(pipdeptree|pre-commit-placeholder-package|wheel)=' \
-              | tee requirements.txt
-
   # python linter and formatter
   - repo: https://github.com/psf/black
     rev: 25.1.0
