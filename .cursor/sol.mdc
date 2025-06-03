@@ -40,7 +40,7 @@ You are an expert full-stack engineer and you have been tasked with building a n
 ├── cdk/             # aws deployment files\
 -│---├── cdk/                   # contains all cdk stacks\
 -│---├── cdk.json               # cdk configuration file\
--│---├── provision_app.py       # cdk script to provision the app\
+-│---├── app.py                 # cdk script to provision the app\
 -│---└── requirements.txt       # python dependencies\
 ├── nextjs/          # frontend code\
 -│---├── public/                # static nextjs files (images, fonts, etc.)\

@@ -26,6 +26,7 @@ ASGI_APPLICATION = "web.asgi.application"
 
 INSTALLED_APPS = [
     "daphne",
+    "django_prometheus",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -50,9 +51,13 @@ INSTALLED_APPS = [
     "mail.apps.MailConfig",
     # stripe payments
     "stripe.apps.StripeConfig",
+    # metrics and monitoring
+    "metrics.apps.MetricsConfig",
 ]
 
 MIDDLEWARE = [
+    # django_prometheus middleware
+    "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -61,6 +66,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    # django_prometheus middleware
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 
 DATABASES = {
@@ -95,19 +102,20 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ALLOWED_HOSTS = [
     "django",
+    "localhost",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    SITE_BASE_DOMAIN,
-]
-
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
     SITE_BASE_DOMAIN,
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    SITE_BASE_DOMAIN,
+]
 
 ROOT_URLCONF = "web.urls"
 
