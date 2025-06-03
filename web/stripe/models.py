@@ -12,9 +12,6 @@ class StripeCustomer(models.Model):
     stripe_customer_id = models.CharField(max_length=255, unique=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        db_table = "stripe_customers"
-
     def __str__(self):
         return f"{self.user.email} - {self.stripe_customer_id}"
 
@@ -53,7 +50,6 @@ class Subscription(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "stripe_subscriptions"
         ordering = ["-created_at"]
 
     def __str__(self):
