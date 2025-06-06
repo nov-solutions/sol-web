@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "sol-web.labels" . | nindent 4 }}
 data:
-  default.conf: |
+  site.conf: |
     upstream django {
         server {{ include "sol-web.fullname" . }}-django:{{ .Values.django.service.port }};
     }
