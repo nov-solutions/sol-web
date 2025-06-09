@@ -74,7 +74,7 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": "postgres",
+        "HOST": os.environ.get("POSTGRES_HOST", "postgres"),
         "PORT": 5432,
     }
 }
@@ -103,6 +103,9 @@ ALLOWED_HOSTS = [
     "localhost",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
+    "sol-web-django",  # k8 service name
+    "*.sol-web.svc.cluster.local",  # k8 internal DNS
+    "*",  # catch all
 ]
 
 CORS_ALLOWED_ORIGINS = [
