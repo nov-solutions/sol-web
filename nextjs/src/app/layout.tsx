@@ -10,7 +10,6 @@ import {
 } from "@/constants";
 
 import ProgressBarProvider from "@/providers/progressbarprovider";
-import CSRFProvider from "@/providers/CSRFProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -95,9 +94,7 @@ export default function RootLayout({
       </head>
       {/* TODO: update the background color with the project's background color */}
       <body className="min-h-[100dvh] bg-black">
-        <ProgressBarProvider>
-          <CSRFProvider>{children}</CSRFProvider>
-        </ProgressBarProvider>
+        <ProgressBarProvider>{children}</ProgressBarProvider>
       </body>
     </html>
   );
