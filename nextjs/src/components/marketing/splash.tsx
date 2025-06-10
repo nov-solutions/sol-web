@@ -10,7 +10,7 @@ export default function Splash() {
             alt={SITE_NAME + " logo"}
             className="w-1/6 lg:w-1/12"
           />
-          <h1 className="!mt-2 text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">
+          <h1 className="mt-2! text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">
             TODO
           </h1>
           <h2 className="font-medium lg:text-lg text-gray">TODO</h2>

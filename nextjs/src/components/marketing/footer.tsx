@@ -27,7 +27,7 @@ export default function Footer() {
                 className="h-5 my-auto"
               />
             </Link>
-            <p className="!mt-2 font-medium">TODO</p>
+            <p className="mt-2! font-medium">TODO</p>
             <div className="flex items-center space-x-2">
               {socials.map((social) => (
                 <a

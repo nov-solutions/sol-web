@@ -10,7 +10,7 @@ export default function ErrorPage({
   statusDescription: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] px-4 lg:px-0 bg-black">
+    <div className="flex flex-col items-center justify-center h-screen px-4 lg:px-0 bg-black">
       <div className="flex flex-col items-center space-y-4 lg:w-1/5">
         <Image
           className="w-10 aspect-square"
@@ -19,7 +19,7 @@ export default function ErrorPage({
           width={100}
           height={100}
         />
-        <div className="!mt-2 flex items-center space-x-2 divide-x divide-gray-light divide-opacity-25">
+        <div className="mt-2! flex items-center space-x-2 divide-x divide-gray-light divide-opacity-25">
           <h1 className="font-bold leading-none tracking-tight text-primary">
             {statusCode}
           </h1>

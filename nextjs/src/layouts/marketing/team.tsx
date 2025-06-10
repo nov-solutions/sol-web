@@ -9,7 +9,7 @@ export default function Team() {
   ];
 
   return (
-    <div className="flex-grow px-4 py-12 bg-white lg:px-0">
+    <div className="grow px-4 py-12 bg-white lg:px-0">
       <div className="grid items-stretch gap-4 mx-auto lg:grid-cols-4 lg:w-2/3">
         {team.map((teammate, i) => (
           <div

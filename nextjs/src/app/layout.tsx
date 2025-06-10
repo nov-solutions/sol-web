@@ -93,7 +93,7 @@ export default function RootLayout({
         />
       </head>
       {/* TODO: update the background color with the project's background color */}
-      <body className="min-h-[100dvh] bg-black">
+      <body className="min-h-dvh bg-black">
         <ProgressBarProvider>{children}</ProgressBarProvider>
       </body>
     </html>

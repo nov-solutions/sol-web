@@ -2,7 +2,7 @@ import { SITE_NAME } from "@/constants";
 
 export default function FullHeightSplash() {
   return (
-    <div className="flex justify-center h-[100dvh] px-4 lg:px-0">
+    <div className="flex justify-center h-dvh px-4 lg:px-0">
       <div className="grid items-center gap-16 mx-auto lg:grid-cols-2 lg:w-2/3">
         <div className="flex flex-col items-center space-y-4 text-center lg:items-start lg:text-left">
           <img
@@ -10,7 +10,7 @@ export default function FullHeightSplash() {
             alt={SITE_NAME + " logo"}
             className="w-1/6 lg:w-1/12"
           />
-          <h1 className="!mt-2 text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">
+          <h1 className="mt-2! text-4xl lg:text-6xl font-bold leading-none tracking-tighter text-primary">
             TODO
           </h1>
           <h2 className="font-medium lg:text-lg text-gray">TODO</h2>
