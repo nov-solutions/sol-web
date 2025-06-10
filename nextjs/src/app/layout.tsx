@@ -1,15 +1,12 @@
-import { Metadata, Viewport } from "next";
-
-import "./globals.css";
-
 import {
+  SITE_BASE_DOMAIN,
+  SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TAGLINE,
-  SITE_DESCRIPTION,
-  SITE_BASE_DOMAIN,
 } from "@/constants";
-
-import ProgressBarProvider from "@/providers/progressbarprovider";
+import { Metadata, Viewport } from "next";
+import "./globals.css";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -70,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme={SITE_NAME} className="antialiased">
+    <html lang="en" data-theme="dark" className="antialiased">
       <head>
         <script
           type="application/ld+json"
@@ -92,9 +89,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      {/* TODO: update the background color with the project's background color */}
-      <body className="min-h-dvh bg-black">
-        <ProgressBarProvider>{children}</ProgressBarProvider>
+      <body className="bg-background min-h-dvh">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

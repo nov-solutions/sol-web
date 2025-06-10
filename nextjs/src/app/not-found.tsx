@@ -1,6 +1,6 @@
-import { Metadata, Viewport } from "next";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_BASE_DOMAIN } from "@/constants";
+import { SITE_BASE_DOMAIN, SITE_DESCRIPTION, SITE_NAME } from "@/constants";
 import ErrorPage from "@/layouts/errorpage";
+import { Metadata } from "next";
 
 const statusCode = "404";
 const statusDescription = "We can't find that page!";
@@ -25,10 +25,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_BASE_DOMAIN,
   },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#000000",
 };
 
 export default function NotFound() {

@@ -1,6 +1,7 @@
-import Link from "next/link";
-
 import { PAGES, SITE_NAME } from "@/constants";
+
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const socials = [
@@ -21,23 +22,25 @@ export default function Footer() {
         <div className="flex flex-col w-full space-y-8 text-sm lg:space-y-0 lg:justify-between lg:flex-row">
           <div className="flex flex-col space-y-4">
             <Link href="/">
-              <img
+              <Image
                 src="/assets/img/logos/wordmark.png"
                 alt={SITE_NAME + " wordmark"}
                 className="h-5 my-auto"
+                width={60}
+                height={60}
               />
             </Link>
-            <p className="mt-2! font-medium">TODO</p>
+            <p>TODO</p>
             <div className="flex items-center space-x-2">
               {socials.map((social) => (
-                <a
+                <Link
                   key={social.name}
                   href={social.loc}
                   target="_blank"
-                  className="lg:text-opacity-75 hover:text-opacity-100 text-gray"
+                  className="text-muted-foreground lg:text-opacity-75 hover:text-opacity-100"
                 >
-                  <i className={"text-lg " + social.icon}></i>
-                </a>
+                  <i className={`text-lg ${social.icon}`}></i>
+                </Link>
               ))}
             </div>
           </div>
@@ -53,7 +56,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="self-end text-xs text-gray">
+        <div className="self-end text-xs text-muted-foreground">
           <p>
             © {new Date().getFullYear()} {SITE_NAME}
           </p>
