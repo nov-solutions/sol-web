@@ -1,7 +1,5 @@
 import { Metadata, Viewport } from "next";
-
 import { SITE_NAME, SITE_DESCRIPTION, SITE_BASE_DOMAIN } from "@/constants";
-
 import ErrorPage from "@/layouts/errorpage";
 
 const statusCode = "404";
