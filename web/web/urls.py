@@ -16,6 +16,8 @@ logger = structlog.get_logger(__name__)
 urlpatterns = [
     path("api/admin/", admin.site.urls),
     path("api/healthcheck/", views.healthcheck),
+    path("api/metrics/", include("metrics.urls")),
+    path("api/stripe/", include("stripe.urls")),
 ]
 
 if config("ENVIRONMENT") == "prod" and not config(
