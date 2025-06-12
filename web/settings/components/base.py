@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from decouple import config
 
@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
 POSTGRES_USER = config("POSTGRES_USER")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -20,7 +20,7 @@ elif ENVIRONMENT == "prod":
     DEBUG = False
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static"
 
 ASGI_APPLICATION = "web.asgi.application"
 
