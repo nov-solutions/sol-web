@@ -3,7 +3,9 @@ name: Deploy
 on:
   push:
     branches:
+      # TODO: migrate branching system to release branches
       - master
+      - develop
 
 jobs:
   deploy:
@@ -17,50 +19,92 @@ jobs:
         with:
           node-version: "lts/hydrogen"
 
+      - name: Set environment variables
+        id: set-env
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
+            echo "SERVER_IP=54.149.89.23" >> $GITHUB_ENV
+            echo "SSH_KEY=${{ secrets.SSH_PRIVATE_KEY }}" >> $GITHUB_ENV
+          else
+            echo "SERVER_IP=54.213.48.72" >> $GITHUB_ENV
+            echo "SSH_KEY=${{ secrets.DEV_SSH_PRIVATE_KEY }}" >> $GITHUB_ENV
+          fi
+
       - name: Create .env file
         run: |
           echo "ENVIRONMENT=prod" >> .env
-          echo "NEXT_PUBLIC_SITE_NAME=sol" >> .env
-          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://sol.grav.solutions" >> .env
-          echo "SITE_DOMAIN=sol.grav.solutions" >> .env
+          echo "NEXT_PUBLIC_SITE_NAME=raiquun" >> .env
+          echo "NEXT_PUBLIC_SITE_BASE_DOMAIN=https://raiquun.com" >> .env
+          echo "SITE_DOMAIN=raiquun.com" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
-          echo "DJANGO_SETTINGS_MODULE=settings" >> .env
-          echo "POSTGRES_DB=soldb" >> .env
-          echo "POSTGRES_USER=soluser" >> .env
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}" >> .env
-          echo "REDIS_HOST=redis" >> .env
+          echo "HEROKU_API_CLIENT_ID=${{ secrets.HEROKU_API_CLIENT_ID }}" >> .env
+          echo "HEROKU_API_CLIENT_SECRET=${{ secrets.HEROKU_API_CLIENT_SECRET }}" >> .env
+          echo "TEST_USER_ID=${{ secrets.TEST_USER_ID }}" >> .env
+          echo "TEST_REFRESH_TOKEN=${{ secrets.TEST_REFRESH_TOKEN }}" >> .env
+          echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" >> .env
+          echo "EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}" >> .env
           echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}" >> .env
 
-      - name: Install Python dependencies; create Django static directory
+      - name: Create Django static directory
         run: |
-          cd ./web
+          cd ./django
           pip install -r requirements.txt
           python manage.py collectstatic --noinput
 
       - name: Expose SSH key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > app.pem
-          chmod 400 app.pem
+          echo "${{ env.SSH_KEY }}" > deploy-key.pem
+          chmod 400 deploy-key.pem
 
       - name: Sync files with server
         run: |
-          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/app.pem -o StrictHostKeyChecking=no" . ubuntu@IP_ADDRESS:app
+          rsync -r --delete --progress --exclude-from=exclude.txt -e "ssh -i $(pwd)/deploy-key.pem -o StrictHostKeyChecking=no" . ubuntu@${{ env.SERVER_IP }}:app
 
       - name: SSH into server; rebuild Docker containers
         run: |
-          ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
-
-      - name: Clean up Docker resources
-        run: |
-          ssh -i $(pwd)/app.pem ubuntu@IP_ADDRESS 'cd app &&
-            echo "Before cleanup stats:" &&
-            docker system df &&
-            docker system prune -f &&
-            docker builder prune -f &&
-            echo "After cleanup stats:" &&
-            docker system df'
+          ssh -i $(pwd)/deploy-key.pem ubuntu@${{ env.SERVER_IP }} 'cd app && docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up --build -d'
 
       - name: Remove SSH key
         run: |
-          rm app.pem
+          rm -f deploy-key.pem
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
+
+      - name: Set Docker image tag
+        id: set-tag
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
+            echo "TAG=latest" >> $GITHUB_ENV
+          else
+            echo "TAG=dev" >> $GITHUB_ENV
+          fi
+
+      - name: Build and push Next.js Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./nextjs
+          push: true
+          tags: ghcr.io/${{ github.repository }}/nextjs:${{ env.TAG }}
+
+      - name: Build and push Nginx Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/nginx:${{ env.TAG }}
+
+      - name: Build and push Django Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./django
+          push: true
+          tags: ghcr.io/${{ github.repository }}/django:${{ env.TAG }}
