@@ -1,0 +1,24 @@
+# Kubeconform configuration
+# This file configures kubeconform for validating Kubernetes manifests
+
+# Kubernetes schema location
+schema-location:
+  - "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{ .NormalizedKubernetesVersion }}/{{ .ResourceKind }}{{ .KindSuffix }}.json"
+  - "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{ .Group }}/{{ .ResourceKind }}_{{ .ResourceAPIVersion }}.json"
+
+# Skip validation for these resource kinds
+skip:
+  - apiVersion: v1
+    kind: List
+
+# Exit with non-zero code on errors
+exit-on-error: true
+
+# Reject manifests with unknown fields
+strict: true
+
+# Verbose output
+verbose: true
+
+# Summary of validation results
+summary: true

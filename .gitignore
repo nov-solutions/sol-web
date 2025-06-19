@@ -5,6 +5,7 @@
 *.pem
 *.key
 *.crt
+*.tgz
 
 # django
 *.venv

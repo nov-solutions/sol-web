@@ -4,8 +4,8 @@ on:
   push:
     branches:
       # TODO: migrate branching system to release branches
-      - master
       - develop
+      - main # TODO: change to master
 
 jobs:
   deploy:

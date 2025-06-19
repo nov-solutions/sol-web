@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from decouple import config
 
@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY")
 POSTGRES_DB = config("POSTGRES_DB")
 POSTGRES_USER = config("POSTGRES_USER")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD")
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -20,7 +20,7 @@ elif ENVIRONMENT == "prod":
     DEBUG = False
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static"
 
 ASGI_APPLICATION = "web.asgi.application"
 
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "celeryapp.apps.CeleryAppConfig",
     # e-mail
     "mail.apps.MailConfig",
+    # stripe payments
+    "stripe.apps.StripeConfig",
     # metrics and monitoring
     "metrics.apps.MetricsConfig",
 ]
@@ -74,7 +76,7 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": "postgres",
+        "HOST": os.environ.get("POSTGRES_HOST", "postgres"),
         "PORT": 5432,
     }
 }
@@ -103,6 +105,9 @@ ALLOWED_HOSTS = [
     "localhost",
     SITE_DOMAIN,
     "." + SITE_DOMAIN,
+    "sol-web-django",  # k8 service name
+    "*.sol-web.svc.cluster.local",  # k8 internal DNS
+    "*",  # catch all
 ]
 
 CORS_ALLOWED_ORIGINS = [
