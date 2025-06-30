@@ -113,11 +113,13 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     SITE_BASE_DOMAIN,
+    "." + SITE_BASE_DOMAIN,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     SITE_BASE_DOMAIN,
+    "." + SITE_BASE_DOMAIN,
 ]
 
 ROOT_URLCONF = "web.urls"
