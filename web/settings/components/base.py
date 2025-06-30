@@ -76,7 +76,7 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": os.environ.get("POSTGRES_HOST", "postgres"),
+        "HOST": config("POSTGRES_HOST", default="postgres"),
         "PORT": 5432,
     }
 }
