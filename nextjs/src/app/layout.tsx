@@ -5,6 +5,7 @@ import {
   SITE_TAGLINE,
 } from "@/constants";
 import { Metadata, Viewport } from "next";
+import { inter, robotoMono, spectral } from "./fonts";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -89,7 +90,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-background min-h-dvh">
+      <body
+        className={`w-screen bg-background font-sans min-h-screen ${inter.variable} ${robotoMono.variable} ${spectral.variable}`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
