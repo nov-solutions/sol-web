@@ -33,7 +33,7 @@ def find_replace():
                 ".ico",
                 ".gif",
                 "node_modules/",
-                "next/",
+                ".next/",
                 ".DS_Store",
                 ".env",
                 ".webp",
