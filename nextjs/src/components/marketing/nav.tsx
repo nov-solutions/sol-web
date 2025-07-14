@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 
-import Link from "next/link";
-
+import { Button } from "@/components/ui/button";
 import { PAGES, SITE_NAME } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Nav() {
   const pages = PAGES.filter(
@@ -32,46 +33,47 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 z-10 w-full">
-      <div className="items-center justify-between hidden w-1/2 h-full p-4 mx-auto mt-2 text-sm rounded-lg shadow-lg lg:flex backdrop-blur-lg bg-white/75">
+    <nav className="fixed top-0 left-0 z-10 w-full ">
+      <div className="items-center justify-between hidden w-1/2 h-full p-4 mx-auto mt-2 text-sm rounded-lg shadow-lg lg:flex backdrop-blur-lg bg-foreground/40">
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src="/assets/img/logos/wordmark.png"
             alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
+            width={60}
+            height={60}
           />
         </Link>
         <div className="items-center space-x-4 font-semibold">
           {pages.map((page, i) => (
-            <Link
-              key={i}
-              href={page.relativePath}
-              className="lg:text-black/75 hover:text-black"
-            >
-              {page.name}
-            </Link>
+            <Button variant="link" asChild key={i}>
+              <Link href={page.relativePath}>{page.name}</Link>
+            </Button>
           ))}
         </div>
-        <a href="TODO" className="text-white btn btn-sm btn-primary">
-          TODO
-        </a>
+        <Button asChild>
+          <Link href="TODO">TODO</Link>
+        </Button>
       </div>
 
       <div
         id="mobile-navbar"
-        className="flex items-center justify-between w-full h-full py-2 pl-4 rounded-b-lg shadow-lg lg:hidden bg-white/75 backdrop-blur-lg"
+        className="flex items-center justify-between w-full h-full py-2 pl-4 rounded-b-lg shadow-lg lg:hidden bg-foreground/40 backdrop-blur-lg"
       >
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src="/assets/img/logos/wordmark.png"
             alt={SITE_NAME + " wordmark"}
             className="h-5 my-auto"
+            width={60}
+            height={60}
           />
         </Link>
         <div className="flex items-center space-x-2">
-          <a href="TODO" className="text-white btn btn-sm btn-primary">
-            TODO
-          </a>
+          <Button variant="link" asChild>
+            <Link href="TODO">TODO</Link>
+          </Button>
+
           <details className="dropdown dropdown-end">
             <summary
               tabIndex={Number(0)}

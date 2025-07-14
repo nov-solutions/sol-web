@@ -1,18 +1,16 @@
 "use client";
 
-import { Viewport } from "next";
+import ErrorLayout from "@/layouts/errorpage";
 
-import ErrorPage from "@/layouts/errorpage";
-
-const statusCode = "500";
-const statusDescription = "Something went wrong!";
-
-export const viewport: Viewport = {
-  themeColor: "#000000",
-};
-
-export default function Error() {
+export default function Error({
+  error,
+}: {
+  error: Error & { cause?: { code?: string } };
+}) {
   return (
-    <ErrorPage statusCode={statusCode} statusDescription={statusDescription} />
+    <ErrorLayout
+      statusCode={error.cause?.code ?? "500"}
+      statusDescription={error.message ?? "Something went wrong!"}
+    />
   );
 }

@@ -4,7 +4,7 @@ volumes:
 services:
   nextjs:
     container_name: newsolwebapp-web-nextjs
-    restart: always
+    restart: unless-stopped
     build:
       context: ./nextjs
       dockerfile: Dockerfile.nextjs
@@ -22,9 +22,16 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://nextjs:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
   django:
     container_name: newsolwebapp-web-django
-    restart: always
+    restart: unless-stopped
     build:
       context: ./web
       dockerfile: Dockerfile.django
@@ -61,7 +68,7 @@ services:
 
   nginx:
     container_name: newsolwebapp-web-nginx
-    restart: always
+    restart: unless-stopped
     depends_on:
       - django
       - nextjs
@@ -79,7 +86,7 @@ services:
 
   postgres:
     container_name: newsolwebapp-web-postgres
-    restart: always
+    restart: unless-stopped
     image: postgres:17-alpine
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U soluser -d soldb"]
@@ -102,7 +109,7 @@ services:
 
   redis:
     container_name: newsolwebapp-redis
-    restart: always
+    restart: unless-stopped
     image: redis:7-alpine
     command: >
       --requirepass solsecretpassredis
@@ -120,7 +127,7 @@ services:
   scheduler:
     container_name: newsolwebapp-scheduler
     image: newsolwebapp-django:dev
-    restart: always
+    restart: unless-stopped
     command: celery -A celeryapp.celery:app beat -S redbeat.RedBeatScheduler --loglevel=info
     depends_on:
       django:
@@ -140,7 +147,7 @@ services:
   worker:
     container_name: newsolwebapp-worker
     image: newsolwebapp-django:dev
-    restart: always
+    restart: unless-stopped
     command: celery -A celeryapp.celery:app worker --loglevel=info
     depends_on:
       django:

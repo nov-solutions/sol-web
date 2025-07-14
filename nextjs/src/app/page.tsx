@@ -1,15 +1,13 @@
-import { Metadata } from "next";
-
+import Footer from "@/components/marketing/footer";
+import FullHeightSplash from "@/components/marketing/fullheightsplash";
+import Nav from "@/components/marketing/nav";
 import {
+  SITE_BASE_DOMAIN,
+  SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TAGLINE,
-  SITE_DESCRIPTION,
-  SITE_BASE_DOMAIN,
 } from "@/constants";
-
-import Nav from "@/components/marketing/nav";
-import FullHeightSplash from "@/components/marketing/fullheightsplash";
-import Footer from "@/components/marketing/footer";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   openGraph: {
