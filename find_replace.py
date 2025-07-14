@@ -32,6 +32,12 @@ def find_replace():
                 ".jpeg",
                 ".ico",
                 ".gif",
+                "node_modules/",
+                ".next/",
+                ".DS_Store",
+                ".env",
+                ".webp",
+                ".tgz",
             )
 
             if any(pattern in os.path.join(root, file) for pattern in exclude_patterns):
