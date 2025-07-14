@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 from decouple import config
 
 ENVIRONMENT = config("ENVIRONMENT")
