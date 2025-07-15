@@ -5,9 +5,9 @@ from decouple import config
 
 from cdk.web_stack import WebStack
 
-CDK_ACCOUNT = 844884166370
+CDK_ACCOUNT = "844884166370"
 CDK_REGION = "us-west-2"
-SITE_NAME = config("NEXT_PUBLIC_SITE_NAME")
+SITE_NAME = "TODO"
 
 app = cdk.App()
 
