@@ -32,7 +32,7 @@
 
 2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository
 
-   - Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/django` to generate a Django secret key (`SECRET_KEY`) that can be used in production
+   - Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/web` to generate a Django secret key (`SECRET_KEY`) that can be used in production
 
 3. Generate an SSH key pair
 
