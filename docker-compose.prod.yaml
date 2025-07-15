@@ -2,11 +2,19 @@ services:
   nextjs:
     build:
       target: prod
+    environment:
+      ENVIRONMENT: prod
   django:
     build:
       target: prod
+    environment:
+      ENVIRONMENT: prod
   nginx:
     build:
       target: prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
+  worker:
+    image: newsolwebapp-django:prod
+  scheduler:
+    image: newsolwebapp-django:prod
