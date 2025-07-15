@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import aws_cdk as cdk
-from decouple import config
 
 from cdk.web_stack import WebStack
 
