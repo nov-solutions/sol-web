@@ -54,7 +54,7 @@ services:
       REDIS_PASSWORD: solsecretpassredis
       REDIS_HOST: redis
       EMAIL_HOST: smtp.sendgrid.net
-      EMAIL_HOST_USER: thatcher@grav.solutions
+      EMAIL_HOST_USER: TODO
       PUBLIC_API: False
       SENTRY_DSN: https://41ef1b7c8933eff59d081bbb720fb5b8@o4508878567440389.ingest.us.sentry.io/4508878589657088
     depends_on:

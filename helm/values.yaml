@@ -42,7 +42,7 @@ django:
     PUBLIC_API: "False"
 
   secretEnv:
-    SECRET_KEY: "change-me-in-production"
+    SECRET_KEY: "TODO"
     EMAIL_HOST_PASSWORD: ""
     SENTRY_DSN: ""
     STRIPE_SECRET_KEY: ""
@@ -131,8 +131,8 @@ postgresql:
   auth:
     database: soldb
     username: soluser
-    password: "change-me-in-production"
-    postgresPassword: "change-me-in-production"
+    password: "TODO"
+    postgresPassword: "TODO"
 
   primary:
     persistence:
@@ -152,7 +152,7 @@ redis:
   enabled: true
   auth:
     enabled: true
-    password: "change-me-in-production"
+    password: "TODO"
 
   master:
     persistence:
@@ -245,7 +245,7 @@ email:
   port: 587
   useTLS: true
   user: ""
-  from: "thatcher@grav.solutions"
+  from: "TODO"
 
 monitoring:
   enabled: false
