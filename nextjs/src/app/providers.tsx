@@ -1,4 +1,4 @@
-import ProgressBarProvider from "@/providers/progressbarprovider";
+import ProgressBarProvider from "@/providers/progressBarProvider";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
