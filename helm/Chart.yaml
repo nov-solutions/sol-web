@@ -15,7 +15,7 @@ sources:
   - https://github.com/nov-solutions/sol-web
 maintainers:
   - name: TODO
-    email: TODO
+    email: TODO@TODO.com
 dependencies:
   - name: postgresql
     version: "~13.2.0"
