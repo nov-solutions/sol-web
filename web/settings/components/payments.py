@@ -4,6 +4,7 @@ import os
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
+APPLICATION_FEE_PERCENT = 4  # base fee is 2.9% + $0.30
 
 # Stripe Configuration
 STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", "False").lower() == "true"
@@ -13,7 +14,10 @@ STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", "False").lower() == "true"
 STRIPE_TRIAL_PERIOD_DAYS = int(os.environ.get("STRIPE_TRIAL_PERIOD_DAYS", "30"))
 
 # Payment settings
-STRIPE_PAYMENT_METHOD_TYPES = ["card"]  # Can be extended with other payment methods
+STRIPE_PAYMENT_METHOD_TYPES = [
+    "card",
+    "us_bank_account",
+]  # Can be extended with other payment methods
 STRIPE_AUTOMATIC_TAX = os.environ.get("STRIPE_AUTOMATIC_TAX", "False").lower() == "true"
 
 # Customer portal configuration

@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "stripe.apps.StripeConfig",
     # metrics and monitoring
     "metrics.apps.MetricsConfig",
+    # payments
+    "payments.apps.PaymentsConfig",
 ]
 
 MIDDLEWARE = [

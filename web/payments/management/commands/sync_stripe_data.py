@@ -1,7 +1,7 @@
 import stripe
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from stripe.utils import sync_stripe_products_and_prices
+from payments.utils import sync_stripe_products_and_prices
 
 
 class Command(BaseCommand):
