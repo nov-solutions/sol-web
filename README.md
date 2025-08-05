@@ -1,6 +1,6 @@
 # Sol
 
-Sol is an all-in-one template that enables developers to create robust, reliable and responsive web apps in minutes.
+Sol is an all-in-one template that enables developers to create robust, reliable, and responsive web apps in minutes.
 
 © [nov](https://github.com/nov-solutions)
 
