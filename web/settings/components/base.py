@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     "celeryapp.apps.CeleryAppConfig",
     # e-mail
     "mail.apps.MailConfig",
-    # stripe payments
-    "stripe.apps.StripeConfig",
     # metrics and monitoring
     "metrics.apps.MetricsConfig",
     # payments
