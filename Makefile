@@ -31,7 +31,7 @@ key-pair:
 	aws ec2 create-key-pair --key-name newsolwebapp-web --query 'KeyMaterial' --output text > app.pem
 
 deploy-cdk:
-	cd cdk && cdk deploy --profile grav --outputs-file outputs.json
+	cd cdk && cdk deploy --outputs-file outputs.json
 
 venv:
 	python -m venv .venv
