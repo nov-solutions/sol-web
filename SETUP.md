@@ -25,14 +25,14 @@
 0. Configure AWS account values
 
    - If you haven't already, install [`awscli`](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) on your machine
-   - If you haven't already, install [`cdk`](https://docs.aws.amazon.com/cdk/latest/guide/cli.html) on your machine
+   - If you haven't already, install [`aws-cdk`](https://docs.aws.amazon.com/cdk/latest/guide/cli.html) on your machine
    - Replace the `CDK_ACCOUNT` and `CDK_REGION` values in `cdk/app.py` with the appropriate values for the AWS account and region in which the project will be deployed
 
 1. Replace the values in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` with appropriate values for the production build of the project. Use the local environment variable values in `.env` as a reference
 
 2. Upload the production secrets referenced in `.github/workflows/deploy.yaml` and `.github/workflows/test.yaml` to the GitHub repository
 
-   - Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in `/web` to generate a Django secret key (`SECRET_KEY`) that can be used in production
+   - Run `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in an instance of the project's `django` container to generate a Django secret key (`SECRET_KEY`) that can be used in production
 
 3. Generate an SSH key pair
 
