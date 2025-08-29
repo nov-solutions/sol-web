@@ -77,7 +77,7 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": os.environ.get("POSTGRES_HOST", "postgres"),
+        "HOST": config("POSTGRES_HOST", default="postgres"),
         "PORT": 5432,
     }
 }
@@ -114,11 +114,13 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     SITE_BASE_DOMAIN,
+    "https://dev.sol.grav.solutions",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     SITE_BASE_DOMAIN,
+    "https://dev.sol.grav.solutions",
 ]
 
 ROOT_URLCONF = "web.urls"
