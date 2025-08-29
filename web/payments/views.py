@@ -2,12 +2,10 @@ import stripe
 import structlog
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 
 from .utils import get_or_create_stripe_customer, get_user_subscription_status
-from .webhook_handlers import webhook_handler
 
 logger = structlog.get_logger(__name__)
 
@@ -190,30 +188,3 @@ def reactivate_subscription(request):
     except Exception as e:
         logger.error(f"Reactivate subscription error: {str(e)}")
         return JsonResponse({"error": "An error occurred"}, status=500)
-
-
-@csrf_exempt
-@require_POST
-def stripe_webhook(request):
-    """Handle Stripe webhooks"""
-    payload = request.body
-    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError:
-        logger.error("Invalid webhook payload")
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError:
-        logger.error("Invalid webhook signature")
-        return HttpResponse(status=400)
-
-    # Handle the event
-    try:
-        webhook_handler(event)
-        return HttpResponse(status=200)
-    except Exception as e:
-        logger.error(f"Webhook handler error: {str(e)}")
-        return HttpResponse(status=500)
